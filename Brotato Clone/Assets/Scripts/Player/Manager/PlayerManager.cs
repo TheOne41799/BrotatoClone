@@ -30,5 +30,12 @@ namespace BrotatoClone.Player
         {
 
         }
+
+        private void Update()
+        {
+            if(playerController == null) return;
+
+            playerController.Update();
+        }
     }
 }
