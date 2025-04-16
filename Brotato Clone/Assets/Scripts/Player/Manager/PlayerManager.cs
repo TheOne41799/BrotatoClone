@@ -12,5 +12,15 @@ namespace BrotatoClone.Player
         {
             this.eventManager = eventManager;
         }
+
+        private void CreateController()
+        {
+
+        }
+
+        private void DisposeController()
+        {
+
+        }
     }
 }
