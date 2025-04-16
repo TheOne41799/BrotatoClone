@@ -8,9 +8,9 @@ namespace BrotatoClone.Main
     {
         private static Bootstrap instance;
 
-        private IDependencyContainer managerDependencies;
-
         private IEventManager eventManager;
+
+        private IManager playerManager;
 
         private void Awake()
         {
@@ -28,8 +28,6 @@ namespace BrotatoClone.Main
         private void Start()
         {
             CreateEventManager();
-            InitializeManagerDependencies();
-            RegisterManagerDependencies();
             CreateManagers();
             SetManagerDependencies();
         }
@@ -39,19 +37,10 @@ namespace BrotatoClone.Main
             eventManager = new EventManager();
         }
 
-        private void InitializeManagerDependencies()
-        {
-            managerDependencies = new DependencyContainer();
-        }
-
-        private void RegisterManagerDependencies()
-        {
-            managerDependencies.Register<IEventManager>(eventManager);
-        }
-
         private void CreateManagers()
         {
             //Debug.Log("Create Managers");
+            
         }
 
         private void SetManagerDependencies()
