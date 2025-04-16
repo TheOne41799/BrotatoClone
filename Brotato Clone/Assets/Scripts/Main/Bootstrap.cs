@@ -1,5 +1,7 @@
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using BrotatoClone.Event;
+using BrotatoClone.Player;
 using UnityEngine;
 
 namespace BrotatoClone.Main
@@ -7,6 +9,8 @@ namespace BrotatoClone.Main
     public class Bootstrap : MonoBehaviour
     {
         private static Bootstrap instance;
+
+        [SerializeField] private GameData gameData;
 
         private IEventManager eventManager;
 
@@ -39,13 +43,12 @@ namespace BrotatoClone.Main
 
         private void CreateManagers()
         {
-            //Debug.Log("Create Managers");
-            
+            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
         {
-            //Debug.Log("Set Manager Dependencies");
+            playerManager.SetManagerDependencies(eventManager);
         }
     }
 }

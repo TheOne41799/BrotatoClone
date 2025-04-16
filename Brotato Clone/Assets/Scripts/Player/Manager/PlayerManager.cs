@@ -11,8 +11,6 @@ namespace BrotatoClone.Player
         public void SetManagerDependencies(IEventManager eventManager)
         {
             this.eventManager = eventManager;
-
-            Debug.Log("Manager Dependencies are set");
         }
     }
 }
