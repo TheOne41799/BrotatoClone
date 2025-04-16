@@ -1,3 +1,5 @@
+using BrotatoClone.Common;
+using BrotatoClone.Event;
 using UnityEngine;
 
 namespace BrotatoClone.Main
@@ -5,6 +7,10 @@ namespace BrotatoClone.Main
     public class Bootstrap : MonoBehaviour
     {
         private static Bootstrap instance;
+
+        private IDependencyContainer managerDependencies;
+
+        private IEventManager eventManager;
 
         private void Awake()
         {
@@ -21,7 +27,24 @@ namespace BrotatoClone.Main
 
         private void Start()
         {
-            
+            CreateEventManager();
+            InitializeManagerDependencies();
+            RegisterManagerDependencies();
+        }
+
+        private void CreateEventManager()
+        {
+            eventManager = new EventManager();
+        }
+
+        private void InitializeManagerDependencies()
+        {
+            managerDependencies = new DependencyContainer();
+        }
+
+        private void RegisterManagerDependencies()
+        {
+            //managerDependencies
         }
     }
 }

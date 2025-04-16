@@ -1,9 +1,9 @@
-using UnityEngine;
+using BrotatoClone.Event;
 
 namespace BrotatoClone.Common
 {
     public interface IManager
     {
-        void SetManagerDependencies();
+        void SetManagerDependencies(IDependencyContainer managerDependencies);
     }
 }
