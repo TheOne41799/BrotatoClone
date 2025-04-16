@@ -21,7 +21,7 @@ namespace BrotatoClone.Main
 
         private void Start()
         {
-            Debug.Log("Brotato Clone");
+            
         }
     }
 }
