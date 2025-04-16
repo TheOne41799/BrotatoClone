@@ -30,6 +30,8 @@ namespace BrotatoClone.Main
             CreateEventManager();
             InitializeManagerDependencies();
             RegisterManagerDependencies();
+            CreateManagers();
+            SetManagerDependencies();
         }
 
         private void CreateEventManager()
@@ -44,7 +46,17 @@ namespace BrotatoClone.Main
 
         private void RegisterManagerDependencies()
         {
-            //managerDependencies
+            managerDependencies.Register<IEventManager>(eventManager);
+        }
+
+        private void CreateManagers()
+        {
+            //Debug.Log("Create Managers");
+        }
+
+        private void SetManagerDependencies()
+        {
+            //Debug.Log("Set Manager Dependencies");
         }
     }
 }
