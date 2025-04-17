@@ -5,10 +5,14 @@ namespace BrotatoClone.Input
 {
     public class PlayerInputController: IInputController
     {
+        private IControllerOberver inputManager;
         private GameInputActionsAsset gameInputActionsAsset;
 
-        public PlayerInputController(GameInputActionsAsset gameInpuActionsAsset)
+        private Vector2 moveInput;
+
+        public PlayerInputController(IControllerOberver inputManager, GameInputActionsAsset gameInpuActionsAsset)
         {
+            this.inputManager = inputManager;
             this.gameInputActionsAsset = gameInpuActionsAsset;
 
             this.gameInputActionsAsset.Player.Move.performed += OnMovePerformedCallback;
@@ -27,12 +31,19 @@ namespace BrotatoClone.Input
 
         private void OnMovePerformedCallback(InputAction.CallbackContext ctx)
         {
-            Vector2 moveInput = ctx.ReadValue<Vector2>();
+            moveInput = ctx.ReadValue<Vector2>();
+            OnPlayerMoved();
         }
 
         private void OnMoveCanceledCallback(InputAction.CallbackContext ctx)
         {
-            
+            moveInput = Vector2.zero;
+            OnPlayerMoved();
+        }
+
+        private void OnPlayerMoved()
+        {
+            inputManager.OnPlayerMove(moveInput);
         }
     }
 }

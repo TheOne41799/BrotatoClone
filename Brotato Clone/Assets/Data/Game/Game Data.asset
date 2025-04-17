@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Game Data
   m_EditorClassIdentifier: 
   playerManagerPrefab: {fileID: 6965343686074326501, guid: 5427dd5edbd0d004191eecfd732b98ae, type: 3}
+  inputManagerPrefab: {fileID: 7806976524852679861, guid: 842fcecfc17c8b0489937e8b73f15b8d, type: 3}
