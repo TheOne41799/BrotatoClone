@@ -5,7 +5,7 @@ namespace BrotatoClone.Event
 {
     public class InputEvents
     {
-        public EventController<Action<Vector2>> OnMoveInput {  get; }
+        public IEventController<Action<Vector2>> OnMoveInput {  get; }
 
         public InputEvents()
         {

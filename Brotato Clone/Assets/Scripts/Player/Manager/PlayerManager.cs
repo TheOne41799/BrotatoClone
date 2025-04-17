@@ -51,6 +51,8 @@ namespace BrotatoClone.Player
         public void HandlePlayerStatus(Vector3 position)
         {
             Debug.Log(position);
+
+            eventManager.PlayerEvents.OnPlayerStatusUpdated.Invoke(position);
         }
     }
 }
