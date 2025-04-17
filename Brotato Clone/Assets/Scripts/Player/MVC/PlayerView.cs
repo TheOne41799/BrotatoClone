@@ -7,6 +7,9 @@ namespace BrotatoClone.Player
     {
         [SerializeField] private Rigidbody2D playerRB;
 
-
+        public void Move(Vector2 direction, float speed)
+        {
+            playerRB.linearVelocity = new Vector2(direction.x * speed, playerRB.linearVelocity.y);
+        }
     }
 }

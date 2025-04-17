@@ -11,7 +11,7 @@ namespace BrotatoClone.Player
 
         private IEventManager eventManager;
 
-        private IPlayerController playerController;
+        private PlayerController playerController;
 
         public void SetManagerDependencies(IEventManager eventManager)
         {
@@ -31,11 +31,14 @@ namespace BrotatoClone.Player
 
         }
 
+        private void OnMoveInput(Vector2 input)
+        {
+            playerController.SetMoveInput(input);
+        }
+
         private void Update()
         {
-            if(playerController == null) return;
-
-            playerController.Update();
+            playerController?.Update();
         }
     }
 }
