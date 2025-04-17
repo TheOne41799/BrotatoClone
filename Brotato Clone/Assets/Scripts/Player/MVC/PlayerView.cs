@@ -7,7 +7,13 @@ namespace BrotatoClone.Player
     {
         [SerializeField] private Rigidbody2D playerRB;
 
+        private IPlayerViewObserver playerController;
         private Vector2 velocity;
+
+        public void SetDependencies(IPlayerViewObserver playerController)
+        {
+            this.playerController = playerController;
+        }
 
         public void Move(Vector2 velocity)
         {
@@ -17,6 +23,8 @@ namespace BrotatoClone.Player
         private void FixedUpdate()
         {
             playerRB.linearVelocity = velocity;
+
+            playerController.HandlePlayerStatus(this.transform.position);
         }
     }
 }

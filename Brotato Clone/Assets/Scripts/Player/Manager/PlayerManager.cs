@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BrotatoClone.Player
 {
-    public class PlayerManager : MonoBehaviour, IManager
+    public class PlayerManager : MonoBehaviour, IManager, IPlayerControllerObserver
     {
         [SerializeField] private PlayerData playerData;
 
@@ -35,7 +35,7 @@ namespace BrotatoClone.Player
 
         private void CreateController()
         {
-            playerController = new PlayerController(playerData.PlayerViewPrefab);
+            playerController = new PlayerController((IPlayerControllerObserver) this, playerData.PlayerViewPrefab);
         }
 
         private void DisposeController()
@@ -46,6 +46,11 @@ namespace BrotatoClone.Player
         private void HandleMoveInput(Vector2 moveInput)
         {
             playerController.HandleMoveInput(moveInput);
+        }
+
+        public void HandlePlayerStatus(Vector3 position)
+        {
+            Debug.Log(position);
         }
     }
 }
