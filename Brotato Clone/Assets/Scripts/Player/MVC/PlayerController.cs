@@ -16,7 +16,7 @@ namespace BrotatoClone.Player
 
         public void Update()
         {
-            playerView.TestMove(playerInputController.GetMovementVector());         
+                  
         }
     }
 }

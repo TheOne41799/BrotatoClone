@@ -1,6 +1,7 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
+using BrotatoClone.Input;
 using BrotatoClone.Player;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace BrotatoClone.Main
 
         private IEventManager eventManager;
 
+        private IManager inputManager;
         private IManager playerManager;
 
         private void Awake()
@@ -43,11 +45,13 @@ namespace BrotatoClone.Main
 
         private void CreateManagers()
         {
+            inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
             playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
         {
+            inputManager.SetManagerDependencies(eventManager);
             playerManager.SetManagerDependencies(eventManager);
         }
     }

@@ -8,10 +8,5 @@ namespace BrotatoClone.Player
         [SerializeField] private Rigidbody2D playerRB;
 
 
-
-        public void TestMove(Vector2 velocityVector)
-        {
-            playerRB.linearVelocity = velocityVector;
-        }
     }
 }
