@@ -32,18 +32,18 @@ namespace BrotatoClone.Input
         private void OnMovePerformedCallback(InputAction.CallbackContext ctx)
         {
             moveInput = ctx.ReadValue<Vector2>();
-            OnPlayerMoved();
+            HandleMoveInput();
         }
 
         private void OnMoveCanceledCallback(InputAction.CallbackContext ctx)
         {
             moveInput = Vector2.zero;
-            OnPlayerMoved();
+            HandleMoveInput();
         }
 
-        private void OnPlayerMoved()
+        private void HandleMoveInput()
         {
-            inputManager.OnPlayerMove(moveInput);
+            inputManager.HandleMoveInput(moveInput);
         }
     }
 }

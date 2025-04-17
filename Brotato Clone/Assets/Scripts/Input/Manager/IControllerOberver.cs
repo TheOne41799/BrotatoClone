@@ -4,6 +4,6 @@ namespace BrotatoClone.Input
 {
     public interface IControllerOberver
     {
-        void OnPlayerMove(Vector2 moveInput);
+        void HandleMoveInput(Vector2 moveInput);
     }
 }

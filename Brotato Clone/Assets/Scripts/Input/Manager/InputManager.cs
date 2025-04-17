@@ -40,7 +40,7 @@ namespace BrotatoClone.Input
 
         }
 
-        public void OnPlayerMove(Vector2 moveInput)
+        public void HandleMoveInput(Vector2 moveInput)
         {       
             eventManager.InputEvents.OnMoveInput.Invoke(moveInput);
         }

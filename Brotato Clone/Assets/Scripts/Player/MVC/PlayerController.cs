@@ -4,12 +4,10 @@ namespace BrotatoClone.Player
 {
     public class PlayerController : IPlayerController
     {
-        private PlayerView playerView;
-        private PlayerModel playerModel;
+        private IPlayerModel playerModel;
+        private IPlayerView playerView;
 
         private int moveSpeed = 5;
-
-        private Vector2 velocity;
 
         public PlayerController(PlayerView playerViewPrefab) 
         {
@@ -17,9 +15,9 @@ namespace BrotatoClone.Player
             playerView = GameObject.Instantiate<PlayerView>(playerViewPrefab);
         }
 
-        public void HandleMoveInput(Vector2 input)
+        public void HandleMoveInput(Vector2 moveInput)
         {
-            Vector2 velocity = playerModel.CalculateVelocity(input);
+            Vector2 velocity = playerModel.CalculateVelocity(moveInput);
             playerView.Move(velocity);
         }
     }
