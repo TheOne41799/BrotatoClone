@@ -10,5 +10,10 @@ namespace BrotatoClone.Player
         {
             MoveSpeed = moveSpeed;
         }
+
+        public Vector2 CalculateVelocity(Vector2 inputDirection)
+        {
+            return inputDirection * MoveSpeed;
+        }
     }
 }

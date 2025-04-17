@@ -51,8 +51,8 @@ namespace BrotatoClone.Main
 
         private void SetManagerDependencies()
         {
-            inputManager.SetManagerDependencies(eventManager);
-            playerManager.SetManagerDependencies(eventManager);
+            inputManager.InitializeManager(eventManager);
+            playerManager.InitializeManager(eventManager);
         }
     }
 }

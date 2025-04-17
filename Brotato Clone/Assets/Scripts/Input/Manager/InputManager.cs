@@ -24,14 +24,25 @@ namespace BrotatoClone.Input
             gameInputActionsAsset.Player.Enable();
         }
 
-        public void SetManagerDependencies(IEventManager eventManager)
+        public void InitializeManager(IEventManager eventManager)
         {
-            this.eventManager = eventManager; 
+            SetManagerDependencies(eventManager);
+            RegisterEventListeners();
+        }
+
+        private void SetManagerDependencies(IEventManager eventManager)
+        {
+            this.eventManager = eventManager;
+        }
+
+        private void RegisterEventListeners()
+        {
+
         }
 
         public void OnPlayerMove(Vector2 moveInput)
-        {
-            Debug.Log(moveInput);
+        {       
+            eventManager.InputEvents.OnMoveInput.Invoke(moveInput);
         }
     }
 }

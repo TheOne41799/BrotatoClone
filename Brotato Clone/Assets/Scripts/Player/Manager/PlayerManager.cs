@@ -13,12 +13,24 @@ namespace BrotatoClone.Player
 
         private PlayerController playerController;
 
-        public void SetManagerDependencies(IEventManager eventManager)
+        public void InitializeManager(IEventManager eventManager)
+        {
+            SetManagerDependencies(eventManager);
+            RegisterEventListeners();
+
+
+            //test
+            CreateController();
+        }
+
+        private void SetManagerDependencies(IEventManager eventManager)
         {
             this.eventManager = eventManager;
+        }
 
-
-            CreateController();
+        private void RegisterEventListeners()
+        {
+            eventManager.InputEvents.OnMoveInput.AddListener(HandleMoveInput);
         }
 
         private void CreateController()
@@ -31,14 +43,10 @@ namespace BrotatoClone.Player
 
         }
 
-        private void OnMoveInput(Vector2 input)
+        private void HandleMoveInput(Vector2 moveInput)
         {
-            playerController.SetMoveInput(input);
-        }
-
-        private void Update()
-        {
-            playerController?.Update();
+            Debug.Log(moveInput);
+            playerController.HandleMoveInput(moveInput);
         }
     }
 }
