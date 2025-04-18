@@ -21,7 +21,7 @@ namespace BrotatoClone.Input
 
 
             //test
-            gameInputActionsAsset.Player.Enable();
+            playerInputController.Enable();
         }
 
         public void InitializeManager(IEventManager eventManager)
@@ -44,5 +44,24 @@ namespace BrotatoClone.Input
         {       
             eventManager.InputEvents.OnMoveInput.Invoke(moveInput);
         }
+
+
+
+
+        /*// Use the below method to update the current active action map
+        private void UpdateInputActionMapStatus(var enums)
+        {
+            DisableAllActionMaps();
+
+            switch statement to determine which action map should be currently active
+        }*/
+
+
+
+        /*// Use the below method to disable all the action maps first
+        private void DisableAllActionMaps()
+        {
+            playerInputController.Disable();
+        }*/
     }
 }
