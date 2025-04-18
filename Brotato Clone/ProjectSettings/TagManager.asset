@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Boundary
+  - Environment
   - Player
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Environment
+    uniqueID: 1913812303
+    locked: 0
+  - name: Player
+    uniqueID: 3893624819
     locked: 0
   m_RenderingLayers:
   - Default
