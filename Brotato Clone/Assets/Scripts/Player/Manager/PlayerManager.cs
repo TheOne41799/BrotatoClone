@@ -48,11 +48,9 @@ namespace BrotatoClone.Player
             playerController.HandleMoveInput(moveInput);
         }
 
-        public void HandlePlayerStatus(Vector3 position)
+        public void ReportCameraTarget(ITarget target)
         {
-            Debug.Log(position);
-
-            eventManager.PlayerEvents.OnPlayerStatusUpdated.Invoke(position);
+            eventManager.PlayerEvents.OnCameraTargetCreated.Invoke(target);
         }
     }
 }

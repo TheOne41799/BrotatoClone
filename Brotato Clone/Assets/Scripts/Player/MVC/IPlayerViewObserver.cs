@@ -1,9 +1,10 @@
+using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.Player
 {
     public interface IPlayerViewObserver
     {
-        void HandlePlayerStatus(Vector3 position);
+        //void ReportCameraTarget(ITarget target);
     }
 }
