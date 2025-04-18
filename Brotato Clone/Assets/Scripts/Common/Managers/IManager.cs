@@ -4,6 +4,6 @@ namespace BrotatoClone.Common
 {
     public interface IManager
     {
-        void SetManagerDependencies(IDependencyContainer managerDependencies);
+        void InitializeManager(IEventManager eventManager);
     }
 }

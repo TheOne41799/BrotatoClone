@@ -1,5 +1,9 @@
+using BrotatoClone.Camera;
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using BrotatoClone.Event;
+using BrotatoClone.Input;
+using BrotatoClone.Player;
 using UnityEngine;
 
 namespace BrotatoClone.Main
@@ -8,9 +12,13 @@ namespace BrotatoClone.Main
     {
         private static Bootstrap instance;
 
-        private IDependencyContainer managerDependencies;
+        [SerializeField] private GameData gameData;
 
         private IEventManager eventManager;
+
+        private IManager inputManager;
+        private IManager cameraManager;
+        private IManager playerManager;
 
         private void Awake()
         {
@@ -28,8 +36,6 @@ namespace BrotatoClone.Main
         private void Start()
         {
             CreateEventManager();
-            InitializeManagerDependencies();
-            RegisterManagerDependencies();
             CreateManagers();
             SetManagerDependencies();
         }
@@ -39,24 +45,18 @@ namespace BrotatoClone.Main
             eventManager = new EventManager();
         }
 
-        private void InitializeManagerDependencies()
-        {
-            managerDependencies = new DependencyContainer();
-        }
-
-        private void RegisterManagerDependencies()
-        {
-            managerDependencies.Register<IEventManager>(eventManager);
-        }
-
         private void CreateManagers()
         {
-            //Debug.Log("Create Managers");
+            inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
+            cameraManager = GameObject.Instantiate<CameraManager>(gameData.CameraManagerPrefab, this.transform);
+            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
         {
-            //Debug.Log("Set Manager Dependencies");
+            inputManager.InitializeManager(eventManager);
+            cameraManager.InitializeManager(eventManager);
+            playerManager.InitializeManager(eventManager);
         }
     }
 }
