@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BrotatoClone.Input
 {
-    public interface IControllerOberver
+    public interface IInputControllerOberver
     {
         void HandleMoveInput(Vector2 moveInput);
     }

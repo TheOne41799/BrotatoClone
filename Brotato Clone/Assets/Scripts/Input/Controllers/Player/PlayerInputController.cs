@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,28 +6,29 @@ namespace BrotatoClone.Input
 {
     public class PlayerInputController: IInputController
     {
-        private IControllerOberver inputManager;
+        private IInputControllerOberver inputManager;
         private GameInputActionsAsset gameInputActionsAsset;
 
         private Vector2 moveInput;
 
-        public PlayerInputController(IControllerOberver inputManager, GameInputActionsAsset gameInpuActionsAsset)
+        public PlayerInputController(IInputControllerOberver inputManager, GameInputActionsAsset gameInpuActionsAsset)
         {
             this.inputManager = inputManager;
             this.gameInputActionsAsset = gameInpuActionsAsset;
-
-            this.gameInputActionsAsset.Player.Move.performed += OnMovePerformedCallback;
-            this.gameInputActionsAsset.Player.Move.canceled += OnMoveCanceledCallback;
         }
 
         public void Enable()
         {
             gameInputActionsAsset?.Player.Enable();
+            this.gameInputActionsAsset.Player.Move.performed += OnMovePerformedCallback;
+            this.gameInputActionsAsset.Player.Move.canceled += OnMoveCanceledCallback;
         }
 
         public void Disable()
         {
             gameInputActionsAsset?.Player.Disable();
+            this.gameInputActionsAsset.Player.Move.performed -= OnMovePerformedCallback;
+            this.gameInputActionsAsset.Player.Move.canceled -= OnMoveCanceledCallback;
         }
 
         private void OnMovePerformedCallback(InputAction.CallbackContext ctx)
