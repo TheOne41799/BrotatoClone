@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,12 +6,12 @@ namespace BrotatoClone.Input
 {
     public class PlayerInputController: IInputController
     {
-        private IControllerOberver inputManager;
+        private IInputControllerOberver inputManager;
         private GameInputActionsAsset gameInputActionsAsset;
 
         private Vector2 moveInput;
 
-        public PlayerInputController(IControllerOberver inputManager, GameInputActionsAsset gameInpuActionsAsset)
+        public PlayerInputController(IInputControllerOberver inputManager, GameInputActionsAsset gameInpuActionsAsset)
         {
             this.inputManager = inputManager;
             this.gameInputActionsAsset = gameInpuActionsAsset;

@@ -5,7 +5,11 @@ using UnityEngine.InputSystem;
 
 namespace BrotatoClone.Input
 {
-    public class InputManager : MonoBehaviour, IManager, IControllerOberver
+    // Looks like there is an issue with IInputControllerObserver
+    // Every time you create a new controller separate interface must be created in this setup
+    // like UIInputControllerObserver
+    // Also change the Player Action Map to Gameplay Action Map as the name makes more sense
+    public class InputManager : MonoBehaviour, IManager, IInputControllerOberver
     {
         private GameInputActionsAsset gameInputActionsAsset;
 
@@ -16,7 +20,7 @@ namespace BrotatoClone.Input
         private void Awake()
         {
             gameInputActionsAsset = new GameInputActionsAsset();
-            playerInputController = new PlayerInputController((IControllerOberver) this, gameInputActionsAsset);
+            playerInputController = new PlayerInputController((IInputControllerOberver) this, gameInputActionsAsset);
 
 
 
