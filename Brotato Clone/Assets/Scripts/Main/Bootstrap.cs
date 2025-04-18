@@ -35,6 +35,8 @@ namespace BrotatoClone.Main
 
         private void Start()
         {
+            Application.targetFrameRate = 60;
+
             CreateEventManager();
             CreateManagers();
             SetManagerDependencies();
