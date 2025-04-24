@@ -9,5 +9,6 @@ namespace BrotatoClone.Enemy
         void SetEnemyData(EnemyData enemyData);
         Vector2 GetPosition();
         void Move(Vector2 velocity);
+        void PlayDeathEffect();
     }
 }

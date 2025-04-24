@@ -47,6 +47,7 @@ namespace BrotatoClone.Enemy
             if (canAttackPlayer)
             {
                 Debug.Log("Attack player");
+                enemyView.PlayDeathEffect();
                 OnDispose();
             }
         }

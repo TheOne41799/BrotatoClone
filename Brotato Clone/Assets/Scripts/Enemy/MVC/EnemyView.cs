@@ -11,6 +11,9 @@ namespace BrotatoClone.Enemy
 
         private EnemyData enemyData;
 
+        [Header("Death Effects")]
+        [SerializeField] private ParticleSystem deathEffect;
+
         [Header("DEBUG")]
         [SerializeField] private bool isGizmosON;
 
@@ -45,6 +48,12 @@ namespace BrotatoClone.Enemy
 
             Gizmos.color = Color.black;
             Gizmos.DrawWireSphere(this.transform.position, enemyData.AttackRange);
+        }
+
+        public void PlayDeathEffect()
+        {
+            deathEffect.transform.SetParent(null);
+            deathEffect.Play();
         }
     }
 }

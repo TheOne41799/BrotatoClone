@@ -5,8 +5,8 @@ namespace BrotatoClone.Enemy
 {
     public class EnemyModel : IEnemyModel
 {
-        private float moveSpeed;
-        private float attackRange;
+        private readonly float moveSpeed;
+        private readonly float attackRange;
 
         public EnemyModel(EnemyData enemyData)
         {
@@ -33,6 +33,6 @@ namespace BrotatoClone.Enemy
             {
                 return false;
             }
-        }
+        }        
     }
 }
