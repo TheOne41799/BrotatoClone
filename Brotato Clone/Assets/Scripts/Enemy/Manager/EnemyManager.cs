@@ -3,7 +3,9 @@ using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
 using BrotatoClone.Player;
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace BrotatoClone.Enemy
 {
@@ -14,7 +16,7 @@ namespace BrotatoClone.Enemy
         private IEventManager eventManager;
         private ITarget target;
 
-        private IEnemyController enemyController;
+        private List<IEnemyController> enemyControllers = new List<IEnemyController>();
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -42,12 +44,15 @@ namespace BrotatoClone.Enemy
             //test
 
             CreateController();
+            CreateController();
+            CreateController();
         }
 
         private void CreateController()
         {
-            enemyController = new EnemyController(enemyData);
-            enemyController.SetEnemyTarget(target);
+            IEnemyController controller = new EnemyController(enemyData);
+            controller.SetEnemyTarget(target);
+            enemyControllers.Add(controller);
         }
 
         private void DisposeController()
@@ -57,9 +62,13 @@ namespace BrotatoClone.Enemy
 
         private void Update()
         {
-            if (enemyController != null)
+            if (enemyControllers != null)
             {
-                enemyController.HandleFollowTarget();
+                foreach (IEnemyController enemyController in enemyControllers)
+                {
+                    enemyController.HandleFollowTarget();
+                    enemyController.HandleAttackTarget();
+                }
             }
         }
     }

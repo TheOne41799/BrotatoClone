@@ -7,5 +7,6 @@ namespace BrotatoClone.Enemy
     {
         void SetEnemyTarget(ITarget target);
         void HandleFollowTarget();
+        void HandleAttackTarget();
     }
 }

@@ -1,14 +1,15 @@
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using UnityEngine;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyView : MonoBehaviour, IEnemyView, IDamageable
+    public class EnemyView : MonoBehaviour, IEnemyView
     {
         private IViewObserver enemyController;
-
-        [SerializeField] private Rigidbody2D enemyRB;
         private Vector2 velocity;
+
+        private EnemyData enemyData;
 
         public void SetController(IViewObserver enemyController)
         {
@@ -25,19 +26,21 @@ namespace BrotatoClone.Enemy
             this.velocity = velocity;
         }
 
-        private void FixedUpdate()
+        public void SetEnemyData(EnemyData enemyData)
         {
-            enemyRB.linearVelocity = velocity;
+            this.enemyData = enemyData;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void FixedUpdate()
         {
-            if (collision.TryGetComponent<IDamageable>(out var damageable))
-            {
-                enemyController.OnDispose();
+            transform.position += (Vector3)(velocity * Time.fixedDeltaTime);
+        }
 
-                Destroy(this.gameObject);
-            }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.black;
+
+            Gizmos.DrawWireSphere(this.transform.position, enemyData.AttackRange);
         }
     }
 }

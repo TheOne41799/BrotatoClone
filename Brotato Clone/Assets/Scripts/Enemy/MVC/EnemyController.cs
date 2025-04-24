@@ -16,10 +16,11 @@ namespace BrotatoClone.Enemy
 
         public EnemyController(EnemyData enemyData)
         {
-            enemyModel = new EnemyModel(enemyData.MoveSpeed);
+            enemyModel = new EnemyModel(enemyData);
 
-            enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(2, 2, 0), Quaternion.identity);
+            enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity);
             enemyView.SetController(this);
+            enemyView.SetEnemyData(enemyData);
 
             isDisposed = false;
         }
@@ -35,6 +36,15 @@ namespace BrotatoClone.Enemy
 
             Vector2 velocity = enemyModel.CalculateVelocity(target.TargetTransform.position, enemyView.GetPosition());
             enemyView.Move(velocity);
+        }
+
+        public void HandleAttackTarget()
+        {
+            if (isDisposed) return;
+
+            bool canAttackPlayer = enemyModel.TryAttack(target.TargetTransform.position, enemyView.GetPosition());
+
+            if(canAttackPlayer) Debug.Log("Attack player");
         }
 
         public void OnDispose()
