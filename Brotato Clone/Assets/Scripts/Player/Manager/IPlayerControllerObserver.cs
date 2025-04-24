@@ -5,6 +5,6 @@ namespace BrotatoClone.Player
 {
     public interface IPlayerControllerObserver
     {
-        void ReportCameraTarget(ITarget target);
+        void ReportTargetTransform(ITarget target);
     }
 }

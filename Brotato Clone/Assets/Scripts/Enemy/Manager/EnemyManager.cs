@@ -1,28 +1,20 @@
+using BrotatoClone.Camera;
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using BrotatoClone.Event;
-using Unity.Cinemachine;
+using BrotatoClone.Player;
 using UnityEngine;
 
-namespace BrotatoClone.Camera
+namespace BrotatoClone.Enemy
 {
-    public class CameraManager : MonoBehaviour, IManager
+    public class EnemyManager : MonoBehaviour, IManager
     {
-        [SerializeField] private CinemachineCamera cinemachineCamera;
+        [SerializeField] private EnemyData enemyData;
 
         private IEventManager eventManager;
-
-        private ICameraController cameraController;
         private ITarget target;
 
-        private void Awake()
-        {
-            CreateCameraController();
-        }
-
-        private void CreateCameraController()
-        {
-            cameraController = new CameraController(cinemachineCamera);
-        }
+        private IEnemyController enemyController;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -46,7 +38,29 @@ namespace BrotatoClone.Camera
         {
             this.target = target;
 
-            cameraController.SetCameraTarget(target);
+
+            //test
+
+            CreateController();
+        }
+
+        private void CreateController()
+        {
+            enemyController = new EnemyController(enemyData.EnemyViewPrefab);
+            enemyController.SetEnemyTarget(target);
+        }
+
+        private void DisposeController()
+        {
+
+        }
+
+        private void Update()
+        {
+            if (enemyController != null)
+            {
+                enemyController.HandleFollowTarget();
+            }
         }
     }
 }

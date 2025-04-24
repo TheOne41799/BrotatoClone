@@ -48,9 +48,9 @@ namespace BrotatoClone.Player
             playerController.HandleMoveInput(moveInput);
         }
 
-        public void ReportCameraTarget(ITarget target)
+        public void ReportTargetTransform(ITarget target)
         {
-            eventManager.PlayerEvents.OnCameraTargetCreated.Invoke(target);
+            eventManager.PlayerEvents.OnTargetCreated.Invoke(target);
         }
     }
 }
