@@ -44,7 +44,11 @@ namespace BrotatoClone.Enemy
 
             bool canAttackPlayer = enemyModel.TryAttack(target.TargetTransform.position, enemyView.GetPosition());
 
-            if(canAttackPlayer) Debug.Log("Attack player");
+            if (canAttackPlayer)
+            {
+                Debug.Log("Attack player");
+                OnDispose();
+            }
         }
 
         public void OnDispose()

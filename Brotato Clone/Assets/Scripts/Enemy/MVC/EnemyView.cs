@@ -11,6 +11,9 @@ namespace BrotatoClone.Enemy
 
         private EnemyData enemyData;
 
+        [Header("DEBUG")]
+        [SerializeField] private bool isGizmosON;
+
         public void SetController(IViewObserver enemyController)
         {
             this.enemyController = enemyController;
@@ -38,8 +41,9 @@ namespace BrotatoClone.Enemy
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.black;
+            if(!isGizmosON) return;
 
+            Gizmos.color = Color.black;
             Gizmos.DrawWireSphere(this.transform.position, enemyData.AttackRange);
         }
     }
