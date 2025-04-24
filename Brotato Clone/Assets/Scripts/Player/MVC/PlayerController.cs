@@ -1,4 +1,5 @@
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using UnityEngine;
 
 namespace BrotatoClone.Player
@@ -10,16 +11,14 @@ namespace BrotatoClone.Player
         private IPlayerModel playerModel;
         private IPlayerView playerView;
 
-        private int moveSpeed = 5;
-
-        public PlayerController(IPlayerControllerObserver playerManager, PlayerView playerViewPrefab) 
+        public PlayerController(IPlayerControllerObserver playerManager, PlayerData playerData) 
         {
             this.playerManager = playerManager;
 
-            playerModel = new PlayerModel(moveSpeed);
+            playerModel = new PlayerModel(playerData.MoveSpeed);
 
-            playerView = GameObject.Instantiate<PlayerView>(playerViewPrefab);
-            ReportCameraTarget((ITarget)playerView);
+            playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab);
+            ReportTargetTransform((ITarget)playerView);
         }
 
         public void HandleMoveInput(Vector2 moveInput)
@@ -28,9 +27,9 @@ namespace BrotatoClone.Player
             playerView.Move(velocity);
         }
 
-        private void ReportCameraTarget(ITarget target)
+        private void ReportTargetTransform(ITarget target)
         {
-            playerManager.ReportCameraTarget(target);
+            playerManager.ReportTargetTransform(target);
         }
     }
 }

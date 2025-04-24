@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c863be34d5f58f4095e616dec1a2c07, type: 3}
-  m_Name: Player Data
+  m_Script: {fileID: 11500000, guid: 9c33646e88314514d8e45d9bafe94402, type: 3}
+  m_Name: Enemy Data
   m_EditorClassIdentifier: 
-  playerViewPrefab: {fileID: 3097659757534031549, guid: 2ff227133ed70cc4599fcb26c92afb5e, type: 3}
-  moveSpeed: 5
+  enemyViewPrefab: {fileID: 1765677335862136065, guid: 44a05b9135347274ea5430a541d609c9, type: 3}
+  moveSpeed: 1.5
+  attackRange: 0.5

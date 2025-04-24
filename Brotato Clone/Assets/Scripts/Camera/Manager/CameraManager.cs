@@ -12,6 +12,7 @@ namespace BrotatoClone.Camera
         private IEventManager eventManager;
 
         private ICameraController cameraController;
+        private ITarget target;
 
         private void Awake()
         {
@@ -36,13 +37,15 @@ namespace BrotatoClone.Camera
 
         private void RegisterEventListeners()
         {
-            eventManager.PlayerEvents.OnCameraTargetCreated.AddListener(ReceiveCameraTarget);
+            eventManager.PlayerEvents.OnTargetCreated.AddListener(ReceiveTargetTransform);
 
             // create an event to indicate player has been destroyed or use the same event
         }
 
-        private void ReceiveCameraTarget(ITarget target)
+        private void ReceiveTargetTransform(ITarget target)
         {
+            this.target = target;
+
             cameraController.SetCameraTarget(target);
         }
     }

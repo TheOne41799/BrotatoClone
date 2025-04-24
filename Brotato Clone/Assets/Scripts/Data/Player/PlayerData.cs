@@ -7,7 +7,9 @@ namespace BrotatoClone.Data
     public class PlayerData : ScriptableObject
     {
         [SerializeField] private PlayerView playerViewPrefab;
+        [SerializeField] private float moveSpeed;
 
         public PlayerView PlayerViewPrefab => playerViewPrefab;
+        public float MoveSpeed => moveSpeed;
     }
 }
