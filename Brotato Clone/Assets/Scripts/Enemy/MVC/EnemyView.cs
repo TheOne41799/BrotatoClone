@@ -11,11 +11,21 @@ namespace BrotatoClone.Enemy
 
         private EnemyData enemyData;
 
+        [Header("Renderers")]
+        [SerializeField] private SpriteRenderer enemySprite;
+        [SerializeField] private SpriteRenderer spawnIndicator;
+
         [Header("Death Effects")]
         [SerializeField] private ParticleSystem deathEffect;
 
         [Header("DEBUG")]
         [SerializeField] private bool isGizmosON;
+
+        private void Awake()
+        {
+            enemySprite.enabled = false;
+            spawnIndicator.enabled = true;
+        }
 
         public void SetController(IViewObserver enemyController)
         {
@@ -37,9 +47,9 @@ namespace BrotatoClone.Enemy
             this.enemyData = enemyData;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            transform.position += (Vector3)(velocity * Time.fixedDeltaTime);
+            transform.position += (Vector3)(velocity * Time.deltaTime);
         }
 
         private void OnDrawGizmos()
