@@ -35,7 +35,7 @@ namespace BrotatoClone.Player
 
         private void CreateController()
         {
-            playerController = new PlayerController((IPlayerControllerObserver) this, playerData.PlayerViewPrefab);
+            playerController = new PlayerController((IPlayerControllerObserver) this, playerData);
         }
 
         private void DisposeController()

@@ -1,4 +1,5 @@
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using BrotatoClone.Player;
 using UnityEngine;
 
@@ -11,12 +12,10 @@ namespace BrotatoClone.Enemy
 
         private ITarget target;
 
-        private float moveSpeed = 2;
-
-        public EnemyController(EnemyView enemyViewPrefab)
+        public EnemyController(EnemyData enemyData)
         {
-            enemyModel = new EnemyModel(moveSpeed);
-            enemyView = GameObject.Instantiate<EnemyView>(enemyViewPrefab, new Vector3(2, 2, 0), Quaternion.identity);
+            enemyModel = new EnemyModel(enemyData.MoveSpeed);
+            enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(2, 2, 0), Quaternion.identity);
         }
 
         public void SetEnemyTarget(ITarget target)

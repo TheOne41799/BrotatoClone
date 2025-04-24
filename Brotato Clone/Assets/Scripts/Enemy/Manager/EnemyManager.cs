@@ -46,7 +46,7 @@ namespace BrotatoClone.Enemy
 
         private void CreateController()
         {
-            enemyController = new EnemyController(enemyData.EnemyViewPrefab);
+            enemyController = new EnemyController(enemyData);
             enemyController.SetEnemyTarget(target);
         }
 

@@ -8,7 +8,9 @@ namespace BrotatoClone.Data
     public class EnemyData : ScriptableObject
     {
         [SerializeField] private EnemyView enemyViewPrefab;
+        [SerializeField] private float moveSpeed;
 
         public EnemyView EnemyViewPrefab => enemyViewPrefab;
+        public float MoveSpeed => moveSpeed;
     }
 }
