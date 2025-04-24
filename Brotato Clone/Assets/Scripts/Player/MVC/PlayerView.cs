@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BrotatoClone.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerView : MonoBehaviour, IPlayerView, ITarget
+    public class PlayerView : MonoBehaviour, IPlayerView, ITarget, IDamageable
     {
         [SerializeField] private Rigidbody2D playerRB;
         private Vector2 velocity;
@@ -24,6 +24,11 @@ namespace BrotatoClone.Player
         private void FixedUpdate()
         {
             playerRB.linearVelocity = velocity;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            
         }
     }
 }
