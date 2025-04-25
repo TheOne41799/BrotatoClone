@@ -50,7 +50,7 @@ namespace BrotatoClone.Player
 
         public void ReportTargetTransform(ITarget target)
         {
-            eventManager.PlayerEvents.OnTargetCreated.Invoke(target);
+            eventManager.PlayerEvents.OnTargetUpdated.Invoke(target);
         }
     }
 }

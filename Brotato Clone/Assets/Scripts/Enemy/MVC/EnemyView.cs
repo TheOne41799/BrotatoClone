@@ -25,6 +25,11 @@ namespace BrotatoClone.Enemy
         {
             enemySprite.enabled = false;
             spawnIndicator.enabled = true;
+
+
+            //test - continue from here.......................................
+            TweenScalePingPongData scaleData = new TweenScalePingPongData(new Vector3(1.5f, 1.5f, 1f), 0.5f, 4);
+            TweenEventData eventData = new TweenEventData(TweenType.SCALE_PING_PONG, spawnIndicator.gameObject, scaleData);
         }
 
         public void SetController(IViewObserver enemyController)
