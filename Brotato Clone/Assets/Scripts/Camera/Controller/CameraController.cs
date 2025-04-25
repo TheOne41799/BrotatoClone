@@ -21,6 +21,8 @@ namespace BrotatoClone.Camera
             if (target == null) return;
 
             cinemachineCamera.Follow = target.TargetTransform;
+
+            Debug.Log(target.TargetTransform.position);
         }
     }
 }
