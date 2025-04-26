@@ -11,10 +11,10 @@ namespace BrotatoClone.Data
 
         [Header("Player Properties")]
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float health;
+        [SerializeField] private float maxHealth;
 
         public PlayerView PlayerViewPrefab => playerViewPrefab;
         public float MoveSpeed => moveSpeed;
-        public float Health => health;
+        public float MaxHealth => maxHealth;
     }
 }

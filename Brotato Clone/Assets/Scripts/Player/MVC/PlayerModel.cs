@@ -7,12 +7,15 @@ namespace BrotatoClone.Player
     {
         private IPlayerModelObserver playerController;
         public float MoveSpeed { get; private set; }
-        private float health;
+
+        private readonly float maxHealth;
+        private float currentHealth;
 
         public PlayerModel(PlayerData playerData)
         {
             this.MoveSpeed = playerData.MoveSpeed;
-            this.health = playerData.Health;
+            this.maxHealth = playerData.MaxHealth;
+            this.currentHealth = playerData.MaxHealth;
         }
 
         public void SetController(IPlayerModelObserver playerController)
@@ -27,9 +30,18 @@ namespace BrotatoClone.Player
 
         public void TakeDamage(float damage)
         {
-            health -= damage;
+            float adjustedDamage = Mathf.Min(damage, currentHealth);
+            currentHealth -= adjustedDamage;
+            float healthRatio = currentHealth / maxHealth;
             
-            playerController.HandleHealthUpdate(health);
+            playerController.HandleHealthUpdate(healthRatio);
+
+            if (currentHealth <= 0) Dispose();
+        }
+
+        public void Dispose()
+        {
+            Debug.Log("Player is disposed");
         }
     }
 }
