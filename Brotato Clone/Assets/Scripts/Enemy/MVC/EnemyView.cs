@@ -44,6 +44,7 @@ namespace BrotatoClone.Enemy
                 .setLoopPingPong(4)
                 .setOnComplete(SpawnSequenceCompleted);
 
+            // Handle this later
             /*TweenScalePingPongData scaleData = new TweenScalePingPongData(new Vector3(1.5f, 1.5f, 1f), 0.5f, 4);
             TweenEventData eventData = new TweenEventData(TweenType.SCALE_PING_PONG, spawnIndicator.gameObject, scaleData);*/
         }

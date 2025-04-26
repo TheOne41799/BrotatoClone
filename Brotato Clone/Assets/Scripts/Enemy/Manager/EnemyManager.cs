@@ -67,7 +67,7 @@ namespace BrotatoClone.Enemy
                 foreach (IEnemyController enemyController in enemyControllers)
                 {
                     enemyController.HandleFollowTarget();
-                    enemyController.HandleAttackTarget();
+                    enemyController.HandleTryAttackTarget();
                 }
             }
         }

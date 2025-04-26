@@ -39,18 +39,26 @@ namespace BrotatoClone.Enemy
             enemyView.Move(velocity);
         }
 
-        public void HandleAttackTarget()
+        public void HandleTryAttackTarget()
         {
             if (isDisposed) return;
 
             bool canAttackPlayer = enemyModel.TryAttack(target.TargetTransform.position, enemyView.GetPosition());
 
-            if (canAttackPlayer)
-            {
-                Debug.Log("Attack player");
-                enemyView.PlayDeathEffect();
-                OnDispose();
-            }
+            if(canAttackPlayer) HandleAttackTarget();
+
+            /*if (canAttackPlayer)
+            {                
+                HandleAttackTarget();
+
+                //enemyView.PlayDeathEffect();
+                //OnDispose();
+            }*/
+        }
+
+        private void HandleAttackTarget()
+        {
+            enemyModel.Attack();
         }
 
         public void OnSpawnSequenceCompleted()

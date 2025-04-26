@@ -7,13 +7,20 @@ namespace BrotatoClone.Enemy
     {
         private readonly float moveSpeed;
         private readonly float attackRange;
+        private readonly float attackDamage;
+        private readonly float attackRate;
+        private readonly float attackDelay;
+        private float attackTimer;
         private bool canMove;
 
         public EnemyModel(EnemyData enemyData)
         {
             this.moveSpeed = enemyData.MoveSpeed;
             this.attackRange = enemyData.AttackRange;
-
+            this.attackDamage = enemyData.AttackDamage;
+            this.attackRate = enemyData.AttackRate;
+            
+            attackDelay = 1f / this.attackRate;
             canMove = false;
         }
 
@@ -29,12 +36,30 @@ namespace BrotatoClone.Enemy
 
         public bool TryAttack(Vector2 targetLocation, Vector2 enemyLocation)
         {
-            if(!canMove) return false;
+            if (!canMove) return false;
 
-            float distanceToPlayer = Vector2.Distance(targetLocation, enemyLocation);
+            if (attackTimer >= attackDelay)
+            {
+                float distanceToPlayer = Vector2.Distance(targetLocation, enemyLocation);
 
-            if (distanceToPlayer <= attackRange) return true;
-            else return false;
-        }        
+                if (distanceToPlayer <= attackRange)
+                {
+                    attackTimer = 0;
+                    return true;
+                }
+                else return false;
+            }
+            else
+            {
+                attackTimer += Time.deltaTime;
+                return false;
+            }
+        }
+
+        public void Attack()
+        {
+            Debug.Log("Attack player");
+            Debug.Log($"Dealing damage {attackDamage} to player");
+        }
     }
 }
