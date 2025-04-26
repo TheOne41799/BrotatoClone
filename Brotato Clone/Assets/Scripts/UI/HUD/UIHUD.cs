@@ -8,6 +8,6 @@ namespace BrotatoClone.UI
         
         public void ShowUI() => this.gameObject.SetActive(true);
         public void HideUI() => this .gameObject.SetActive(false);
-        public void UpdateHealth(int health) { } /*uiHUD.UpdateHealth(health)*/
+        public void UpdateHealth(float health) { Debug.Log($"Updated Health: {health}");  } /*uiHUD.UpdateHealth(health)*/
     }
 }

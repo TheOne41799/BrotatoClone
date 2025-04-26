@@ -9,5 +9,6 @@ namespace BrotatoClone.Event
         // Handle this later
         //TweenEvents TweenEvents { get; }
         PlayerEvents PlayerEvents { get; }
+        EnemyEvents EnemyEvents { get; }
     }
 }

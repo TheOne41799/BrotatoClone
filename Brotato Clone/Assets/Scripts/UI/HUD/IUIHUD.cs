@@ -6,6 +6,6 @@ namespace BrotatoClone.UI
     {
         void ShowUI();
         void HideUI();
-        void UpdateHealth(int health);
+        void UpdateHealth(float health);
     }
 }

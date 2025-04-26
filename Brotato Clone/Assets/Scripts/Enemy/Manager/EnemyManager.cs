@@ -73,8 +73,8 @@ namespace BrotatoClone.Enemy
         }
 
         public void HandleApplyDamage(float damage)
-        {
-            Debug.Log($"Dealing damage {damage} to player");
+        {            
+            eventManager.EnemyEvents.OnApplyDamage.Invoke(damage);
         }
     }
 }

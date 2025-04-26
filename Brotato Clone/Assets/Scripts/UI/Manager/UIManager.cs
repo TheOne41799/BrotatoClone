@@ -29,7 +29,7 @@ namespace BrotatoClone.UI
 
         private void RegisterEventListeners()
         {
-            
+            eventManager.PlayerEvents.OnHealthUpdated.AddListener(OnHealthUpdated);
         }
 
         private void CreateControllers()
@@ -42,7 +42,7 @@ namespace BrotatoClone.UI
 
         }
 
-        private void OnHealthUpdated(int health) => uiHudController.OnUpdateHealth(health);
+        private void OnHealthUpdated(float health) => uiHudController.OnUpdateHealth(health);
 
 
 
