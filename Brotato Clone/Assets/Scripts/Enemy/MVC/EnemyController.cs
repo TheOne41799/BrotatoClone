@@ -21,6 +21,7 @@ namespace BrotatoClone.Enemy
             enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity);
             enemyView.SetController(this);
             enemyView.SetEnemyData(enemyData);
+            enemyView.RunSpawnIndicatorTween();
 
             isDisposed = false;
         }
@@ -50,6 +51,11 @@ namespace BrotatoClone.Enemy
                 enemyView.PlayDeathEffect();
                 OnDispose();
             }
+        }
+
+        public void OnSpawnSequenceCompleted()
+        {
+            enemyModel.EnemyCanMove();
         }
 
         public void OnDispose()

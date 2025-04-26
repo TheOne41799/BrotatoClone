@@ -5,13 +5,19 @@ namespace BrotatoClone.Event
     public class EventManager: IEventManager
     {
         public InputEvents InputEvents { get; }
-        public TweenEvents TweenEvents { get; }
+
+        // Handle this later
+        //public TweenEvents TweenEvents { get; }
+
         public PlayerEvents PlayerEvents { get; }
 
         public EventManager()
         {
             InputEvents = new InputEvents();
-            TweenEvents = new TweenEvents();
+
+
+            //TweenEvents = new TweenEvents();
+
             PlayerEvents = new PlayerEvents();
         }
     }

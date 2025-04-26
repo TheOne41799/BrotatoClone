@@ -56,8 +56,8 @@ namespace BrotatoClone.Main
             inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
             cameraManager = GameObject.Instantiate<CameraManager>(gameData.CameraManagerPrefab, this.transform);
             tweenManager = GameObject.Instantiate<TweenManager>(gameData.TweenManagerPrefab, this.transform);
-            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
             enemyManager = GameObject.Instantiate<EnemyManager>(gameData.EnemyManagerPrefab, this.transform);
+            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
@@ -65,8 +65,6 @@ namespace BrotatoClone.Main
             inputManager.InitializeManager(eventManager);
             cameraManager.InitializeManager(eventManager);
             tweenManager.InitializeManager(eventManager);
-            
-            //test
             enemyManager.InitializeManager(eventManager);
             playerManager.InitializeManager(eventManager);
         }

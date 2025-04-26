@@ -25,16 +25,35 @@ namespace BrotatoClone.Enemy
         {
             enemySprite.enabled = false;
             spawnIndicator.enabled = true;
-
-
-            //test - continue from here.......................................
-            TweenScalePingPongData scaleData = new TweenScalePingPongData(new Vector3(1.5f, 1.5f, 1f), 0.5f, 4);
-            TweenEventData eventData = new TweenEventData(TweenType.SCALE_PING_PONG, spawnIndicator.gameObject, scaleData);
         }
 
         public void SetController(IViewObserver enemyController)
         {
             this.enemyController = enemyController;
+        }
+
+        public void SetEnemyData(EnemyData enemyData)
+        {
+            this.enemyData = enemyData;
+        }
+
+        public void RunSpawnIndicatorTween()
+        {
+            Vector3 targetScale = spawnIndicator.transform.localScale * 1.2f;
+            LeanTween.scale(spawnIndicator.gameObject, targetScale, 0.3f)
+                .setLoopPingPong(4)
+                .setOnComplete(SpawnSequenceCompleted);
+
+            /*TweenScalePingPongData scaleData = new TweenScalePingPongData(new Vector3(1.5f, 1.5f, 1f), 0.5f, 4);
+            TweenEventData eventData = new TweenEventData(TweenType.SCALE_PING_PONG, spawnIndicator.gameObject, scaleData);*/
+        }
+
+        public void SpawnSequenceCompleted()
+        {
+            enemySprite.enabled = true;
+            spawnIndicator.enabled = false;
+
+            enemyController.OnSpawnSequenceCompleted();
         }
 
         public Vector2 GetPosition()
@@ -45,12 +64,7 @@ namespace BrotatoClone.Enemy
         public void Move(Vector2 velocity)
         {
             this.velocity = velocity;
-        }
-
-        public void SetEnemyData(EnemyData enemyData)
-        {
-            this.enemyData = enemyData;
-        }
+        }        
 
         private void Update()
         {
