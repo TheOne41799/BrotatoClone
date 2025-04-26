@@ -5,8 +5,9 @@ using UnityEngine;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyController : IEnemyController, IViewObserver
+    public class EnemyController : IEnemyController, IViewObserver, IModelObserver
     {
+        private IControllerObserver enemyManager;
         private IEnemyModel enemyModel;
         private IEnemyView enemyView;
 
@@ -14,9 +15,12 @@ namespace BrotatoClone.Enemy
 
         private bool isDisposed;
 
-        public EnemyController(EnemyData enemyData)
+        public EnemyController(EnemyData enemyData, IControllerObserver enemyManager)
         {
+            this.enemyManager = enemyManager;
+
             enemyModel = new EnemyModel(enemyData);
+            enemyModel.SetController(this);
 
             enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity);
             enemyView.SetController(this);
@@ -24,6 +28,7 @@ namespace BrotatoClone.Enemy
             enemyView.RunSpawnIndicatorTween();
 
             isDisposed = false;
+            this.enemyManager = enemyManager;
         }
 
         public void SetEnemyTarget(ITarget target)
@@ -64,6 +69,11 @@ namespace BrotatoClone.Enemy
         private void HandleAttackTarget()
         {
             enemyModel.Attack();
+        }
+
+        public void HandleApplyDamage(float damage)
+        {
+            enemyManager.HandleApplyDamage(damage);
         }
 
         public void OnDispose()

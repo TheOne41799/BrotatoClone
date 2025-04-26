@@ -15,7 +15,7 @@ namespace BrotatoClone.Player
         {
             this.playerManager = playerManager;
 
-            playerModel = new PlayerModel(playerData.MoveSpeed);
+            playerModel = new PlayerModel(playerData);
 
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab);
             ReportTargetTransform((ITarget)playerView);

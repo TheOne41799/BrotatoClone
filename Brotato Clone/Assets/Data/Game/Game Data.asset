@@ -15,5 +15,6 @@ MonoBehaviour:
   inputManagerPrefab: {fileID: 7806976524852679861, guid: 842fcecfc17c8b0489937e8b73f15b8d, type: 3}
   cameraManagerPrefab: {fileID: 9141975254541833103, guid: bf14938180ad04f4bbfd04bd827fd0f8, type: 3}
   tweenManagerPrefab: {fileID: 925736086893483677, guid: 4d42beaf656e48b44aa2b20544247078, type: 3}
+  uiManagerPrefab: {fileID: 5990477643742853348, guid: f2dbf2fb3df6f1d4db10069329f05d6f, type: 3}
   playerManagerPrefab: {fileID: 6965343686074326501, guid: 5427dd5edbd0d004191eecfd732b98ae, type: 3}
   enemyManagerPrefab: {fileID: 1598785205046233908, guid: e33bd40ff4a410b4cabeb2e480239712, type: 3}

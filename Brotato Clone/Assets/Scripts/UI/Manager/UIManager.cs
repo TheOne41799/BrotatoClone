@@ -13,6 +13,8 @@ namespace BrotatoClone.UI
 
         private IEventManager eventManager;
 
+        private IUIHUDController uiHudController;
+
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
@@ -32,12 +34,18 @@ namespace BrotatoClone.UI
 
         private void CreateControllers()
         {
-            
+            uiHudController = new UIHUDController(uiData, uiCanvas);
         }
 
         private void DisposeControllers()
         {
 
         }
+
+        private void OnHealthUpdated(int health) => uiHudController.OnUpdateHealth(health);
+
+
+
+        // code for hiding and showing UI based on gamestate
     }
 }

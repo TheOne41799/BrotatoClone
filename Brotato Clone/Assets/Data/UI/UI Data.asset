@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd6b41fe31bd7046b1bc1ca44cf5957, type: 3}
   m_Name: UI Data
   m_EditorClassIdentifier: 
+  uiHUDPrefab: {fileID: 4494081918656290397, guid: 1b95851ee659d8645a0d93b1d0a627a1, type: 3}

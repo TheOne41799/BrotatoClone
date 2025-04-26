@@ -5,6 +5,8 @@ namespace BrotatoClone.Enemy
 {
     public class EnemyModel : IEnemyModel
     {
+        private IModelObserver enemyController;
+
         private readonly float moveSpeed;
         private readonly float attackRange;
         private readonly float attackDamage;
@@ -22,6 +24,11 @@ namespace BrotatoClone.Enemy
             
             attackDelay = 1f / this.attackRate;
             canMove = false;
+        }
+
+        public void SetController(IModelObserver enemyController)
+        {
+            this.enemyController = enemyController;
         }
 
         public void EnemyCanMove() => canMove = true;
@@ -57,9 +64,8 @@ namespace BrotatoClone.Enemy
         }
 
         public void Attack()
-        {
-            Debug.Log("Attack player");
-            Debug.Log($"Dealing damage {attackDamage} to player");
+        {          
+            enemyController.HandleApplyDamage(attackDamage);
         }
     }
 }
