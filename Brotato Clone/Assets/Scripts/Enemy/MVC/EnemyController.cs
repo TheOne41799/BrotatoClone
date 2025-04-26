@@ -21,6 +21,7 @@ namespace BrotatoClone.Enemy
             enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity);
             enemyView.SetController(this);
             enemyView.SetEnemyData(enemyData);
+            enemyView.RunSpawnIndicatorTween();
 
             isDisposed = false;
         }
@@ -30,26 +31,39 @@ namespace BrotatoClone.Enemy
             this.target = target;
         }
 
+        public void OnSpawnSequenceCompleted()
+        {
+            enemyModel.EnemyCanMove();
+        }
+
         public void HandleFollowTarget()
         {
             if (isDisposed) return;
 
             Vector2 velocity = enemyModel.CalculateVelocity(target.TargetTransform.position, enemyView.GetPosition());
-            enemyView.Move(velocity);
+            enemyView.UpdateVelocity(velocity);
         }
 
-        public void HandleAttackTarget()
+        public void HandleTryAttackTarget()
         {
             if (isDisposed) return;
 
             bool canAttackPlayer = enemyModel.TryAttack(target.TargetTransform.position, enemyView.GetPosition());
 
-            if (canAttackPlayer)
-            {
-                Debug.Log("Attack player");
-                enemyView.PlayDeathEffect();
-                OnDispose();
-            }
+            if(canAttackPlayer) HandleAttackTarget();
+
+            /*if (canAttackPlayer)
+            {                
+                HandleAttackTarget();
+
+                //enemyView.PlayDeathEffect();
+                //OnDispose();
+            }*/
+        }
+
+        private void HandleAttackTarget()
+        {
+            enemyModel.Attack();
         }
 
         public void OnDispose()

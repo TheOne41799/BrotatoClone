@@ -37,7 +37,7 @@ namespace BrotatoClone.Camera
 
         private void RegisterEventListeners()
         {
-            eventManager.PlayerEvents.OnTargetCreated.AddListener(ReceiveTargetTransform);
+            eventManager.PlayerEvents.OnTargetUpdated.AddListener(ReceiveTargetTransform);
 
             // create an event to indicate player has been destroyed or use the same event
         }

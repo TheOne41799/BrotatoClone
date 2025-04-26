@@ -5,6 +5,7 @@ using BrotatoClone.Enemy;
 using BrotatoClone.Event;
 using BrotatoClone.Input;
 using BrotatoClone.Player;
+using BrotatoClone.Tween;
 using UnityEngine;
 
 namespace BrotatoClone.Main
@@ -19,6 +20,7 @@ namespace BrotatoClone.Main
 
         private IManager inputManager;
         private IManager cameraManager;
+        private IManager tweenManager;
         private IManager playerManager;
         private IManager enemyManager;
 
@@ -53,16 +55,16 @@ namespace BrotatoClone.Main
         {
             inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
             cameraManager = GameObject.Instantiate<CameraManager>(gameData.CameraManagerPrefab, this.transform);
-            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
+            tweenManager = GameObject.Instantiate<TweenManager>(gameData.TweenManagerPrefab, this.transform);
             enemyManager = GameObject.Instantiate<EnemyManager>(gameData.EnemyManagerPrefab, this.transform);
+            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
         {
             inputManager.InitializeManager(eventManager);
             cameraManager.InitializeManager(eventManager);
-            
-            //test
+            tweenManager.InitializeManager(eventManager);
             enemyManager.InitializeManager(eventManager);
             playerManager.InitializeManager(eventManager);
         }

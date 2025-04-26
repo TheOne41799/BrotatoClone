@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889674566460993870}
   - component: {fileID: 7269145473462022151}
-  - component: {fileID: 3195123796175374831}
+  - component: {fileID: 3340255126220403820}
   - component: {fileID: 4978461900753404775}
   m_Layer: 0
   m_Name: CinemachineCamera
@@ -77,7 +77,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &3195123796175374831
+--- !u!114 &3340255126220403820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,8 +105,8 @@ MonoBehaviour:
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
-    Time: 0.485
-    Smoothing: 18.84
+    Time: 0
+    Smoothing: 0
     IgnoreY: 0
 --- !u!114 &4978461900753404775
 MonoBehaviour:

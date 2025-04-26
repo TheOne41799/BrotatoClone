@@ -6,13 +6,13 @@ namespace BrotatoClone.Event
 {
     public class PlayerEvents
     {
-        public IEventController<Action<ITarget>> OnTargetCreated {  get; private set; }
+        public IEventController<Action<ITarget>> OnTargetUpdated {  get; private set; }
 
         // create an event to indicate player has been destroyed or use the same event
 
         public PlayerEvents()
         {
-            OnTargetCreated = new EventController<Action<ITarget>>();
+            OnTargetUpdated = new EventController<Action<ITarget>>();
         }
     }
 }

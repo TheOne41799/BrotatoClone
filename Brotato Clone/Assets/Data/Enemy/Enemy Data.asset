@@ -15,3 +15,5 @@ MonoBehaviour:
   enemyViewPrefab: {fileID: 1765677335862136065, guid: 44a05b9135347274ea5430a541d609c9, type: 3}
   moveSpeed: 1.5
   attackRange: 0.5
+  attackDamage: 1
+  attackRate: 1
