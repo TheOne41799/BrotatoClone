@@ -1,5 +1,6 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BrotatoClone.Enemy
@@ -23,8 +24,13 @@ namespace BrotatoClone.Enemy
 
         private void Awake()
         {
-            enemySprite.enabled = false;
-            spawnIndicator.enabled = true;
+            UpdateRendererVisibility(false);
+        }
+
+        private void UpdateRendererVisibility(bool visibility)
+        {
+            enemySprite.enabled = visibility;
+            spawnIndicator.enabled = !visibility;
         }
 
         public void SetController(IViewObserver enemyController)
@@ -51,8 +57,7 @@ namespace BrotatoClone.Enemy
 
         public void SpawnSequenceCompleted()
         {
-            enemySprite.enabled = true;
-            spawnIndicator.enabled = false;
+            UpdateRendererVisibility(true);
 
             enemyController.OnSpawnSequenceCompleted();
         }
