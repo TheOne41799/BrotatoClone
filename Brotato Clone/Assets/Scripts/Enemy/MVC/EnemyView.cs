@@ -62,7 +62,7 @@ namespace BrotatoClone.Enemy
             return this.transform.position;
         }
 
-        public void Move(Vector2 velocity)
+        public void UpdateVelocity(Vector2 velocity)
         {
             this.velocity = velocity;
         }        

@@ -31,12 +31,17 @@ namespace BrotatoClone.Enemy
             this.target = target;
         }
 
+        public void OnSpawnSequenceCompleted()
+        {
+            enemyModel.EnemyCanMove();
+        }
+
         public void HandleFollowTarget()
         {
             if (isDisposed) return;
 
             Vector2 velocity = enemyModel.CalculateVelocity(target.TargetTransform.position, enemyView.GetPosition());
-            enemyView.Move(velocity);
+            enemyView.UpdateVelocity(velocity);
         }
 
         public void HandleTryAttackTarget()
@@ -59,11 +64,6 @@ namespace BrotatoClone.Enemy
         private void HandleAttackTarget()
         {
             enemyModel.Attack();
-        }
-
-        public void OnSpawnSequenceCompleted()
-        {
-            enemyModel.EnemyCanMove();
         }
 
         public void OnDispose()
