@@ -4,6 +4,6 @@ namespace BrotatoClone.Player
 {
     public interface IPlayerView
     {
-        void Move(Vector2 velocity);
+        void UpdateVelocity(Vector2 velocity);
     }
 }

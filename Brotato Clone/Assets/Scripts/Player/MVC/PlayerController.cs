@@ -24,7 +24,7 @@ namespace BrotatoClone.Player
         public void HandleMoveInput(Vector2 moveInput)
         {
             Vector2 velocity = playerModel.CalculateVelocity(moveInput);
-            playerView.Move(velocity);
+            playerView.UpdateVelocity(velocity);
         }
 
         private void ReportTargetTransform(ITarget target)
