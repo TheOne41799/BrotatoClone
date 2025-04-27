@@ -7,6 +7,7 @@ using BrotatoClone.Input;
 using BrotatoClone.Player;
 using BrotatoClone.Tween;
 using BrotatoClone.UI;
+using BrotatoClone.Weapon;
 using UnityEngine;
 
 namespace BrotatoClone.Main
@@ -23,8 +24,9 @@ namespace BrotatoClone.Main
         private IManager cameraManager;
         private IManager tweenManager;
         private IManager uiManager;
-        private IManager playerManager;
         private IManager enemyManager;
+        private IManager playerManager;
+        private IManager weaponManager;
 
         private void Awake()
         {
@@ -61,6 +63,7 @@ namespace BrotatoClone.Main
             uiManager = GameObject.Instantiate<UIManager>(gameData.UIManagerPrefab, this.transform);
             enemyManager = GameObject.Instantiate<EnemyManager>(gameData.EnemyManagerPrefab, this.transform);
             playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
+            weaponManager = GameObject.Instantiate<WeaponManager>(gameData.WeaponManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
@@ -71,6 +74,7 @@ namespace BrotatoClone.Main
             uiManager.InitializeManager(eventManager);
             enemyManager.InitializeManager(eventManager);
             playerManager.InitializeManager(eventManager);
+            weaponManager.InitializeManager(eventManager);
         }
     }
 }
