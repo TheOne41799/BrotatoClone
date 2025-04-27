@@ -10,6 +10,7 @@ namespace BrotatoClone.Event
         //public TweenEvents TweenEvents { get; }
 
         public PlayerEvents PlayerEvents { get; }
+        public EnemyEvents EnemyEvents { get; }
 
         public EventManager()
         {
@@ -19,6 +20,7 @@ namespace BrotatoClone.Event
             //TweenEvents = new TweenEvents();
 
             PlayerEvents = new PlayerEvents();
+            EnemyEvents = new EnemyEvents();
         }
     }
 }

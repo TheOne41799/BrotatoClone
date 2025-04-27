@@ -30,7 +30,8 @@ namespace BrotatoClone.Player
 
         private void RegisterEventListeners()
         {
-            eventManager.InputEvents.OnMoveInput.AddListener(HandleMoveInput);
+            eventManager?.InputEvents.OnMoveInput.AddListener(HandleMoveInput);
+            eventManager?.EnemyEvents.OnApplyDamage.AddListener(HandleTakeDamage);
         }
 
         private void CreateController()
@@ -45,12 +46,22 @@ namespace BrotatoClone.Player
 
         private void HandleMoveInput(Vector2 moveInput)
         {
-            playerController.HandleMoveInput(moveInput);
+            playerController?.HandleMoveInput(moveInput);
         }
 
         public void ReportTargetTransform(ITarget target)
         {
-            eventManager.PlayerEvents.OnTargetUpdated.Invoke(target);
+            eventManager?.PlayerEvents.OnTargetUpdated.Invoke(target);
+        }
+
+        public void HandleTakeDamage(float damage)
+        {
+            playerController?.HandleTakeDamage(damage);
+        }
+
+        public void HandleHealthUpdate(HealthDisplayData healthDisplayData)
+        {
+            eventManager.PlayerEvents.OnHealthUpdated.Invoke(healthDisplayData);
         }
     }
 }

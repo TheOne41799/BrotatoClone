@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace BrotatoClone.Player
 {
-    public interface IPlayerControllerObserver
+    public interface IPlayerModelObserver
     {
-        void ReportTargetTransform(ITarget target);
         void HandleHealthUpdate(HealthDisplayData healthDisplayData);
     }
 }

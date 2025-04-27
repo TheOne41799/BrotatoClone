@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyManager : MonoBehaviour, IManager
+    public class EnemyManager : MonoBehaviour, IManager, IControllerObserver
     {
         [SerializeField] private EnemyData enemyData;
 
@@ -50,7 +50,7 @@ namespace BrotatoClone.Enemy
 
         private void CreateController()
         {
-            IEnemyController controller = new EnemyController(enemyData);
+            IEnemyController controller = new EnemyController(enemyData, this);
             controller.SetEnemyTarget(target);
             enemyControllers.Add(controller);
         }
@@ -70,6 +70,11 @@ namespace BrotatoClone.Enemy
                     enemyController.HandleTryAttackTarget();
                 }
             }
+        }
+
+        public void HandleApplyDamage(float damage)
+        {            
+            eventManager.EnemyEvents.OnApplyDamage.Invoke(damage);
         }
     }
 }

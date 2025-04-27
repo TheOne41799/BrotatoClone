@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BrotatoClone.Player
 {
-    public class PlayerController : IPlayerController
+    public class PlayerController : IPlayerController, IPlayerModelObserver
     {
         private IPlayerControllerObserver playerManager;
 
@@ -15,21 +15,35 @@ namespace BrotatoClone.Player
         {
             this.playerManager = playerManager;
 
-            playerModel = new PlayerModel(playerData.MoveSpeed);
+            playerModel = new PlayerModel(playerData);
+            playerModel.SetController(this);
+
+            HealthDisplayData healthDisplayData = new HealthDisplayData(playerData.MaxHealth, playerData.MaxHealth, 1f);
+            HandleHealthUpdate(healthDisplayData);
 
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab);
             ReportTargetTransform((ITarget)playerView);
-        }
+        }        
 
         public void HandleMoveInput(Vector2 moveInput)
         {
             Vector2 velocity = playerModel.CalculateVelocity(moveInput);
-            playerView.Move(velocity);
+            playerView.UpdateVelocity(velocity);
         }
 
         private void ReportTargetTransform(ITarget target)
         {
             playerManager.ReportTargetTransform(target);
+        }
+
+        public void HandleTakeDamage(float damage)
+        {
+            playerModel.TakeDamage(damage);
+        }
+
+        public void HandleHealthUpdate(HealthDisplayData healthDisplayData)
+        {
+            playerManager.HandleHealthUpdate(healthDisplayData);
         }
     }
 }
