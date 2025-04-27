@@ -18,3 +18,4 @@ MonoBehaviour:
   uiManagerPrefab: {fileID: 5990477643742853348, guid: f2dbf2fb3df6f1d4db10069329f05d6f, type: 3}
   playerManagerPrefab: {fileID: 6965343686074326501, guid: 5427dd5edbd0d004191eecfd732b98ae, type: 3}
   enemyManagerPrefab: {fileID: 1598785205046233908, guid: e33bd40ff4a410b4cabeb2e480239712, type: 3}
+  weaponManagerPrefab: {fileID: 6671467854650585882, guid: 6db0fbd3123417744a5f836b07a02888, type: 3}
