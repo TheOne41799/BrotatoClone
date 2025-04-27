@@ -59,9 +59,9 @@ namespace BrotatoClone.Player
             playerController?.HandleTakeDamage(damage);
         }
 
-        public void HandleHealthUpdate(float health)
+        public void HandleHealthUpdate(HealthDisplayData healthDisplayData)
         {
-            eventManager.PlayerEvents.OnHealthUpdated.Invoke(health);
+            eventManager.PlayerEvents.OnHealthUpdated.Invoke(healthDisplayData);
         }
     }
 }

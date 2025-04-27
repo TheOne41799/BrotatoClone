@@ -1,3 +1,4 @@
+using BrotatoClone.Common;
 using BrotatoClone.Data;
 using UnityEngine;
 
@@ -32,9 +33,11 @@ namespace BrotatoClone.Player
         {
             float adjustedDamage = Mathf.Min(damage, currentHealth);
             currentHealth -= adjustedDamage;
-            float healthRatio = currentHealth / maxHealth;
+            float healthBarRatio = currentHealth / maxHealth;
+
+            HealthDisplayData healthDisplayData = new HealthDisplayData(currentHealth, maxHealth, healthBarRatio);
             
-            playerController.HandleHealthUpdate(healthRatio);
+            playerController.HandleHealthUpdate(healthDisplayData);
 
             if (currentHealth <= 0) Dispose();
         }

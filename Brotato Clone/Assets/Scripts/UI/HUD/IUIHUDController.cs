@@ -1,3 +1,4 @@
+using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.UI
@@ -6,6 +7,6 @@ namespace BrotatoClone.UI
     {
         void ShowUI();
         void HideUI();
-        void OnUpdateHealth(float health);
+        void OnUpdateHealth(HealthDisplayData healthDisplayData);
     }
 }

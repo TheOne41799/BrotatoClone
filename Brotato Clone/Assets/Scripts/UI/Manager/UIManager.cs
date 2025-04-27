@@ -42,7 +42,7 @@ namespace BrotatoClone.UI
 
         }
 
-        private void OnHealthUpdated(float health) => uiHudController.OnUpdateHealth(health);
+        private void OnHealthUpdated(HealthDisplayData healthDisplayData) => uiHudController.OnUpdateHealth(healthDisplayData);
 
 
 

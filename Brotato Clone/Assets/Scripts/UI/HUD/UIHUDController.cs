@@ -1,3 +1,4 @@
+using BrotatoClone.Common;
 using BrotatoClone.Data;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
@@ -15,7 +16,7 @@ namespace BrotatoClone.UI
 
         public void ShowUI() => uiHUD.ShowUI();
         public void HideUI() => uiHUD.HideUI();
-        public void OnUpdateHealth(float health) => uiHUD.UpdateHealth(health);
+        public void OnUpdateHealth(HealthDisplayData healthDisplayData) => uiHUD.UpdateHealth(healthDisplayData);
 
     }
 }

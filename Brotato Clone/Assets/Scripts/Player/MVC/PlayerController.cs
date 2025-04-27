@@ -18,6 +18,9 @@ namespace BrotatoClone.Player
             playerModel = new PlayerModel(playerData);
             playerModel.SetController(this);
 
+            HealthDisplayData healthDisplayData = new HealthDisplayData(playerData.MaxHealth, playerData.MaxHealth, 1f);
+            HandleHealthUpdate(healthDisplayData);
+
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab);
             ReportTargetTransform((ITarget)playerView);
         }        
@@ -38,9 +41,9 @@ namespace BrotatoClone.Player
             playerModel.TakeDamage(damage);
         }
 
-        public void HandleHealthUpdate(float health)
+        public void HandleHealthUpdate(HealthDisplayData healthDisplayData)
         {
-            playerManager.HandleHealthUpdate(health);
+            playerManager.HandleHealthUpdate(healthDisplayData);
         }
     }
 }

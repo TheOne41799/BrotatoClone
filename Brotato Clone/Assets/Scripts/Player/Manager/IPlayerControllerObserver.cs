@@ -6,6 +6,6 @@ namespace BrotatoClone.Player
     public interface IPlayerControllerObserver
     {
         void ReportTargetTransform(ITarget target);
-        void HandleHealthUpdate(float health);
+        void HandleHealthUpdate(HealthDisplayData healthDisplayData);
     }
 }
