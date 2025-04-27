@@ -16,7 +16,7 @@ namespace BrotatoClone.UI
 
         public void UpdateHealth(HealthDisplayData healthDisplayData)
         {
-            healthText.text = healthDisplayData.currentHealth.ToString() + "/" + healthDisplayData.maxHealth.ToString();
+            healthText.text = healthDisplayData.currentHealth.ToString() + " / " + healthDisplayData.maxHealth.ToString();
             healthSlider.value = healthDisplayData.healthBarRatio;
         }
     }
