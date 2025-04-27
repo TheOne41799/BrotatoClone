@@ -9,9 +9,11 @@ namespace BrotatoClone.Weapon
 {
     public class WeaponManager : MonoBehaviour, IManager
     {
-        [SerializeField] private WeaponData weaponData;
+        [SerializeField] private MeleeWeaponData meleeWeaponData;
 
         private IEventManager eventManager;
+
+        private IWeaponController meleeWeaponController;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -31,7 +33,10 @@ namespace BrotatoClone.Weapon
         }
         private void CreateControllers()
         {
-            
+            meleeWeaponController = new MeleeWeaponController(meleeWeaponData);
+
+            meleeWeaponController.Attack();
+            meleeWeaponController.Reload();
         }
 
         private void DisposeControllers()

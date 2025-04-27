@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace BrotatoClone.Weapon
 {
-    public abstract class WeaponModel : IWeaponModel
+    public enum WeaponType
     {
-
+        NONE,
+        MELEE
     }
 }

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 403d4ddb3303ddf4cad3702ae7db9abf, type: 3}
-  m_Name: Weapon Data
+  m_Script: {fileID: 11500000, guid: cf500637c9bbe474292103d12d6fcf5b, type: 3}
+  m_Name: Melee Weapon Data
   m_EditorClassIdentifier: 
   meleeWeaponViewPrefab: {fileID: 8762696936979660740, guid: c42a3621ee6637044b1057df3e82cae0, type: 3}
+  damage: 5
