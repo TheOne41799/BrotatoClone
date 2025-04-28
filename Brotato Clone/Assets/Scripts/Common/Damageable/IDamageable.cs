@@ -4,6 +4,6 @@ namespace BrotatoClone.Common
 {
     public interface IDamageable
     {
-
+        Vector2 GetPosition();
     }
 }

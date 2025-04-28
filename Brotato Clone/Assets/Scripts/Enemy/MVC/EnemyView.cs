@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyView : MonoBehaviour, IEnemyView
+    public class EnemyView : MonoBehaviour, IEnemyView, IDamageable
     {
         private IViewObserver enemyController;
         private Vector2 velocity;

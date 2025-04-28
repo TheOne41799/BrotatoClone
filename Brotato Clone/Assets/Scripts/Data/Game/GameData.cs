@@ -4,6 +4,7 @@ using BrotatoClone.Input;
 using BrotatoClone.Player;
 using BrotatoClone.Tween;
 using BrotatoClone.UI;
+using BrotatoClone.Weapon;
 using UnityEngine;
 
 namespace BrotatoClone.Data
@@ -18,6 +19,7 @@ namespace BrotatoClone.Data
         [SerializeField] private UIManager uiManagerPrefab;
         [SerializeField] private PlayerManager playerManagerPrefab;
         [SerializeField] private EnemyManager enemyManagerPrefab;
+        [SerializeField] private WeaponManager weaponManagerPrefab;
 
         public InputManager InputManagerPrefab => inputManagerPrefab;
         public CameraManager CameraManagerPrefab => cameraManagerPrefab;
@@ -25,5 +27,6 @@ namespace BrotatoClone.Data
         public UIManager UIManagerPrefab => uiManagerPrefab;
         public PlayerManager PlayerManagerPrefab => playerManagerPrefab;
         public EnemyManager EnemyManagerPrefab => enemyManagerPrefab;
+        public WeaponManager WeaponManagerPrefab => weaponManagerPrefab;
     }
 }
