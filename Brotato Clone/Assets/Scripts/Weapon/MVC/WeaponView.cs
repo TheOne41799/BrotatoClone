@@ -1,73 +1,59 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Enemy;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
 {
     public abstract class WeaponView : MonoBehaviour, IWeaponView
     {
-        [SerializeField] protected LayerMask enemyMask;
-        [SerializeField] private float rotationSpeed = 12f;
+        /*protected IWeaponController weaponController;
 
-        [Header("DEBUG")]
-        [SerializeField] protected bool isGizmosON;
+        protected float detectionRadius;
+        protected LayerMask enemyLayerMask;
+        protected bool isGizmosON;
 
         protected virtual void Update()
         {
-            IDamageable closestEnemy = GetClosestEnemy();
-
-            if (closestEnemy == null)
-            {
-                RotateTowards(Vector3.up);
-                return;
-            }
-
-            Vector3 directionToEnemy = (closestEnemy.GetPosition() - (Vector2)transform.position).normalized;
-            RotateTowards(directionToEnemy);
+            DetectAndSendEnemies();
         }
 
-        private IDamageable GetClosestEnemy()
+        protected virtual void DetectAndSendEnemies()
         {
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(this.transform.position, 3f, enemyMask);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius, enemyLayerMask);
 
-            if (enemies.Length == 0) return null;
+            List<IDamageable> enemiesInRange = new List<IDamageable>();
 
-            IDamageable closestEnemy = null;
-            float closestDistance = 3f;
-
-            for (int i = 0; i < enemies.Length; i++)
+            foreach (Collider2D collider in colliders)
             {
-                Collider2D enemyCollider = enemies[i];
-                if (enemyCollider.TryGetComponent<IDamageable>(out var enemy))
+                if (collider.TryGetComponent<IDamageable>(out var enemy))
                 {
-                    float distance = Vector2.Distance(transform.position, enemy.GetPosition());
-
-                    if (distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        closestEnemy = enemy;
-                    }
+                    enemiesInRange.Add(enemy);
                 }
             }
 
-            return closestEnemy;
+            weaponController.OnEnemiesDetected(enemiesInRange);
         }
 
-        private void RotateTowards(Vector3 targetDirection)
+        public void SetController(IWeaponController controller)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, targetDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            weaponController = controller;
         }
 
+        public virtual void InitializeView(float detectionRadius, LayerMask enemyLayerMask, bool isGizmosON)
+        {
+            this.detectionRadius = detectionRadius;
+            this.enemyLayerMask = enemyLayerMask;
+            this.isGizmosON = isGizmosON;
+        }
 
-
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (!isGizmosON) return;
 
-            Gizmos.color = Color.black;
-            Gizmos.DrawWireSphere(this.transform.position, 3f);
-        }
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        }*/
     }
 }

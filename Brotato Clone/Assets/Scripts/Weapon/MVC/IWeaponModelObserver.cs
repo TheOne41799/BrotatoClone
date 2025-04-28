@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace BrotatoClone.Weapon
 {
-    public interface IWeaponView
+    public interface IWeaponModelObserver
     {
-       
+
     }
 }

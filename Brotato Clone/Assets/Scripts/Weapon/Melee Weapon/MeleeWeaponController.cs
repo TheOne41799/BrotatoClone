@@ -1,19 +1,34 @@
+using BrotatoClone.Common;
 using BrotatoClone.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
 {
     public class MeleeWeaponController : WeaponController
     {
-        public MeleeWeaponController(MeleeWeaponData meleeWeaponData)
+        /*public MeleeWeaponController(MeleeWeaponData weaponData) : base(weaponData) { }
+
+        protected override IWeaponModel CreateModel(WeaponData weaponData)
         {
-            weaponModel = new MeleeWeaponModel(meleeWeaponData);
-            weaponView = GameObject.Instantiate<MeleeWeaponView>(meleeWeaponData.MeleeWeaponViewPrefab);
+            MeleeWeaponData meleeWeaponData = weaponData as MeleeWeaponData;
+            return new MeleeWeaponModel(meleeWeaponData);
+        }
+
+        protected override IWeaponView CreateView(WeaponData weaponData)
+        {
+            MeleeWeaponData meleeWeaponData = weaponData as MeleeWeaponData;
+            return GameObject.Instantiate<MeleeWeaponView>(meleeWeaponData.MeleeWeaponViewPrefab);
         }
 
         public override void Attack()
         {
-            Debug.Log("Attack");
+            //weaponModel.Attack();
         }
+
+        public override void OnEnemiesDetected(List<IDamageable> enemies)
+        {
+            base.OnEnemiesDetected(enemies); 
+        }*/
     }
 }

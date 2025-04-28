@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Melee Weapon Data
   m_EditorClassIdentifier: 
   weaponType: 1
-  enemyDetecttionRange: 5
+  enemyDetectionRange: 3
+  rotationSpeed: 12
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  isGizmosON: 1
   meleeWeaponViewPrefab: {fileID: 8762696936979660740, guid: c42a3621ee6637044b1057df3e82cae0, type: 3}
   damage: 5
+  hitDetectionRadius: 0.3
