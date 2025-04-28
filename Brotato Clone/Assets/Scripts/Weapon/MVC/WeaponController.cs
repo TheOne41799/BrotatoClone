@@ -1,4 +1,6 @@
+using BrotatoClone.Common;
 using BrotatoClone.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
@@ -17,5 +19,9 @@ namespace BrotatoClone.Weapon
         protected abstract IWeaponModel CreateModel(WeaponData weaponData);
         protected abstract IWeaponView CreateView(WeaponData weaponData);
         public abstract void Attack();
+        public virtual void OnEnemiesDetected(List<IDamageable> enemies)
+        {
+            weaponModel.Attack(enemies);
+        }
     }
 }

@@ -1,4 +1,6 @@
+using BrotatoClone.Common;
 using BrotatoClone.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
@@ -22,6 +24,11 @@ namespace BrotatoClone.Weapon
         public override void Attack()
         {
             //weaponModel.Attack();
+        }
+
+        public override void OnEnemiesDetected(List<IDamageable> enemies)
+        {
+            base.OnEnemiesDetected(enemies); 
         }
     }
 }
