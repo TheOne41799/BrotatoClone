@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf500637c9bbe474292103d12d6fcf5b, type: 3}
   m_Name: Melee Weapon Data
   m_EditorClassIdentifier: 
+  weaponType: 1
+  enemyDetecttionRange: 5
   meleeWeaponViewPrefab: {fileID: 8762696936979660740, guid: c42a3621ee6637044b1057df3e82cae0, type: 3}
   damage: 5

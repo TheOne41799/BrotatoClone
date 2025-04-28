@@ -31,12 +31,10 @@ namespace BrotatoClone.Weapon
         {
             
         }
+
         private void CreateControllers()
         {
             meleeWeaponController = new MeleeWeaponController(meleeWeaponData);
-
-            meleeWeaponController.Attack();
-            meleeWeaponController.Reload();
         }
 
         private void DisposeControllers()
