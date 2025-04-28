@@ -7,6 +7,6 @@ namespace BrotatoClone.Weapon
 {
     public abstract class WeaponModel : IWeaponModel
     {
-        
+        public abstract void Attack();
     }
 }

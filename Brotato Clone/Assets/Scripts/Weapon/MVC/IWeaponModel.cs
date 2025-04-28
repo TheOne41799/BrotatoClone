@@ -5,6 +5,6 @@ namespace BrotatoClone.Weapon
 {
     public interface IWeaponModel
     {
-        
+        void Attack();
     }
 }
