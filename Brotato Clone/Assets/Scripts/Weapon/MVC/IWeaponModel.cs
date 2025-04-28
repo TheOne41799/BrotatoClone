@@ -6,6 +6,7 @@ namespace BrotatoClone.Weapon
 {
     public interface IWeaponModel
     {
-        void Attack(List<IDamageable> enemiesInRange);
+        /*void OnUpdate();
+        void Attack(List<IDamageable> enemiesInRange);*/
     }
 }

@@ -7,7 +7,7 @@ namespace BrotatoClone.Weapon
 {
     public class MeleeWeaponController : WeaponController
     {
-        public MeleeWeaponController(MeleeWeaponData weaponData) : base(weaponData) { }
+        /*public MeleeWeaponController(MeleeWeaponData weaponData) : base(weaponData) { }
 
         protected override IWeaponModel CreateModel(WeaponData weaponData)
         {
@@ -29,6 +29,6 @@ namespace BrotatoClone.Weapon
         public override void OnEnemiesDetected(List<IDamageable> enemies)
         {
             base.OnEnemiesDetected(enemies); 
-        }
+        }*/
     }
 }

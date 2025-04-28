@@ -7,7 +7,7 @@ namespace BrotatoClone.Weapon
 {
     public abstract class WeaponController : IWeaponController
     {
-        protected IWeaponModel weaponModel;
+        /*protected IWeaponModel weaponModel;
         protected IWeaponView weaponView;
 
         public WeaponController(WeaponData weaponData)
@@ -23,5 +23,12 @@ namespace BrotatoClone.Weapon
         {
             weaponModel.Attack(enemies);
         }
+
+        public void OnUpdate()
+        {
+            weaponModel.OnUpdate();
+        }*/
+
+
     }
 }

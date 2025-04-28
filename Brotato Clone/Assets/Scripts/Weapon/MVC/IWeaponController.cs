@@ -6,7 +6,7 @@ namespace BrotatoClone.Weapon
 {
     public interface IWeaponController
     {
-        void Attack();
-        void OnEnemiesDetected(List<IDamageable> enemies);
+        /*void Attack();
+        void OnEnemiesDetected(List<IDamageable> enemies);*/
     }
 }

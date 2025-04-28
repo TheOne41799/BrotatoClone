@@ -8,6 +8,8 @@ namespace BrotatoClone.Weapon
 {
     public abstract class WeaponModel : IWeaponModel
     {
+        /*private IWeaponModelObserver weaponController;
+
         protected WeaponType weaponType;
         protected float enemyDetectionRange;
         protected float rotationSpeed;
@@ -31,34 +33,53 @@ namespace BrotatoClone.Weapon
             this.isGizmosON = weaponData.IsGizmosON;
         }
 
-        public void SetTransform(Transform transform)
+        public void SetTransform(Transform weaponTransform)
         {
-            this.weaponTransform = transform;
+            this.weaponTransform = weaponTransform;
         }
 
-        public abstract void Attack(List<IDamageable> enemiesInRange);
-
-        protected IDamageable GetClosestEnemy(List<IDamageable> enemies)
+        public void OnUpdate()
         {
-            if (enemies == null || enemies.Count == 0) return null;
+            IDamageable closestEnemy = GetClosestEnemy();
+
+            if(closestEnemy == null)
+            {
+                // call controller which will call view to rotate to default position which is upwards
+
+
+
+                return;
+            }
+
+            Vector3 directionToEnemy = (closestEnemy.GetPosition() - (Vector2) weaponTransform.position).normalized;
+            // call controller which will call view to rotate towards enemy
+        }
+
+        private IDamageable GetClosestEnemy()
+        {
+            Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(weaponTransform.position, enemyDetectionRange, enemyLayerMask);
+
+            if(enemyColliders.Length == 0) return null;
 
             IDamageable closestEnemy = null;
             float closestDistance = enemyDetectionRange;
 
-            foreach (var enemy in enemies)
+            for (int i = 0; i < enemyColliders.Length; i++)
             {
-                if (enemy == null) continue;
+                Collider2D enemyCollider = enemyColliders[i];
 
-                float distance = Vector2.Distance(weaponTransform.position, enemy.GetPosition());
-
-                if (distance < closestDistance)
+                if (enemyCollider.TryGetComponent<IDamageable>(out IDamageable enemy))
                 {
-                    closestDistance = distance;
-                    closestEnemy = enemy;
+                    float distance = Vector2.Distance(weaponTransform.position, enemy.GetPosition());
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestEnemy = enemy;
+                    }
                 }
             }
 
             return closestEnemy;
-        }
+        }        */
     }
 }

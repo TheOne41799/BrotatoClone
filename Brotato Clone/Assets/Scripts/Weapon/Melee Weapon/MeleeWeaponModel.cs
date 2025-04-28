@@ -7,7 +7,7 @@ namespace BrotatoClone.Weapon
 {
     public class MeleeWeaponModel : WeaponModel
     {
-        private float damage;
+        /*private float damage;
         private float hitDetectionRadius;
 
         public float Damage => damage;
@@ -34,6 +34,6 @@ namespace BrotatoClone.Weapon
             {
                 Debug.Log("No enemy found to attack!");
             }
-        }
+        */
     }
 }

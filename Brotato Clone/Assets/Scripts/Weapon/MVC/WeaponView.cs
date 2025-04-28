@@ -8,7 +8,7 @@ namespace BrotatoClone.Weapon
 {
     public abstract class WeaponView : MonoBehaviour, IWeaponView
     {
-        protected IWeaponController weaponController;
+        /*protected IWeaponController weaponController;
 
         protected float detectionRadius;
         protected LayerMask enemyLayerMask;
@@ -54,6 +54,6 @@ namespace BrotatoClone.Weapon
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        }
+        }*/
     }
 }

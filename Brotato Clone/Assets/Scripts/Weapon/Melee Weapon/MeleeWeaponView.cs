@@ -7,7 +7,7 @@ namespace BrotatoClone.Weapon
 {
     public class MeleeWeaponView : WeaponView
     {
-        protected override void Update()
+        /*protected override void Update()
         {
             base.Update();
             RotateWeapon();
@@ -19,6 +19,6 @@ namespace BrotatoClone.Weapon
             Vector3 direction = Vector3.up;
             Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Hardcoded rotation speed for now
-        }
+        }*/
     }
 }
