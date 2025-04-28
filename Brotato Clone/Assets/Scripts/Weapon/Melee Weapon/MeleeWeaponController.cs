@@ -5,15 +5,6 @@ namespace BrotatoClone.Weapon
 {
     public class MeleeWeaponController : WeaponController
     {
-        public MeleeWeaponController(MeleeWeaponData meleeWeaponData)
-        {
-            weaponModel = new MeleeWeaponModel(meleeWeaponData);
-            weaponView = GameObject.Instantiate<MeleeWeaponView>(meleeWeaponData.MeleeWeaponViewPrefab);
-        }
-
-        public override void Attack()
-        {
-            Debug.Log("Attack");
-        }
+        
     }
 }

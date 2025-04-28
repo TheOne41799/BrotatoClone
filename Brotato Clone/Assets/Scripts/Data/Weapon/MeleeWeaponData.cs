@@ -1,4 +1,5 @@
 using BrotatoClone.Weapon;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace BrotatoClone.Data
@@ -7,11 +8,13 @@ namespace BrotatoClone.Data
     public class MeleeWeaponData : WeaponData
     {
         [Header("Prefabs")]
-        [SerializeField] private MeleeWeaponView meleeWeaponViewPrefab;        
+        [SerializeField] private MeleeWeaponView meleeWeaponViewPrefab;
         [Header("Stats")]
         [SerializeField] private float damage;
+        [SerializeField] private float hitDetectionRadius;
 
         public MeleeWeaponView MeleeWeaponViewPrefab => meleeWeaponViewPrefab;
         public float Damage => damage;
+        public float HitDetectionRadius => hitDetectionRadius;
     }
 }
