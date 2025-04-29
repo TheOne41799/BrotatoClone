@@ -32,6 +32,7 @@ namespace BrotatoClone.Weapon
             transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, rotationSpeed * Time.deltaTime);
         }
 
+        //Does this belong here?
         public void DetectEnemies()
         {
             Collider2D[] enemies = Physics2D.OverlapCircleAll(hitDetectionPoint.position, hitDetectionRadius, layerMask);
@@ -54,7 +55,7 @@ namespace BrotatoClone.Weapon
 
             //same value as attack rate
             //later get the variable and assign it
-            testWeaponAnimator.speed = 10f;
+            //testWeaponAnimator.speed = 10f;
         }
 
         private void StopAttack()

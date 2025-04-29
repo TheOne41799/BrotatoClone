@@ -22,3 +22,4 @@ MonoBehaviour:
   testWeaponViewPrefab: {fileID: 5802572251151235319, guid: 1bbada301c1db864fb63e9139b00116d, type: 3}
   damage: 7
   hitDetectionRadius: 0.3
+  attackRate: 10
