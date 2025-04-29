@@ -9,5 +9,6 @@ namespace BrotatoClone.Enemy
         Vector2 CalculateVelocity(Vector2 targetLocation, Vector2 enemyLocation);
         bool TryAttack(Vector2 targetLocation, Vector2 enemyLocation);
         void Attack();
+        void TakeDamage(float damage);
     }
 }

@@ -1,5 +1,6 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -89,6 +90,16 @@ namespace BrotatoClone.Enemy
         {
             deathEffect.transform.SetParent(null);
             deathEffect.Play();
+        }
+
+        public void TakeDamage(float damage)
+        {
+            enemyController.TakeDamage(damage);
+        }
+
+        public void DestroyEnemy()
+        {
+            Destroy(this.gameObject);
         }
     }
 }

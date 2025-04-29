@@ -86,5 +86,17 @@ namespace BrotatoClone.Enemy
 
             // send a message to manager
         }
+
+        public void TakeDamage(float damage)
+        {
+            enemyModel.TakeDamage(damage);
+        }
+
+        public void HandleEnemyDeath()
+        {
+            enemyView.PlayDeathEffect();
+            enemyView.DestroyEnemy();
+            OnDispose();            
+        }
     }
 }

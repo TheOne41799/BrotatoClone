@@ -6,5 +6,6 @@ namespace BrotatoClone.Enemy
     {
         void OnSpawnSequenceCompleted();
         void OnDispose();
+        void TakeDamage(float damage);
     }
 }
