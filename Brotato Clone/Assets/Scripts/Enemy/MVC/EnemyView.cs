@@ -17,6 +17,9 @@ namespace BrotatoClone.Enemy
         [SerializeField] private SpriteRenderer enemySprite;
         [SerializeField] private SpriteRenderer spawnIndicator;
 
+        [Header("Collider")]
+        [SerializeField] private CircleCollider2D enemyCollider;
+
         [Header("Effects")]
         [SerializeField] private Transform damageTextSpawnPosition;
         [SerializeField] private ParticleSystem deathEffect;
@@ -27,6 +30,7 @@ namespace BrotatoClone.Enemy
         private void Awake()
         {
             UpdateRendererVisibility(false);
+            enemyCollider.enabled = false;
         }
 
         private void UpdateRendererVisibility(bool visibility)
@@ -62,6 +66,7 @@ namespace BrotatoClone.Enemy
             UpdateRendererVisibility(true);
 
             enemyController.OnSpawnSequenceCompleted();
+            enemyCollider.enabled = true;
         }
 
         public Vector2 GetPosition()

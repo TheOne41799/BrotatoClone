@@ -9,13 +9,6 @@ namespace BrotatoClone.VFX
         [SerializeField] private Animator damageTextAnimator;
         [SerializeField] private TextMeshPro damageText;
 
-        /*private DamageTextController controller;
-
-        public void SetController(DamageTextController controller)
-        {
-            this.controller = controller;
-        }*/
-
         public void PlayDamageTextAnimation(float damageAmount)
         {
             damageText.text = damageAmount.ToString();
