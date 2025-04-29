@@ -1,3 +1,4 @@
+using BrotatoClone.Common;
 using BrotatoClone.Enemy;
 using BrotatoClone.Player;
 using UnityEngine;
@@ -18,10 +19,14 @@ namespace BrotatoClone.Data
         [SerializeField] private int attackDamage;
         [SerializeField] private float attackRate;
 
+        [Header("Stats")]
+        private float health;
+
         public EnemyView EnemyViewPrefab => enemyViewPrefab;
         public float MoveSpeed => moveSpeed;
         public float AttackRange => attackRange;
         public int AttackDamage => attackDamage;
         public float AttackRate => attackRate;
+        public float Health => health;
     }
 }

@@ -90,5 +90,10 @@ namespace BrotatoClone.Enemy
             deathEffect.transform.SetParent(null);
             deathEffect.Play();
         }
+
+        public void TakeDamage(float damage)
+        {
+            enemyController.TakeDamage(damage);
+        }
     }
 }

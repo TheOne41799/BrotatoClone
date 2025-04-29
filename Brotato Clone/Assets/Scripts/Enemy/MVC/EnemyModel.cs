@@ -12,6 +12,7 @@ namespace BrotatoClone.Enemy
         private readonly float attackDamage;
         private readonly float attackRate;
         private readonly float attackDelay;
+        private float health;
         private float attackTimer;
         private bool canMove;
 
@@ -21,6 +22,7 @@ namespace BrotatoClone.Enemy
             this.attackRange = enemyData.AttackRange;
             this.attackDamage = enemyData.AttackDamage;
             this.attackRate = enemyData.AttackRate;
+            this.health = enemyData.Health;
             
             attackDelay = 1f / this.attackRate;
             canMove = false;
@@ -66,6 +68,11 @@ namespace BrotatoClone.Enemy
         public void Attack()
         {          
             enemyController.HandleApplyDamage(attackDamage);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            this.health -= damage;
         }
     }
 }

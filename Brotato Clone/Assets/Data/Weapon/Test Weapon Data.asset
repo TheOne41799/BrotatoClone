@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee33fd016e4b3c849a21dd62f2e17a16, type: 3}
+  m_Name: Test Weapon Data
+  m_EditorClassIdentifier: 
+  weaponType: 1
+  enemyDetectionRange: 3
+  rotationSpeed: 12
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  isGizmosON: 0
+  testWeaponViewPrefab: {fileID: 5802572251151235319, guid: 1bbada301c1db864fb63e9139b00116d, type: 3}
+  damage: 5
+  hitDetectionRadius: 0.3

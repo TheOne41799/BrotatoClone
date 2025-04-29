@@ -9,11 +9,21 @@ namespace BrotatoClone.Weapon
 {
     public class WeaponManager : MonoBehaviour, IManager
     {
-        [SerializeField] private MeleeWeaponData meleeWeaponData;
+        // Handle this later
+        //[SerializeField] private MeleeWeaponData meleeWeaponData;
+
+
+        //This is a test
+        [SerializeField] private TestWeaponData testWeaponData;
 
         private IEventManager eventManager;
 
-        private IWeaponController meleeWeaponController;
+        // Handle this later
+        //private IWeaponController meleeWeaponController;
+
+
+        //this is a test
+        private TestWeaponController controller;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -34,12 +44,24 @@ namespace BrotatoClone.Weapon
 
         private void CreateControllers()
         {
+            // Handle this later
             //meleeWeaponController = new MeleeWeaponController(meleeWeaponData);
+
+
+
+            //this is a test
+            controller = new TestWeaponController(testWeaponData);
         }
 
         private void DisposeControllers()
         {
 
+        }
+
+        private void Update()
+        {
+            //this is a test
+            if (controller != null) controller.OnUpdate();
         }
     }
 }
