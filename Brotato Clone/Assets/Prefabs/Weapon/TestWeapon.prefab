@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitDetectionPoint: {fileID: 2422815497293822840}
   testWeaponAnimator: {fileID: 3856733416842365627}
+  isGizmosON: 0
 --- !u!95 &3856733416842365627
 Animator:
   serializedVersion: 7
