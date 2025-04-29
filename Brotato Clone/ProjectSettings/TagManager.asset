@@ -47,5 +47,8 @@ TagManager:
   - name: Player
     uniqueID: 3893624819
     locked: 0
+  - name: VFXLayer
+    uniqueID: 3608952377
+    locked: 0
   m_RenderingLayers:
   - Default

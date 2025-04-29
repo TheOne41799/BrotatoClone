@@ -17,7 +17,8 @@ namespace BrotatoClone.Enemy
         [SerializeField] private SpriteRenderer enemySprite;
         [SerializeField] private SpriteRenderer spawnIndicator;
 
-        [Header("Death Effects")]
+        [Header("Effects")]
+        [SerializeField] private Transform damageTextSpawnPosition;
         [SerializeField] private ParticleSystem deathEffect;
 
         [Header("DEBUG")]
@@ -66,6 +67,11 @@ namespace BrotatoClone.Enemy
         public Vector2 GetPosition()
         {
             return this.transform.position;
+        }
+
+        public Vector2 GetDamageTextSpawnPosition()
+        {
+            return damageTextSpawnPosition.position;
         }
 
         public void UpdateVelocity(Vector2 velocity)

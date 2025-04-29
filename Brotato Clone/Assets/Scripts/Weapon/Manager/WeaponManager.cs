@@ -50,7 +50,7 @@ namespace BrotatoClone.Weapon
 
 
             //this is a test
-            controller = new TestWeaponController(testWeaponData);
+            controller = new TestWeaponController(testWeaponData, this);
         }
 
         private void DisposeControllers()
@@ -62,6 +62,11 @@ namespace BrotatoClone.Weapon
         {
             //this is a test
             if (controller != null) controller.OnUpdate();
+        }
+
+        public void HandleEnemyHit(DamageDisplayData damageDisplayData)
+        {
+            eventManager.WeaponEvents.OnEnemyHit.Invoke(damageDisplayData);
         }
     }
 }
