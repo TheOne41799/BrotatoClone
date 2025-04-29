@@ -28,16 +28,21 @@ namespace BrotatoClone.VFX
 
         private void RegisterEventListeners()
         {
-
+            eventManager.WeaponEvents.OnEnemyHit.AddListener(HandleEnemyHit);
         }
 
         private void CreateControllers()
         {
-            damageTextController = new DamageTextController(vfxData);
+            //damageTextController = new DamageTextController(vfxData);
         }
 
         private void DisposeControllers()
         {
+        }
+
+        private void HandleEnemyHit(Vector2 damageTextSpawnPosition)
+        {
+            damageTextController = new DamageTextController(vfxData, damageTextSpawnPosition);
         }
     }
 }

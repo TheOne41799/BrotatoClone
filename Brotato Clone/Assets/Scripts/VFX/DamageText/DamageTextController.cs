@@ -7,9 +7,9 @@ namespace BrotatoClone.VFX
     {
         private DamageText damageText;
 
-        public DamageTextController(VFXData vfxData)
+        public DamageTextController(VFXData vfxData, Vector2 spawnPosition)
         {
-            damageText = GameObject.Instantiate<DamageText>(vfxData.DamageTextPrefab);
+            damageText = GameObject.Instantiate<DamageText>(vfxData.DamageTextPrefab, spawnPosition, Quaternion.identity);
         }
     }
 }

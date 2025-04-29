@@ -1,5 +1,6 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
+using BrotatoClone.Event;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +8,14 @@ namespace BrotatoClone.Weapon
 {
     public class TestWeaponController
     {
+        private WeaponManager weaponManager;
         private TestWeaponModel model;
         private TestWeaponView view;
 
-        public TestWeaponController(TestWeaponData testWeaponData)
+        public TestWeaponController(TestWeaponData testWeaponData, WeaponManager weaponManager)
         {
+            this.weaponManager = weaponManager;
+
             model = new TestWeaponModel(testWeaponData);
             model.SetController(this);
 
@@ -58,6 +62,11 @@ namespace BrotatoClone.Weapon
         public void StopAttack()
         {
             model.StopAttack();
+        }
+
+        public void HandleEnemyHit(Vector2 spawnPosition)
+        {
+            weaponManager.HandleEnemyHit(spawnPosition);
         }
     }
 }
