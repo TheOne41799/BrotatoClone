@@ -1,6 +1,6 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
-using UnityEditor.ShaderGraph.Internal;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
@@ -16,9 +16,17 @@ namespace BrotatoClone.Weapon
         private LayerMask layerMask;
         private float damage;
         private float hitDetectionRadius;
+        private float attackRate;
+        private float attackDelay;
+        private float attackTimer;
 
         public float HitDetectionRadius => hitDetectionRadius;
         public LayerMask LayerMask => layerMask;
+
+        private WeaponAnimationState weaponAnimationState;
+
+        private List<IDamageable> detectedEnemies;
+        private HashSet<IDamageable> damagedEnemies;
 
         public TestWeaponModel(TestWeaponData testWeaponData)
         {
@@ -28,6 +36,14 @@ namespace BrotatoClone.Weapon
             this.layerMask = testWeaponData.LayerMask;
             this.damage = testWeaponData.Damage;
             this.hitDetectionRadius = testWeaponData.HitDetectionRadius;
+            this.attackRate = testWeaponData.AttackRate;
+
+            this.attackDelay = 1f/ this.attackRate;
+            this.attackTimer = 0f;
+
+            weaponAnimationState = WeaponAnimationState.IDLE;
+            detectedEnemies = new List<IDamageable>();
+            damagedEnemies = new HashSet<IDamageable>();
         }
 
         public void SetController(TestWeaponController controller)
@@ -37,8 +53,15 @@ namespace BrotatoClone.Weapon
 
         public void SetViewTransform(Transform viewTransform) => this.viewTransform = viewTransform;
 
+        public void SetDetectedEnemies(List<IDamageable> enemies)
+        {
+            detectedEnemies = enemies;
+        }
+
         public void OnUpdate()
         {
+            attackTimer += Time.deltaTime;
+
             IDamageable closestEnemy = GetClosestEnemy();
 
             if (closestEnemy == null)
@@ -53,12 +76,12 @@ namespace BrotatoClone.Weapon
 
         private IDamageable GetClosestEnemy()
         {
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(viewTransform.position, 3f, layerMask);
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(viewTransform.position, enemyDetectionRange, layerMask);
 
             if (enemies.Length == 0) return null;
 
             IDamageable closestEnemy = null;
-            float closestDistance = 3f;
+            float closestDistance = enemyDetectionRange;
 
             for (int i = 0; i < enemies.Length; i++)
             {
@@ -86,7 +109,41 @@ namespace BrotatoClone.Weapon
 
         public void Attack(IDamageable enemy)
         {
-            enemy.TakeDamage(damage);
+            switch(weaponAnimationState)
+            {
+                case WeaponAnimationState.IDLE:
+                    StartAttack();
+                    break;
+                case WeaponAnimationState.ATTACK:
+                    Attacking(enemy);
+                    break;
+            }
         }
+
+        private void StartAttack()
+        {
+            controller.PlayAttackAnimation();
+            weaponAnimationState = WeaponAnimationState.ATTACK;
+        }
+
+        private void Attacking(IDamageable enemy)
+        {
+            if (attackTimer >= attackDelay)
+            {
+                if (!damagedEnemies.Contains(enemy))
+                {
+                    enemy.TakeDamage(damage);
+                    damagedEnemies.Add(enemy);
+                    attackTimer = 0f;
+                }
+            }
+        }
+
+        public void StopAttack()
+        {
+            weaponAnimationState = WeaponAnimationState.IDLE;
+
+            damagedEnemies.Clear();
+        }        
     }
 }

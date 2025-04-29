@@ -1,4 +1,5 @@
 using BrotatoClone.Common;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
@@ -6,6 +7,7 @@ namespace BrotatoClone.Weapon
     public class TestWeaponView : MonoBehaviour
     {
         [SerializeField] private Transform hitDetectionPoint;
+        [SerializeField] private Animator testWeaponAnimator;
 
         private TestWeaponController controller;
 
@@ -33,19 +35,31 @@ namespace BrotatoClone.Weapon
         public void DetectEnemies()
         {
             Collider2D[] enemies = Physics2D.OverlapCircleAll(hitDetectionPoint.position, hitDetectionRadius, layerMask);
+            List<IDamageable> detectedEnemies = new List<IDamageable>();
 
             for (int i = 0; i < enemies.Length; i++)
             {
                 if (enemies[i].TryGetComponent<IDamageable>(out var enemy))
                 {
-                    controller.DetectedEnemy(enemy);
+                    detectedEnemies.Add(enemy);
                 }
             }
+
+            controller.DetectedEnemies(detectedEnemies);
         }
 
+        public void PlayAttackAnimation()
+        {
+            testWeaponAnimator.Play("Attack");
 
+            //same value as attack rate
+            //later get the variable and assign it
+            testWeaponAnimator.speed = 10f;
+        }
 
-        //detect hitting the enemy
-        //inform the controller
+        private void StopAttack()
+        {
+            controller.StopAttack();
+        }
     }
 }

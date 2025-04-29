@@ -1,5 +1,6 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
@@ -32,9 +33,31 @@ namespace BrotatoClone.Weapon
             view.Rotate(quaternion, rotationSpeed);
         }
 
-        public void DetectedEnemy(IDamageable enemy)
+        public void DetectedEnemies(List<IDamageable> enemies)
         {
-            model.Attack(enemy);
+            model.SetDetectedEnemies(enemies);
+
+            if (enemies.Count > 0)
+            {
+                foreach (var enemy in enemies)
+                {
+                    model.Attack(enemy);
+                }
+            }
+            else
+            {
+                model.StopAttack();
+            }
+        }
+
+        public void PlayAttackAnimation()
+        {
+            view.PlayAttackAnimation();
+        }
+
+        public void StopAttack()
+        {
+            model.StopAttack();
         }
     }
 }

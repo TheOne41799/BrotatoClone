@@ -18,6 +18,8 @@ namespace BrotatoClone.Data
         [Header("Stats")]
         [SerializeField] private float damage;
         [SerializeField] private float hitDetectionRadius;
+        [Header("Attack")]
+        [SerializeField] private float attackRate;
 
         public TestWeaponView TestWeaponViewPrefab => testWeaponViewPrefab;
         public float Damage => damage;
@@ -27,5 +29,6 @@ namespace BrotatoClone.Data
         public float RotationSpeed => rotationSpeed;
         public LayerMask LayerMask => layerMask;
         public bool IsGizmosON => isGizmosON;
+        public float AttackRate => attackRate;
     }
 }

@@ -20,13 +20,13 @@ namespace BrotatoClone.Data
         [SerializeField] private float attackRate;
 
         [Header("Stats")]
-        [SerializeField] private float health;
+        [SerializeField] private float maxHealth;
 
         public EnemyView EnemyViewPrefab => enemyViewPrefab;
         public float MoveSpeed => moveSpeed;
         public float AttackRange => attackRange;
         public int AttackDamage => attackDamage;
         public float AttackRate => attackRate;
-        public float Health => health;
+        public float MaxHealth => maxHealth;
     }
 }
