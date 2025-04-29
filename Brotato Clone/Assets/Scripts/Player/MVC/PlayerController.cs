@@ -23,6 +23,7 @@ namespace BrotatoClone.Player
 
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab);
             ReportTargetTransform((ITarget)playerView);
+            playerView.AddWeapon(playerManager.OnWeaponRequested());
         }        
 
         public void HandleMoveInput(Vector2 moveInput)
