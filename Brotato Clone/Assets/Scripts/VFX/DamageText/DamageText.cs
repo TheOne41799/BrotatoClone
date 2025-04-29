@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using BrotatoClone.Common;
 
 namespace BrotatoClone.VFX
 {
@@ -8,14 +9,17 @@ namespace BrotatoClone.VFX
         [SerializeField] private Animator damageTextAnimator;
         [SerializeField] private TextMeshPro damageText;
 
-        private void Awake()
+        private DamageTextController controller;
+
+        public void SetController(DamageTextController controller)
         {
-            PlayDamageTextAnimation();
+            this.controller = controller;
         }
 
         public void PlayDamageTextAnimation()
         {
-            damageText.text = Random.Range(10, 1000).ToString();
+            damageText.text = controller.DamageDisplayData.damageAmount.ToString();
+
             damageTextAnimator.Play("DamageTextAnimate");
         }
     }

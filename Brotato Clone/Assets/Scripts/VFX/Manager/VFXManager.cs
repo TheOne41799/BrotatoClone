@@ -40,9 +40,9 @@ namespace BrotatoClone.VFX
         {
         }
 
-        private void HandleEnemyHit(Vector2 damageTextSpawnPosition)
+        private void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
-            damageTextController = new DamageTextController(vfxData, damageTextSpawnPosition);
+            damageTextController = new DamageTextController(vfxData, damageDisplayData, this);
         }
     }
 }

@@ -64,9 +64,9 @@ namespace BrotatoClone.Weapon
             model.StopAttack();
         }
 
-        public void HandleEnemyHit(Vector2 spawnPosition)
+        public void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
-            weaponManager.HandleEnemyHit(spawnPosition);
+            weaponManager.HandleEnemyHit(damageDisplayData);
         }
     }
 }

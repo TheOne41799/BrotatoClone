@@ -133,7 +133,9 @@ namespace BrotatoClone.Weapon
                 if (!damagedEnemies.Contains(enemy))
                 {
                     enemy.TakeDamage(damage);
-                    controller.HandleEnemyHit(enemy.GetDamageTextSpawnPosition());
+                    DamageDisplayData damageDisplayData = new DamageDisplayData(enemy.GetDamageTextSpawnPosition(), damage);
+                    //controller.HandleEnemyHit(enemy.GetDamageTextSpawnPosition());
+                    controller.HandleEnemyHit(damageDisplayData);
                     damagedEnemies.Add(enemy);
                     attackTimer = 0f;
                 }

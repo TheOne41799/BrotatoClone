@@ -64,9 +64,9 @@ namespace BrotatoClone.Weapon
             if (controller != null) controller.OnUpdate();
         }
 
-        public void HandleEnemyHit(Vector2 spawnPosition)
+        public void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
-            eventManager.WeaponEvents.OnEnemyHit.Invoke(spawnPosition);
+            eventManager.WeaponEvents.OnEnemyHit.Invoke(damageDisplayData);
         }
     }
 }
