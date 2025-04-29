@@ -12,6 +12,8 @@ namespace BrotatoClone.VFX
 
         private IEventManager eventManager;
 
+        private DamageTextController damageTextController;
+
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
@@ -31,7 +33,7 @@ namespace BrotatoClone.VFX
 
         private void CreateControllers()
         {
-            
+            damageTextController = new DamageTextController(vfxData);
         }
 
         private void DisposeControllers()

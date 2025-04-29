@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d040c5e4b6450b47a67bc360a2d1083, type: 3}
   m_Name: VFX Data
   m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 7911606021057466343, guid: d9008bde77cd47649ae3d6de8e04c721, type: 3}
