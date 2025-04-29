@@ -5059,6 +5059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySprite: {fileID: 2520745624699922063}
   spawnIndicator: {fileID: 5748856319904776911}
+  enemyCollider: {fileID: 6880347840482156330}
   damageTextSpawnPosition: {fileID: 5753383624559246420}
   deathEffect: {fileID: 9114720030231508620}
   isGizmosON: 0

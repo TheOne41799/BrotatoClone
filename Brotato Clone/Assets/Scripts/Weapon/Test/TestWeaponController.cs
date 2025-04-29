@@ -23,7 +23,7 @@ namespace BrotatoClone.Weapon
             view.SetController(this);
 
             model.SetViewTransform(view.GetTransform());
-            view.SetEnemyDetectionVariables(model.HitDetectionRadius, model.LayerMask);
+            view.SetEnemyDetectionVariables(model.HitDetectionRadius, model.LayerMask, model.EnemyDetectionRange);
         }
 
         public void OnUpdate()

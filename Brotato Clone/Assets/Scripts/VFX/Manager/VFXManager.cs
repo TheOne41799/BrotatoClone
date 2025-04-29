@@ -1,7 +1,6 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
-using BrotatoClone.Weapon;
 using UnityEngine;
 
 namespace BrotatoClone.VFX
@@ -33,7 +32,7 @@ namespace BrotatoClone.VFX
 
         private void CreateControllers()
         {
-            //damageTextController = new DamageTextController(vfxData);
+            damageTextController = new DamageTextController(vfxData, this);
         }
 
         private void DisposeControllers()
@@ -42,7 +41,7 @@ namespace BrotatoClone.VFX
 
         private void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
-            damageTextController = new DamageTextController(vfxData, damageDisplayData, this);
+            damageTextController.HandleEnemyHit(damageDisplayData);
         }
     }
 }

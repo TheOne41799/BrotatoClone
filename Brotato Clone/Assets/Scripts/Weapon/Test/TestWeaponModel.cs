@@ -1,6 +1,7 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace BrotatoClone.Weapon
@@ -20,6 +21,7 @@ namespace BrotatoClone.Weapon
         private float attackDelay;
         private float attackTimer;
 
+        public float EnemyDetectionRange => enemyDetectionRange;
         public float HitDetectionRadius => hitDetectionRadius;
         public LayerMask LayerMask => layerMask;
 
@@ -52,12 +54,7 @@ namespace BrotatoClone.Weapon
         }
 
         public void SetViewTransform(Transform viewTransform) => this.viewTransform = viewTransform;
-
-        public void SetDetectedEnemies(List<IDamageable> enemies)
-        {
-            detectedEnemies = enemies;
-        }
-
+         
         public void OnUpdate()
         {
             attackTimer += Time.deltaTime;
@@ -105,6 +102,11 @@ namespace BrotatoClone.Weapon
         {
             Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, targetDirection);
             controller.Rotate(targetRotation, rotationSpeed);
+        }
+
+        public void SetDetectedEnemies(List<IDamageable> enemies)
+        {
+            detectedEnemies = enemies;
         }
 
         public void Attack(IDamageable enemy)

@@ -1,4 +1,5 @@
 using BrotatoClone.Common;
+using BrotatoClone.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,10 @@ namespace BrotatoClone.Weapon
 
         private float hitDetectionRadius;
         private LayerMask layerMask;
+        private float enemyDetectionRange;
+
+        [Header("DEBUG")]
+        [SerializeField] private bool isGizmosON;
 
         public void SetController(TestWeaponController controller)
         {
@@ -21,10 +26,11 @@ namespace BrotatoClone.Weapon
 
         public Transform GetTransform() => this.transform;
 
-        public void SetEnemyDetectionVariables(float hitDetectionRadius, LayerMask layerMask)
+        public void SetEnemyDetectionVariables(float hitDetectionRadius, LayerMask layerMask, float enemyDetectionRange)
         {
-            this .hitDetectionRadius = hitDetectionRadius;
-            this .layerMask = layerMask;
+            this.hitDetectionRadius = hitDetectionRadius;
+            this.layerMask = layerMask;
+            this.enemyDetectionRange = enemyDetectionRange;
         }
 
         public void Rotate(Quaternion quaternion, float rotationSpeed)
@@ -61,6 +67,17 @@ namespace BrotatoClone.Weapon
         private void StopAttack()
         {
             controller.StopAttack();
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!isGizmosON) return;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(this.transform.position, enemyDetectionRange);
+
+            Gizmos.color = Color.black;
+            Gizmos.DrawWireSphere(hitDetectionPoint.position, hitDetectionRadius);
         }
     }
 }
