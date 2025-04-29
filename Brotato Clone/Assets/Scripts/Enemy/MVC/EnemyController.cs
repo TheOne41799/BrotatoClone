@@ -91,5 +91,12 @@ namespace BrotatoClone.Enemy
         {
             enemyModel.TakeDamage(damage);
         }
+
+        public void HandleEnemyDeath()
+        {
+            enemyView.PlayDeathEffect();
+            enemyView.DestroyEnemy();
+            OnDispose();            
+        }
     }
 }

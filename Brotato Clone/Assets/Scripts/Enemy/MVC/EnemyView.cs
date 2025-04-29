@@ -95,5 +95,10 @@ namespace BrotatoClone.Enemy
         {
             enemyController.TakeDamage(damage);
         }
+
+        public void DestroyEnemy()
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

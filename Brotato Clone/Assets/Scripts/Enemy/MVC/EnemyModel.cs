@@ -72,7 +72,11 @@ namespace BrotatoClone.Enemy
 
         public void TakeDamage(float damage)
         {
+            if(!canMove) return;
+
             this.health -= damage;
+
+            if (this.health <= 0) enemyController.HandleEnemyDeath();
         }
     }
 }

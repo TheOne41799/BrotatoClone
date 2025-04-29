@@ -11,5 +11,6 @@ namespace BrotatoClone.Enemy
         Vector2 GetPosition();
         void UpdateVelocity(Vector2 velocity);
         void PlayDeathEffect();
+        void DestroyEnemy();
     }
 }
