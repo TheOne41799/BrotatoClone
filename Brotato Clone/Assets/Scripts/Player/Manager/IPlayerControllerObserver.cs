@@ -7,5 +7,6 @@ namespace BrotatoClone.Player
     {
         void ReportTargetTransform(ITarget target);
         void HandleHealthUpdate(HealthDisplayData healthDisplayData);
+        WeaponSpawnData OnWeaponRequested();
     }
 }

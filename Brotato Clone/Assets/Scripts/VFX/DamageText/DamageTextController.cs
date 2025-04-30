@@ -33,7 +33,7 @@ namespace BrotatoClone.VFX
 
         private void OnReleaseDamageText(DamageText damageText)
         {
-            damageText.gameObject.SetActive(false);
+            damageText.gameObject.SetActive(false); 
         }
  
         private void OnDestroyDamageText(DamageText damageText)

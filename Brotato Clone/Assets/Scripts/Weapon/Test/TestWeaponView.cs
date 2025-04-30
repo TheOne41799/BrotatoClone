@@ -24,6 +24,8 @@ namespace BrotatoClone.Weapon
             this.controller = controller;
         }
 
+        public Transform GetTestWeaponTransform() => this.transform;
+
         public Transform GetTransform() => this.transform;
 
         public void SetEnemyDetectionVariables(float hitDetectionRadius, LayerMask layerMask, float enemyDetectionRange)

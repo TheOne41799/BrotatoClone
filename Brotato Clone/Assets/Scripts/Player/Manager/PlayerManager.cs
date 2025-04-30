@@ -63,5 +63,11 @@ namespace BrotatoClone.Player
         {
             eventManager.PlayerEvents.OnHealthUpdated.Invoke(healthDisplayData);
         }
+
+        public WeaponSpawnData OnWeaponRequested()
+        {
+            WeaponSpawnData weaponSpawnData = eventManager.PlayerEvents.OnWeaponRequested.Invoke<WeaponSpawnData>();
+            return weaponSpawnData;
+        }
     }
 }

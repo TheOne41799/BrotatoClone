@@ -39,7 +39,7 @@ namespace BrotatoClone.Weapon
 
         private void RegisterEventListeners()
         {
-            
+            eventManager.PlayerEvents.OnWeaponRequested.AddListener(OnWeaponTransformRequested);
         }
 
         private void CreateControllers()
@@ -67,6 +67,12 @@ namespace BrotatoClone.Weapon
         public void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
             eventManager.WeaponEvents.OnEnemyHit.Invoke(damageDisplayData);
+        }
+
+        public WeaponSpawnData OnWeaponTransformRequested()
+        {
+            WeaponSpawnData weaponSpawnData = new WeaponSpawnData(controller.OnWeaponTransformRequested());
+            return weaponSpawnData;
         }
     }
 }

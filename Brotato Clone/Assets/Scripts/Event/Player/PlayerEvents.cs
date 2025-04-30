@@ -8,6 +8,7 @@ namespace BrotatoClone.Event
     {
         public IEventController<Action<ITarget>> OnTargetUpdated {  get; private set; }
         public IEventController<Action<HealthDisplayData>> OnHealthUpdated { get; private set; }
+        public IEventController<Func<WeaponSpawnData>> OnWeaponRequested { get; private set; }
 
         // create an event to indicate player has been destroyed or use the same event
 
@@ -15,6 +16,7 @@ namespace BrotatoClone.Event
         {
             OnTargetUpdated = new EventController<Action<ITarget>>();
             OnHealthUpdated = new EventController<Action<HealthDisplayData>>();
+            OnWeaponRequested = new EventController<Func<WeaponSpawnData>>();
         }
     }
 }

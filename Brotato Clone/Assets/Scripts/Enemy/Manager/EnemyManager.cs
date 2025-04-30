@@ -46,6 +46,24 @@ namespace BrotatoClone.Enemy
             CreateController();
             CreateController();
             CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
         }
 
         private void CreateController()
@@ -75,6 +93,11 @@ namespace BrotatoClone.Enemy
         public void HandleApplyDamage(float damage)
         {            
             eventManager.EnemyEvents.OnApplyDamage.Invoke(damage);
+        }
+
+        public void OnEnemyDeath(Vector2 enemyDeathPosition)
+        {
+            eventManager.EnemyEvents.OnEnemyDeath.Invoke(enemyDeathPosition);
         }
     }
 }

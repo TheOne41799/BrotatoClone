@@ -9,6 +9,7 @@ using BrotatoClone.Tween;
 using BrotatoClone.UI;
 using BrotatoClone.VFX;
 using BrotatoClone.Weapon;
+using BrotatoClone.WorldItem;
 using UnityEngine;
 
 namespace BrotatoClone.Main
@@ -26,9 +27,10 @@ namespace BrotatoClone.Main
         private IManager tweenManager;
         private IManager uiManager;
         private IManager enemyManager;
-        private IManager playerManager;
         private IManager weaponManager;
+        private IManager playerManager;
         private IManager vfxManager;
+        private IManager worldItemManager;
 
         private void Awake()
         {
@@ -64,9 +66,10 @@ namespace BrotatoClone.Main
             tweenManager = GameObject.Instantiate<TweenManager>(gameData.TweenManagerPrefab, this.transform);
             uiManager = GameObject.Instantiate<UIManager>(gameData.UIManagerPrefab, this.transform);
             enemyManager = GameObject.Instantiate<EnemyManager>(gameData.EnemyManagerPrefab, this.transform);
-            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
             weaponManager = GameObject.Instantiate<WeaponManager>(gameData.WeaponManagerPrefab, this.transform);
+            playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
             vfxManager = GameObject.Instantiate<VFXManager>(gameData.VFXManagerPrefab, this.transform);
+            worldItemManager = GameObject.Instantiate<WorldItemManager>(gameData.WorldItemManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
@@ -76,9 +79,10 @@ namespace BrotatoClone.Main
             tweenManager.InitializeManager(eventManager);
             uiManager.InitializeManager(eventManager);
             enemyManager.InitializeManager(eventManager);
-            playerManager.InitializeManager(eventManager);
             weaponManager.InitializeManager(eventManager);
+            playerManager.InitializeManager(eventManager);
             vfxManager.InitializeManager(eventManager);
+            worldItemManager.InitializeManager(eventManager);
         }
     }
 }
