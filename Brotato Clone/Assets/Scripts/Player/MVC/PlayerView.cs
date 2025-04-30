@@ -33,5 +33,13 @@ namespace BrotatoClone.Player
             weaponSpawnData.weaponTransform.localPosition = Vector3.zero;
             weaponSpawnData.weaponTransform.localRotation = Quaternion.identity;
         }
+
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if(collider.TryGetComponent(out ICollectible currencyOneItem))
+            {
+                currencyOneItem.OnCashCollected();
+            }
+        }
     }
 }

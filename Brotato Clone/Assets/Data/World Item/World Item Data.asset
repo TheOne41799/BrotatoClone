@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ec1233009685549be784e882416222, type: 3}
   m_Name: World Item Data
   m_EditorClassIdentifier: 
-  currencyOneItemData: {fileID: 0}
-  currencyOneItemViewPrefab: {fileID: 0}
+  currencyOneItemData: {fileID: 11400000, guid: 9c3b924d9cf9262419872e4eacc7f673, type: 2}
+  currencyOneItemViewPrefab: {fileID: 7855125897784678772, guid: e00fa69d701e043418fe492f9313f361, type: 3}

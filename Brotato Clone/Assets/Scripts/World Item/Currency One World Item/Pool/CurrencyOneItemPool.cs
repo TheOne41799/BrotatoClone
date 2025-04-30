@@ -24,7 +24,7 @@ namespace BrotatoClone.WorldItem
 
         private CurrencyOneItemController CreateItemController()
         {
-            CurrencyOneItemController currencyOneItemController = new CurrencyOneItemController(worldItemData);
+            CurrencyOneItemController currencyOneItemController = new CurrencyOneItemController(worldItemData, worldItemManager, this);
             currencyOneItemController.CreateItem();
             return currencyOneItemController;
         }
@@ -50,7 +50,9 @@ namespace BrotatoClone.WorldItem
             currencyOnePooledItem.SetSpawnPosition(spawnPosition);
         }
 
-        //spawn item
-        //release item
+        public void OnCashCollected(CurrencyOneItemController controller)
+        {
+            currencyOneItemPool.Release(controller);
+        }
     }
 }

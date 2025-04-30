@@ -1,16 +1,23 @@
 using BrotatoClone.Data;
-using BrotatoClone.VFX;
+using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.WorldItem
 {
-    public class CurrencyOneItemView : MonoBehaviour
+    public class CurrencyOneItemView : MonoBehaviour, ICollectible
     {
-        //[SerializeField] private Animator currencyOneAnimator;
+        [SerializeField] private Animator currencyOneAnimator;
+
+        private CurrencyOneItemController controller;
+
+        public void SetController(CurrencyOneItemController controller)
+        {
+            this.controller = controller;
+        }
 
         public void PlayAnimation()
         {
-            // play animation
+            currencyOneAnimator.Play("Idle");
         }
 
         public void StopAnimation()
@@ -26,6 +33,11 @@ namespace BrotatoClone.WorldItem
         public void SetSpawnPosition(Vector2 spawnPosition)
         {
             this.transform.position = spawnPosition;
+        }
+
+        public void OnCashCollected()
+        {
+            controller.OnCashCollected();
         }
     }
 }

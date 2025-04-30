@@ -46,6 +46,24 @@ namespace BrotatoClone.Enemy
             CreateController();
             CreateController();
             CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
+            CreateController();
         }
 
         private void CreateController()

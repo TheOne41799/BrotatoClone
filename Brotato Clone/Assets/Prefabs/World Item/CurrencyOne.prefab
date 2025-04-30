@@ -27,7 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8244405884930824661}
   m_Father: {fileID: 5256179165078363507}
@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 5256179165078363507}
   - component: {fileID: 7855125897784678772}
   - component: {fileID: 4700978325936693080}
-  m_Layer: 0
+  - component: {fileID: 7861690265824086927}
+  m_Layer: 10
   m_Name: CurrencyOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5e5ca00278f034db0bfb6fb21182fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyOneAnimator: {fileID: 7861690265824086927}
 --- !u!58 &4700978325936693080
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,6 +116,28 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.14
+--- !u!95 &7861690265824086927
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414676866612146920}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1971c26b9e88906478462eb9010d9e58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6339335131893234160
 GameObject:
   m_ObjectHideFlags: 0

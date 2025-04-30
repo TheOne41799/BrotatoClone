@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392a8e71532753e42b35178a1e1a3f48, type: 3}
   m_Name: CurrencyOneItem
   m_EditorClassIdentifier: 
-  worldItemType: 0
-  quantity: 0
+  worldItemType: 1
+  minMaxQuantity: {x: 3, y: 10}
