@@ -76,5 +76,10 @@ namespace BrotatoClone.Enemy
         {            
             eventManager.EnemyEvents.OnApplyDamage.Invoke(damage);
         }
+
+        public void OnEnemyDeath(Vector2 enemyDeathPosition)
+        {
+            eventManager.EnemyEvents.OnEnemyDeath.Invoke(enemyDeathPosition);
+        }
     }
 }

@@ -94,6 +94,7 @@ namespace BrotatoClone.Enemy
 
         public void HandleEnemyDeath()
         {
+            enemyManager.OnEnemyDeath(enemyView.GetPosition());
             enemyView.PlayDeathEffect();
             enemyView.DestroyEnemy();
             OnDispose();            
