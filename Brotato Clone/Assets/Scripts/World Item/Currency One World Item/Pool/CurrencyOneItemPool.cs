@@ -50,7 +50,7 @@ namespace BrotatoClone.WorldItem
             currencyOnePooledItem.SetSpawnPosition(spawnPosition);
         }
 
-        public void OnCashCollected(CurrencyOneItemController controller)
+        public void OnCurrencyCollected(CurrencyOneItemController controller)
         {
             currencyOneItemPool.Release(controller);
         }

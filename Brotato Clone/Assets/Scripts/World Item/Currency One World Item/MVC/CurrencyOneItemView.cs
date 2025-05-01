@@ -35,9 +35,10 @@ namespace BrotatoClone.WorldItem
             this.transform.position = spawnPosition;
         }
 
-        public void OnCashCollected()
+        public void OnItemCollected(Transform targetTransform)
         {
-            controller.OnCashCollected();
+            if (controller.IsCollected) return;
+            controller.OnCurrencyCollected(targetTransform, this.transform);
         }
     }
 }
