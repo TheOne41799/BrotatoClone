@@ -1,23 +1,22 @@
-using BrotatoClone.Data;
 using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.WorldItem
 {
-    public class CurrencyOneItemView : MonoBehaviour, ICollectible
+    public class CurrencyTwoItemView : MonoBehaviour, ICollectible
     {
-        [SerializeField] private Animator currencyOneAnimator;
+        [SerializeField] private Animator currencyTwoAnimator;
 
-        private CurrencyOneItemController controller;
+        private CurrencyTwoItemController controller;
 
-        public void SetController(CurrencyOneItemController controller)
+        public void SetController(CurrencyTwoItemController controller)
         {
             this.controller = controller;
         }
 
         public void PlayAnimation()
         {
-            currencyOneAnimator.Play("Idle");
+            currencyTwoAnimator.Play("Idle");
         }
 
         public void StopAnimation()

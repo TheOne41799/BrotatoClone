@@ -7,8 +7,13 @@ namespace BrotatoClone.UI
 {
     public class UIHUD : MonoBehaviour, IUIHUD
     {
+        [Header("Health")]
         [SerializeField] private Slider healthSlider;
         [SerializeField] private TextMeshProUGUI healthText;
+
+        [Header("Levelup")]
+        [SerializeField] private Slider xpSlider;
+        [SerializeField] private TextMeshProUGUI xpText;
 
         private void Awake() => ShowUI();
         public void ShowUI() => this.gameObject.SetActive(true);
@@ -18,6 +23,12 @@ namespace BrotatoClone.UI
         {
             healthText.text = healthDisplayData.currentHealth.ToString() + " / " + healthDisplayData.maxHealth.ToString();
             healthSlider.value = healthDisplayData.healthBarRatio;
+        }
+
+        public void UpdateXP(XPDisplayData xpDisplayData)
+        {
+            xpText.text = "Level " + xpDisplayData.Level.ToString();
+            xpSlider.value = xpDisplayData.XPBarRatio;
         }
     }
 }

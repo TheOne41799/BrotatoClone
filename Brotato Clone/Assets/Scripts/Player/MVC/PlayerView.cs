@@ -39,11 +39,11 @@ namespace BrotatoClone.Player
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if(collider.TryGetComponent(out ICollectible currencyOneItem))
+            if(collider.TryGetComponent(out ICollectible collectibleItem))
             {
                 if (!collider.IsTouching(itemCollectionCollider)) return;
 
-                currencyOneItem.OnItemCollected(itemCollectionPoint);
+                collectibleItem.HandleItemCollected(itemCollectionPoint);
             }
         }
     }

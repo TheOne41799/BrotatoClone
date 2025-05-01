@@ -1,6 +1,7 @@
 using BrotatoClone.Data;
 using UnityEngine;
 using UnityEngine.Pool;
+using BrotatoClone.Common;
 
 namespace BrotatoClone.WorldItem
 {
@@ -50,9 +51,12 @@ namespace BrotatoClone.WorldItem
             currencyOnePooledItem.SetSpawnPosition(spawnPosition);
         }
 
-        public void OnCurrencyCollected(CurrencyOneItemController controller)
+        public void HandleItemCollected(CurrencyOneItemController controller, int quantity)
         {
             currencyOneItemPool.Release(controller);
+
+            WorldItemCollected worldItemCollected = new WorldItemCollected(WorldItemType.CURRENCY_ONE, quantity);
+            worldItemManager.HandleItemCollected(worldItemCollected);
         }
     }
 }

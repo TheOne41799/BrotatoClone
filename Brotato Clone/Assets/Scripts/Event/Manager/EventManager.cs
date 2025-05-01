@@ -12,6 +12,7 @@ namespace BrotatoClone.Event
         public PlayerEvents PlayerEvents { get; }
         public EnemyEvents EnemyEvents { get; }
         public WeaponEvents WeaponEvents { get; }
+        public WorldItemEvents WorldItemEvents { get; }
 
         public EventManager()
         {
@@ -23,6 +24,7 @@ namespace BrotatoClone.Event
             PlayerEvents = new PlayerEvents();
             EnemyEvents = new EnemyEvents();
             WeaponEvents = new WeaponEvents();
+            WorldItemEvents = new WorldItemEvents();
         }
     }
 }

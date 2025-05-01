@@ -1,24 +1,24 @@
 using BrotatoClone.Data;
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 namespace BrotatoClone.WorldItem
 {
-    public class CurrencyOneItemModel
+    public class CurrencyTwoItemModel
     {
-        private CurrencyOneItemController controller;
+        private CurrencyTwoItemController controller;
         private WorldItemData worldItemData;
         public int Quantity { get; private set; }
         public bool IsCollected { get; private set; }
 
-        public CurrencyOneItemModel(WorldItemData worldItemData)
+        public CurrencyTwoItemModel(WorldItemData worldItemData)
         {
             this.worldItemData = worldItemData;
 
             InitModel();
         }
 
-        public void SetController(CurrencyOneItemController controller)
+        public void SetController(CurrencyTwoItemController controller)
         {
             this.controller = controller;
         }
@@ -26,7 +26,7 @@ namespace BrotatoClone.WorldItem
         public void InitModel()
         {
             IsCollected = false;
-            Vector2 minMaxQuantity = worldItemData.CurrencyOneItemData.MinMaxQuantity;
+            Vector2 minMaxQuantity = worldItemData.CurrencyTwoItemData.MinMaxQuantity;
             Quantity = Random.Range(Mathf.RoundToInt(minMaxQuantity.x), Mathf.RoundToInt(minMaxQuantity.y + 1));
         }
 

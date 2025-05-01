@@ -1,10 +1,11 @@
 using UnityEngine;
 
-namespace BrotatoClone.WorldItem
+namespace BrotatoClone.Common
 {
     public enum WorldItemType
     {
         NONE,
-        CURRENCY_ONE
+        CURRENCY_ONE,
+        CURRENCY_TWO
     }
 }

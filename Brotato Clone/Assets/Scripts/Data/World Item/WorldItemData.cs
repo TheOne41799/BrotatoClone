@@ -11,5 +11,11 @@ namespace BrotatoClone.Data
         [SerializeField] private CurrencyOneItemView currencyOneItemViewPrefab;
         public WorldItem CurrencyOneItemData => currencyOneItemData;
         public CurrencyOneItemView CurrencyOneItemViewPrefab => currencyOneItemViewPrefab;
+
+        [Header("Currency Two Item")]
+        [SerializeField] private WorldItem currencyTwoItemData;
+        [SerializeField] private CurrencyTwoItemView currencyTwoItemViewPrefab;
+        public WorldItem CurrencyTwoItemData => currencyTwoItemData;
+        public CurrencyTwoItemView CurrencyTwoItemViewPrefab => currencyTwoItemViewPrefab;
     }
 }

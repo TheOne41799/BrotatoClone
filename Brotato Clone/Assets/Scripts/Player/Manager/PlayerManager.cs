@@ -32,6 +32,7 @@ namespace BrotatoClone.Player
         {
             eventManager?.InputEvents.OnMoveInput.AddListener(HandleMoveInput);
             eventManager?.EnemyEvents.OnApplyDamage.AddListener(HandleTakeDamage);
+            eventManager?.WorldItemEvents.OnItemCollected.AddListener(HandleItemCollected);
         }
 
         private void CreateController()
@@ -62,6 +63,16 @@ namespace BrotatoClone.Player
         public void HandleHealthUpdate(HealthDisplayData healthDisplayData)
         {
             eventManager.PlayerEvents.OnHealthUpdated.Invoke(healthDisplayData);
+        }
+
+        public void HandleXPUpdate(XPDisplayData xpDisplayData)
+        {
+            eventManager.PlayerEvents.OnXPUpdated.Invoke(xpDisplayData);
+        }
+
+        public void HandleItemCollected(WorldItemCollected worldItemCollected)
+        {
+            playerController.HandleItemCollected(worldItemCollected);
         }
 
         public WeaponSpawnData OnWeaponRequested()

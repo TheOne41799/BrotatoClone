@@ -1,3 +1,4 @@
+using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.Player
@@ -5,7 +6,9 @@ namespace BrotatoClone.Player
     public interface IPlayerModel
     {
         void SetController(IPlayerModelObserver playerController);
+        void InitModel();
         Vector2 CalculateVelocity(Vector2 inputDirection);
-        public void TakeDamage(float damage);
+        void TakeDamage(float damage);
+        void HandleItemCollected(WorldItemCollected worldItemCollected);
     }
 }

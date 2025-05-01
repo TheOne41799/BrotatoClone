@@ -11,5 +11,6 @@ namespace BrotatoClone.Event
         PlayerEvents PlayerEvents { get; }
         EnemyEvents EnemyEvents { get; }
         WeaponEvents WeaponEvents { get; } 
+        WorldItemEvents WorldItemEvents { get; }
     }
 }
