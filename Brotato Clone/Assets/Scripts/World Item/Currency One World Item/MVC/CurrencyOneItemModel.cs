@@ -42,8 +42,52 @@ namespace BrotatoClone.WorldItem
 
             IsCollected = true;
 
+            yield return PopUpAnimation(itemTransform, 3f, 0.2f);
+            yield return SpinAndScaleAnimation(itemTransform, 720f, 1.3f, 0.4f);
+            yield return MoveTowardsTarget(itemTransform, targetTransform, 1f);
+
+            controller.OnCurrencyCollected();
+        }
+
+        private IEnumerator PopUpAnimation(Transform itemTransform, float height, float duration)
+        {
+            Vector3 start = itemTransform.position;
+            Vector3 end = start + Vector3.up * height;
             float timer = 0f;
-            float duration = 1f;
+
+            while (timer < duration)
+            {
+                itemTransform.position = Vector3.Lerp(start, end, timer / duration);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            itemTransform.position = end;
+        }
+
+        private IEnumerator SpinAndScaleAnimation(Transform itemTransform, float spinSpeed, float scaleAmount, float duration)
+        {
+            Vector3 originalScale = itemTransform.localScale;
+            float timer = 0f;
+
+            while (timer < duration)
+            {
+                itemTransform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
+
+                float t = Mathf.PingPong(timer * 4f, 1f);
+                itemTransform.localScale = originalScale * Mathf.Lerp(1f, scaleAmount, t);
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            itemTransform.localScale = originalScale;
+            itemTransform.rotation = Quaternion.identity;
+        }
+
+        private IEnumerator MoveTowardsTarget(Transform itemTransform, Transform targetTransform, float duration)
+        {
+            float timer = 0f;
 
             while (timer < duration)
             {
@@ -59,8 +103,6 @@ namespace BrotatoClone.WorldItem
             }
 
             itemTransform.position = targetTransform.position;
-
-            controller.OnCurrencyCollected();
         }
     }
 }
