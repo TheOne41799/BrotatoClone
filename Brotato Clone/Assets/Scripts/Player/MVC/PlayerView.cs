@@ -43,7 +43,7 @@ namespace BrotatoClone.Player
             {
                 if (!collider.IsTouching(itemCollectionCollider)) return;
 
-                collectibleItem.OnItemCollected(itemCollectionPoint);
+                collectibleItem.HandleItemCollected(itemCollectionPoint);
             }
         }
     }

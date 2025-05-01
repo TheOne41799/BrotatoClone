@@ -30,6 +30,7 @@ namespace BrotatoClone.UI
         private void RegisterEventListeners()
         {
             eventManager.PlayerEvents.OnHealthUpdated.AddListener(OnHealthUpdated);
+            eventManager.PlayerEvents.OnXPUpdated.AddListener(OnXPUpdated);
         }
 
         private void CreateControllers()
@@ -43,7 +44,7 @@ namespace BrotatoClone.UI
         }
 
         private void OnHealthUpdated(HealthDisplayData healthDisplayData) => uiHudController.OnUpdateHealth(healthDisplayData);
-
+        private void OnXPUpdated(XPDisplayData xpDisplayData) => uiHudController.OnUpdateXP(xpDisplayData);
 
 
         // code for hiding and showing UI based on gamestate

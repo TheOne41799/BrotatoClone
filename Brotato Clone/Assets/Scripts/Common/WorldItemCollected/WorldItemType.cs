@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BrotatoClone.WorldItem
+namespace BrotatoClone.Common
 {
     public enum WorldItemType
     {

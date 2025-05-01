@@ -46,7 +46,7 @@ namespace BrotatoClone.WorldItem
             yield return SpinAndScaleAnimation(itemTransform, 720f, 1.3f, 0.4f);
             yield return MoveTowardsTarget(itemTransform, targetTransform, 1f);
 
-            controller.OnCurrencyCollected();
+            controller.HandleItemCollected();
         }
 
         private IEnumerator PopUpAnimation(Transform itemTransform, float height, float duration)

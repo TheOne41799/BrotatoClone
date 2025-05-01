@@ -62,14 +62,14 @@ namespace BrotatoClone.WorldItem
             currencyOneItemView.SetSpawnPosition(spawnPosition);
         }
 
-        public void OnCurrencyCollected(Transform targetTransform, Transform itemTransform)
+        public void HandleItemCollected(Transform targetTransform, Transform itemTransform)
         {
             worldItemManager.StartCoroutine(currencyOneItemModel.PlayItemCollectedAnimation(targetTransform, itemTransform));
         }
 
-        public void OnCurrencyCollected()
+        public void HandleItemCollected()
         {
-            currencyOneItemPool.OnCurrencyCollected(this);
+            currencyOneItemPool.HandleItemCollected(this, currencyOneItemModel.Quantity);
         }
     }
 }

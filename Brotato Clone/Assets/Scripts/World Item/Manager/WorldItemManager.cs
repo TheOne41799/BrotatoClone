@@ -48,9 +48,11 @@ namespace BrotatoClone.WorldItem
 
             if(rand <= 80) currencyOneItemPool.OnEnemyDeath(spawnPosition);
             else currencyTwoItemPool.OnEnemyDeath(spawnPosition);
+        }
 
-            if (rand <= 80) Debug.Log("Item one");
-            else Debug.Log("Item Two");
+        public void HandleItemCollected(WorldItemCollected worldItemCollected)
+        {
+            eventManager.WorldItemEvents.OnItemCollected.Invoke(worldItemCollected);
         }
     }
 }

@@ -4,6 +4,6 @@ namespace BrotatoClone.Common
 {
     public interface ICollectible
     {
-        void OnItemCollected(Transform targetTransform);
+        void HandleItemCollected(Transform targetTransform);
     }
 }

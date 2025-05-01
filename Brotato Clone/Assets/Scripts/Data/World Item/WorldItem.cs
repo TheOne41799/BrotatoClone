@@ -1,4 +1,4 @@
-using BrotatoClone.WorldItem;
+using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.Data

@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 3386318376075277558}
   healthText: {fileID: 259529464058575365}
+  xpSlider: {fileID: 1229820378067690805}
+  xpText: {fileID: 6405919265268405986}
 --- !u!1 &767228884032114769
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +176,7 @@ GameObject:
   - component: {fileID: 2729439096495268728}
   - component: {fileID: 1229820378067690805}
   m_Layer: 5
-  m_Name: LevelupSlider
+  m_Name: XPSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +250,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -375,7 +377,7 @@ GameObject:
   - component: {fileID: 7217964898171104223}
   - component: {fileID: 6405919265268405986}
   m_Layer: 5
-  m_Name: HealthText
+  m_Name: XPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

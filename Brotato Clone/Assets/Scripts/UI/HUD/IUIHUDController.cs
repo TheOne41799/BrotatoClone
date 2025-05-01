@@ -8,5 +8,6 @@ namespace BrotatoClone.UI
         void ShowUI();
         void HideUI();
         void OnUpdateHealth(HealthDisplayData healthDisplayData);
+        void OnUpdateXP(XPDisplayData xpDisplayData);
     }
 }
