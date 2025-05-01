@@ -38,7 +38,7 @@ namespace BrotatoClone.Player
         {
             if(collider.TryGetComponent(out ICollectible currencyOneItem))
             {
-                currencyOneItem.OnCashCollected();
+                currencyOneItem.OnCashCollected(this.transform);
             }
         }
     }

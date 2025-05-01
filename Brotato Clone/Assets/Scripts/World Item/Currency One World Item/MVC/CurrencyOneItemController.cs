@@ -1,7 +1,5 @@
 using BrotatoClone.Data;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace BrotatoClone.WorldItem
 {
@@ -14,6 +12,8 @@ namespace BrotatoClone.WorldItem
         private CurrencyOneItemModel currencyOneItemModel;
         private CurrencyOneItemView currencyOneItemView;
 
+        public bool IsCollected => currencyOneItemModel.IsCollected;
+
         public CurrencyOneItemController(WorldItemData worldItemData, WorldItemManager worldItemManager, CurrencyOneItemPool currencyOneItemPool)
         {
             this.worldItemData = worldItemData;
@@ -24,6 +24,7 @@ namespace BrotatoClone.WorldItem
         public void CreateItem()
         {
             currencyOneItemModel = new CurrencyOneItemModel(worldItemData);
+            currencyOneItemModel.SetController(this);
             currencyOneItemView = GameObject.Instantiate<CurrencyOneItemView>(worldItemData.CurrencyOneItemViewPrefab, worldItemManager.transform);
             currencyOneItemView.SetController(this);
             currencyOneItemView.ToggleVisibility(true);
@@ -32,21 +33,21 @@ namespace BrotatoClone.WorldItem
 
         public void GetFromPool()
         {
-            currencyOneItemModel.SetQuantity();
+            currencyOneItemModel.InitModel();
             currencyOneItemView.ToggleVisibility(true);
             currencyOneItemView.PlayAnimation();
         }
 
         public void ReturnToPool()
         {
-            currencyOneItemModel.ResetQuantity();
+            currencyOneItemModel.ResetModel();
             currencyOneItemView.ToggleVisibility(false);
             currencyOneItemView.StopAnimation();
         }
 
         public void DestroyFromPool()
         {
-            currencyOneItemModel.ResetQuantity();
+            currencyOneItemModel.ResetModel();
             currencyOneItemModel = null;
 
             if (currencyOneItemView != null)
@@ -59,6 +60,11 @@ namespace BrotatoClone.WorldItem
         public void SetSpawnPosition(Vector2 spawnPosition)
         {
             currencyOneItemView.SetSpawnPosition(spawnPosition);
+        }
+
+        public void OnCashCollected(Transform targetTransform, Transform itemTransform)
+        {
+            worldItemManager.StartCoroutine(currencyOneItemModel.PlayItemCollectedAnimation(targetTransform, itemTransform));
         }
 
         public void OnCashCollected()
