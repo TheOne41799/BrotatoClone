@@ -8,6 +8,9 @@ namespace BrotatoClone.Player
     {
         [SerializeField] private Rigidbody2D playerRB;
         [SerializeField] private Transform weaponTransform;
+        [SerializeField] private Transform itemCollectionPoint;
+        [SerializeField] private Collider2D itemCollectionCollider;
+
         private Vector2 velocity;
 
         public Transform TargetTransform { get; private set; }
@@ -38,7 +41,9 @@ namespace BrotatoClone.Player
         {
             if(collider.TryGetComponent(out ICollectible currencyOneItem))
             {
-                currencyOneItem.OnItemCollected(this.transform);
+                if (!collider.IsTouching(itemCollectionCollider)) return;
+
+                currencyOneItem.OnItemCollected(itemCollectionPoint);
             }
         }
     }
