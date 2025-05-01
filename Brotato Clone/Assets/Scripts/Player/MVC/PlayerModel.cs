@@ -97,7 +97,7 @@ namespace BrotatoClone.Player
 
         private void UpdateRequiredXP()
         {
-            requiredXP = (level + 1) * 5;
+            requiredXP = Mathf.FloorToInt(5 + level * 3f + Mathf.Pow(level, 1.5f));
         }
 
         public void Dispose()
