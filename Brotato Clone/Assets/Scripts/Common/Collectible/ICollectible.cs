@@ -4,6 +4,6 @@ namespace BrotatoClone.Common
 {
     public interface ICollectible
     {
-        void OnCashCollected(Transform targetTransform);
+        void OnItemCollected(Transform targetTransform);
     }
 }

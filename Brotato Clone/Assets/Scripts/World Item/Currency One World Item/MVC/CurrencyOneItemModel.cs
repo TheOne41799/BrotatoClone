@@ -60,7 +60,7 @@ namespace BrotatoClone.WorldItem
 
             itemTransform.position = targetTransform.position;
 
-            controller.OnCashCollected();
+            controller.OnCurrencyCollected();
         }
     }
 }
