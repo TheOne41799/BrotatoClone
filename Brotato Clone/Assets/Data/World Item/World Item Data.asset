@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currencyOneItemData: {fileID: 11400000, guid: 9c3b924d9cf9262419872e4eacc7f673, type: 2}
   currencyOneItemViewPrefab: {fileID: 7855125897784678772, guid: e00fa69d701e043418fe492f9313f361, type: 3}
+  currencyTwoItemData: {fileID: 11400000, guid: be17dcf0378ff014db58b4a85f9b8331, type: 2}
+  currencyTwoItemViewPrefab: {fileID: 8452125592975213712, guid: c5a9166be8d93e64ca46dc189e2498f3, type: 3}

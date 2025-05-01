@@ -12,6 +12,7 @@ namespace BrotatoClone.WorldItem
         private IEventManager eventManager;
 
         private CurrencyOneItemPool currencyOneItemPool;
+        private CurrencyTwoItemPool currencyTwoItemPool;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -33,6 +34,7 @@ namespace BrotatoClone.WorldItem
         private void CreateItemPools()
         {
             currencyOneItemPool = new CurrencyOneItemPool(this, worldItemData);
+            currencyTwoItemPool = new CurrencyTwoItemPool(this, worldItemData);
         }
 
         private void DisposeControllers()
@@ -42,7 +44,13 @@ namespace BrotatoClone.WorldItem
 
         public void OnEnemyDeath(Vector2 spawnPosition)
         {
-            currencyOneItemPool.OnEnemyDeath(spawnPosition);
+            int rand = Random.Range(0, 101);
+
+            if(rand <= 80) currencyOneItemPool.OnEnemyDeath(spawnPosition);
+            else currencyTwoItemPool.OnEnemyDeath(spawnPosition);
+
+            if (rand <= 80) Debug.Log("Item one");
+            else Debug.Log("Item Two");
         }
     }
 }
