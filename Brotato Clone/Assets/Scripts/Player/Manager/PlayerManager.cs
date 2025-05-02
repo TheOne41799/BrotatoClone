@@ -93,7 +93,7 @@ namespace BrotatoClone.Player
 
         public void HandleRequestWeapon()
         {
-            eventManager.PlayerEvents.OnWeaponRequested?.Invoke();
+            eventManager.PlayerEvents.OnWeaponRequested?.Invoke(WeaponType.TEST);
         }
 
         public void HandleReceiveWeapon(WeaponSpawnData weaponSpawnData)

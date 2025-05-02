@@ -81,5 +81,10 @@ namespace BrotatoClone.Weapon
             Gizmos.color = Color.black;
             Gizmos.DrawWireSphere(hitDetectionPoint.position, hitDetectionRadius);
         }
+
+        private void OnDisable()
+        {
+            controller?.ReleaseToPool();
+        }
     }
 }

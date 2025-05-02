@@ -11,10 +11,12 @@ namespace BrotatoClone.Weapon
         private WeaponManager weaponManager;
         private TestWeaponModel model;
         private TestWeaponView view;
+        private TestWeaponPool testWeaponPool;
 
-        public TestWeaponController(TestWeaponData testWeaponData, WeaponManager weaponManager)
+        public TestWeaponController(TestWeaponData testWeaponData, WeaponManager weaponManager, TestWeaponPool testWeaponPool)
         {
             this.weaponManager = weaponManager;
+            this.testWeaponPool = testWeaponPool;
 
             model = new TestWeaponModel(testWeaponData);
             model.SetController(this);
@@ -29,6 +31,26 @@ namespace BrotatoClone.Weapon
         public Transform OnWeaponTransformRequested()
         {
             return view.GetTestWeaponTransform();
+        }
+
+        public void OnGetFromPool()
+        {
+            view.gameObject.SetActive(true);
+        }
+
+        public void OnReturnToPool()
+        {
+            view.gameObject.SetActive(false);
+        }
+
+        public void OnDestroyFromPool()
+        {
+            GameObject.Destroy(view.gameObject);
+        }
+
+        public void ReleaseToPool()
+        {
+            testWeaponPool.Release(this);
         }
 
         public void OnUpdate()

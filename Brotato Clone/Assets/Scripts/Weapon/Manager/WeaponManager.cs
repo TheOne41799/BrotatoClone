@@ -15,14 +15,13 @@ namespace BrotatoClone.Weapon
 
         private IEventManager eventManager;
 
-        private Queue<Action> weaponQueue = new Queue<Action>();
-
-        private TestWeaponController controller;
+        private TestWeaponPool testWeaponPool;
 
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
+            CreateWeaponPools();
         }
 
         private void SetManagerDependencies(IEventManager eventManager)
@@ -35,9 +34,9 @@ namespace BrotatoClone.Weapon
             eventManager.PlayerEvents.OnWeaponRequested.AddListener(OnWeaponRequested);
         }
 
-        private void CreateControllers()
+        private void CreateWeaponPools()
         {
-            controller = new TestWeaponController(testWeaponData, this);
+            testWeaponPool = new TestWeaponPool(testWeaponData, this);
         }
 
         private void DisposeControllers()
@@ -47,51 +46,28 @@ namespace BrotatoClone.Weapon
 
         private void Update()
         {
-            if (controller != null) controller.OnUpdate();
+            testWeaponPool.OnUpdate();
+        }
+
+        public void OnWeaponRequested(WeaponType weaponType)
+        {
+            Debug.Log($"Weapon Requested by player: {weaponType}");
+
+            switch(weaponType)
+            {
+                case WeaponType.TEST:
+                    TestWeaponController controller = testWeaponPool.Get();
+                    Transform weaponTransform = controller.OnWeaponTransformRequested();
+
+                    WeaponSpawnData weaponSpawnData = new WeaponSpawnData(weaponTransform);
+                    eventManager.WeaponEvents.OnWeaponCreated.Invoke(weaponSpawnData);
+                    break;
+            }
         }
 
         public void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
             eventManager.WeaponEvents.OnEnemyHit.Invoke(damageDisplayData);
-        }
-
-        public WeaponSpawnData OnWeaponTransformRequested()
-        {
-            WeaponSpawnData weaponSpawnData = new WeaponSpawnData(controller.OnWeaponTransformRequested());
-            return weaponSpawnData;
-        }
-
-        public void OnWeaponRequested()
-        {
-            Debug.Log("Weapon Requested by player");
-
-            if (IsWeaponAvailable())
-            {
-                SpawnWeapon();
-            }
-            else
-            {
-                QueueWeaponRequest();
-            }
-        }
-
-        private void SpawnWeapon()
-        {            
-            if (weaponQueue.Count > 0)
-            {
-                weaponQueue.Dequeue()?.Invoke();
-            }
-        }
-
-        private bool IsWeaponAvailable()
-        {
-            // Logic for checking if the weapon is available
-            return true;
-        }
-
-        private void QueueWeaponRequest()
-        {
-            weaponQueue.Enqueue(SpawnWeapon);
         }
     }
 }
