@@ -8,6 +8,7 @@ namespace BrotatoClone.Game
         MENU,
         CHARACTER_WEAPON_SELECTION,
         IN_GAME,
+        PAUSE,
         GAME_OVER,
         WAVE_TRANSITION,
         WAVE_COMPLETED,

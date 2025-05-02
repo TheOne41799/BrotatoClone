@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901c4c2cd2e10924886782a7b569802f, type: 3}
   m_Name: Game Data
   m_EditorClassIdentifier: 
+  gameManagerPrefab: {fileID: 7087002913072256524, guid: c0fecdee8fc6fd44f87ba6b47d8b6f71, type: 3}
   inputManagerPrefab: {fileID: 7806976524852679861, guid: 842fcecfc17c8b0489937e8b73f15b8d, type: 3}
   cameraManagerPrefab: {fileID: 9141975254541833103, guid: bf14938180ad04f4bbfd04bd827fd0f8, type: 3}
   tweenManagerPrefab: {fileID: 925736086893483677, guid: 4d42beaf656e48b44aa2b20544247078, type: 3}

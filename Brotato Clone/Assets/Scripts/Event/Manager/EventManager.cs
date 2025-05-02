@@ -4,11 +4,8 @@ namespace BrotatoClone.Event
 {
     public class EventManager: IEventManager
     {
+        public GameEvents GameEvents {  get; }
         public InputEvents InputEvents { get; }
-
-        // Handle this later
-        //public TweenEvents TweenEvents { get; }
-
         public PlayerEvents PlayerEvents { get; }
         public EnemyEvents EnemyEvents { get; }
         public WeaponEvents WeaponEvents { get; }
@@ -16,11 +13,8 @@ namespace BrotatoClone.Event
 
         public EventManager()
         {
+            GameEvents = new GameEvents();
             InputEvents = new InputEvents();
-
-
-            //TweenEvents = new TweenEvents();
-
             PlayerEvents = new PlayerEvents();
             EnemyEvents = new EnemyEvents();
             WeaponEvents = new WeaponEvents();

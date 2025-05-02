@@ -4,6 +4,7 @@ namespace BrotatoClone.Event
 {
     public interface IEventManager
     {
+        GameEvents GameEvents { get; }
         InputEvents InputEvents { get; }
 
         // Handle this later

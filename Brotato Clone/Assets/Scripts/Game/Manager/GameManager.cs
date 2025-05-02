@@ -36,8 +36,15 @@ namespace BrotatoClone.Game
             if(currentGameState == gameState) return;
 
             currentGameState = gameState;
+            UpdateTimeScale();
 
-            //fire an event after updating the game state
+            eventManager?.GameEvents.OnGameStateUpdated.Broadcast(currentGameState);
+        }
+
+        private void UpdateTimeScale()
+        {
+            Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
+            Debug.Log(Time.timeScale);
         }
     }
 }
