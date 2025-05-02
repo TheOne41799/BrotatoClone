@@ -2,27 +2,21 @@ using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
 using BrotatoClone.UI;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 namespace BrotatoClone.Weapon
 {
     public class WeaponManager : MonoBehaviour, IManager
     {
-        // Handle this later
-        //[SerializeField] private MeleeWeaponData meleeWeaponData;
-
-
-        //This is a test
         [SerializeField] private TestWeaponData testWeaponData;
 
         private IEventManager eventManager;
 
-        // Handle this later
-        //private IWeaponController meleeWeaponController;
+        private Queue<Action> weaponQueue = new Queue<Action>();
 
-
-        //this is a test
         private TestWeaponController controller;
 
         public void InitializeManager(IEventManager eventManager)
@@ -38,17 +32,11 @@ namespace BrotatoClone.Weapon
 
         private void RegisterEventListeners()
         {
-            eventManager.PlayerEvents.OnWeaponRequested.AddListener(OnWeaponTransformRequested);
+            eventManager.PlayerEvents.OnWeaponRequested.AddListener(OnWeaponRequested);
         }
 
         private void CreateControllers()
         {
-            // Handle this later
-            //meleeWeaponController = new MeleeWeaponController(meleeWeaponData);
-
-
-
-            //this is a test
             controller = new TestWeaponController(testWeaponData, this);
         }
 
@@ -59,7 +47,6 @@ namespace BrotatoClone.Weapon
 
         private void Update()
         {
-            //this is a test
             if (controller != null) controller.OnUpdate();
         }
 
@@ -72,6 +59,37 @@ namespace BrotatoClone.Weapon
         {
             WeaponSpawnData weaponSpawnData = new WeaponSpawnData(controller.OnWeaponTransformRequested());
             return weaponSpawnData;
+        }
+
+        public void OnWeaponRequested()
+        {
+            if (IsWeaponAvailable())
+            {
+                SpawnWeapon();
+            }
+            else
+            {
+                QueueWeaponRequest();
+            }
+        }
+
+        private void SpawnWeapon()
+        {            
+            if (weaponQueue.Count > 0)
+            {
+                weaponQueue.Dequeue()?.Invoke();
+            }
+        }
+
+        private bool IsWeaponAvailable()
+        {
+            // Logic for checking if the weapon is available
+            return true;
+        }
+
+        private void QueueWeaponRequest()
+        {
+            weaponQueue.Enqueue(SpawnWeapon);
         }
     }
 }

@@ -1,6 +1,8 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
+using BrotatoClone.Game;
+using BrotatoClone.UI;
 using UnityEngine;
 
 namespace BrotatoClone.Player
@@ -26,13 +28,25 @@ namespace BrotatoClone.Player
 
         private void RegisterEventListeners()
         {
+            eventManager?.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
             eventManager?.InputEvents.OnMoveInput.AddListener(HandleMoveInput);
             eventManager?.EnemyEvents.OnApplyDamage.AddListener(HandleTakeDamage);
             eventManager?.WorldItemEvents.OnItemCollected.AddListener(HandleItemCollected);
         }
 
+        private void OnGameStateUpdated(GameState gameState)
+        {
+            switch (gameState)
+            {
+                case GameState.IN_GAME:
+                    CreateController();
+                    break;
+            }
+        }
+
         private void CreateController()
         {
+            if (playerController != null) return;
             playerController = new PlayerController((IPlayerControllerObserver) this, playerData);
         }
 
@@ -75,6 +89,16 @@ namespace BrotatoClone.Player
         {
             WeaponSpawnData weaponSpawnData = eventManager.PlayerEvents.OnWeaponRequested.Invoke<WeaponSpawnData>();
             return weaponSpawnData;
+        }
+
+        public void HandleRequestWeapon()
+        {
+            eventManager.PlayerEvents.OnWeaponRequested?.Invoke();
+        }
+
+        public void HandleReceiveWeapon(WeaponSpawnData weaponSpawnData)
+        {
+            playerController.HandleReceiveWeapon(weaponSpawnData);
         }
     }
 }

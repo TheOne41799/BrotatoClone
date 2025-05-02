@@ -28,7 +28,7 @@ namespace BrotatoClone.Game
 
         private void RegisterEventListeners()
         {
-            
+            eventManager.GameEvents.OnGameStart.AddListener(HandleGameStart);
         }
 
         private void SetGameState(GameState gameState)
@@ -45,5 +45,7 @@ namespace BrotatoClone.Game
         {
             Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
         }
+
+        private void HandleGameStart() => SetGameState(GameState.IN_GAME);
     }
 }

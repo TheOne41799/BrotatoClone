@@ -1,3 +1,4 @@
+using BrotatoClone.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ namespace BrotatoClone.UI
         [SerializeField] private Button startButton;
         [SerializeField] private Button quitButton;
 
+        private UIMenuController uiMenuController;
+
         private void Awake() => ShowUI();
 
         private void OnEnable()
@@ -15,9 +18,14 @@ namespace BrotatoClone.UI
             startButton.onClick.AddListener(StartGame);
         }
 
+        public void SetController(UIMenuController uIMenuController)
+        {
+            this.uiMenuController = uIMenuController;
+        }
+
         private void StartGame()
         {
-            Debug.Log("Game Started");
+            uiMenuController.HandleStartGame();
             HideUI();
         }
 

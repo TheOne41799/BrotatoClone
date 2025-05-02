@@ -1,6 +1,7 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
+using BrotatoClone.Game;
 using BrotatoClone.Player;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ namespace BrotatoClone.UI
 
         private void RegisterEventListeners()
         {
+            eventManager.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
             eventManager.PlayerEvents.OnHealthUpdated.AddListener(OnHealthUpdated);
             eventManager.PlayerEvents.OnXPUpdated.AddListener(OnXPUpdated);
         }
@@ -37,7 +39,7 @@ namespace BrotatoClone.UI
         private void CreateControllers()
         {
             uiHudController = new UIHUDController(uiData, uiCanvas);
-            uiMenuController = new UIMenuController(uiData, uiCanvas);
+            uiMenuController = new UIMenuController(uiData, uiCanvas, this);
         }
 
         private void DisposeControllers()
@@ -45,10 +47,31 @@ namespace BrotatoClone.UI
 
         }
 
+        private void OnGameStateUpdated(GameState gameState)
+        {
+            HideAllUIs();
+
+            switch (gameState)
+            {
+                case GameState.MENU:
+                    uiMenuController?.ShowUI();
+                    break;
+                case GameState.IN_GAME:
+                    uiHudController?.ShowUI();
+                    break;
+                case GameState.PAUSE:
+                    break;
+            }
+        }
+
         private void OnHealthUpdated(HealthDisplayData healthDisplayData) => uiHudController.OnUpdateHealth(healthDisplayData);
         private void OnXPUpdated(XPDisplayData xpDisplayData) => uiHudController.OnUpdateXP(xpDisplayData);
+        public void HandleStartGame() => eventManager.GameEvents.OnGameStart.Invoke();
 
-
-        // code for hiding and showing UI based on gamestate
+        private void HideAllUIs()
+        {
+            uiHudController.HideUI();
+            uiMenuController.HideUI();
+        }
     }
 }
