@@ -29,7 +29,6 @@ namespace BrotatoClone.Weapon
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
-            CreateControllers();
         }
 
         private void SetManagerDependencies(IEventManager eventManager)

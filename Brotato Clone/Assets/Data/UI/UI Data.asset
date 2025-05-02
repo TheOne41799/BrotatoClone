@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: UI Data
   m_EditorClassIdentifier: 
   uiHUDPrefab: {fileID: 4494081918656290397, guid: 1b95851ee659d8645a0d93b1d0a627a1, type: 3}
+  uiMenuPrefab: {fileID: 2760940500734925890, guid: 87b16b8a18365bb46a52079fd02f8e80, type: 3}

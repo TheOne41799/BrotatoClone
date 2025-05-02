@@ -14,6 +14,7 @@ namespace BrotatoClone.UI
         private IEventManager eventManager;
 
         private IUIHUDController uiHudController;
+        private UIMenuController uiMenuController;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -36,6 +37,7 @@ namespace BrotatoClone.UI
         private void CreateControllers()
         {
             uiHudController = new UIHUDController(uiData, uiCanvas);
+            uiMenuController = new UIMenuController(uiData, uiCanvas);
         }
 
         private void DisposeControllers()

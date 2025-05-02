@@ -17,10 +17,6 @@ namespace BrotatoClone.Player
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
-
-
-            //test
-            CreateController();
         }
 
         private void SetManagerDependencies(IEventManager eventManager)

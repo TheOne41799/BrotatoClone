@@ -44,7 +44,6 @@ namespace BrotatoClone.Game
         private void UpdateTimeScale()
         {
             Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
-            Debug.Log(Time.timeScale);
         }
     }
 }
