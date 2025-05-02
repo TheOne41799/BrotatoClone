@@ -51,8 +51,6 @@ namespace BrotatoClone.Weapon
 
         public void OnWeaponRequested(WeaponType weaponType)
         {
-            Debug.Log($"Weapon Requested by player: {weaponType}");
-
             switch(weaponType)
             {
                 case WeaponType.TEST:
