@@ -10,8 +10,8 @@ namespace BrotatoClone.Event
 
         public EnemyEvents()
         {
-            OnApplyDamage = new EventController<Action<float>>();
-            OnEnemyDeath = new EventController<Action<Vector2>>();
+            OnApplyDamage = new DeferredEventController<Action<float>>();
+            OnEnemyDeath = new DeferredEventController<Action<Vector2>>();
         }
     }
 }

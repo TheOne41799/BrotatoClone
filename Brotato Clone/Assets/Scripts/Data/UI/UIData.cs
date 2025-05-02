@@ -8,8 +8,10 @@ namespace BrotatoClone.Data
     {
         [Header("Prefabs")]
         [SerializeField] private UIHUD uiHUDPrefab;
+        [SerializeField] private UIMenu uiMenuPrefab;
 
         public UIHUD UIHUDPrefab => uiHUDPrefab;
+        public UIMenu UIMenuPrefab => uiMenuPrefab;
 
     }
 }

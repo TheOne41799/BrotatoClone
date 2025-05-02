@@ -2,34 +2,26 @@ using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
 using BrotatoClone.UI;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 namespace BrotatoClone.Weapon
 {
     public class WeaponManager : MonoBehaviour, IManager
     {
-        // Handle this later
-        //[SerializeField] private MeleeWeaponData meleeWeaponData;
-
-
-        //This is a test
         [SerializeField] private TestWeaponData testWeaponData;
 
         private IEventManager eventManager;
 
-        // Handle this later
-        //private IWeaponController meleeWeaponController;
-
-
-        //this is a test
-        private TestWeaponController controller;
+        private TestWeaponPool testWeaponPool;
 
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
-            CreateControllers();
+            CreateWeaponPools();
         }
 
         private void SetManagerDependencies(IEventManager eventManager)
@@ -39,18 +31,12 @@ namespace BrotatoClone.Weapon
 
         private void RegisterEventListeners()
         {
-            eventManager.PlayerEvents.OnWeaponRequested.AddListener(OnWeaponTransformRequested);
+            eventManager.PlayerEvents.OnWeaponRequested.AddListener(OnWeaponRequested);
         }
 
-        private void CreateControllers()
+        private void CreateWeaponPools()
         {
-            // Handle this later
-            //meleeWeaponController = new MeleeWeaponController(meleeWeaponData);
-
-
-
-            //this is a test
-            controller = new TestWeaponController(testWeaponData, this);
+            testWeaponPool = new TestWeaponPool(testWeaponData, this);
         }
 
         private void DisposeControllers()
@@ -60,19 +46,26 @@ namespace BrotatoClone.Weapon
 
         private void Update()
         {
-            //this is a test
-            if (controller != null) controller.OnUpdate();
+            testWeaponPool.OnUpdate();
+        }
+
+        public void OnWeaponRequested(WeaponType weaponType)
+        {
+            switch(weaponType)
+            {
+                case WeaponType.TEST:
+                    TestWeaponController controller = testWeaponPool.Get();
+                    Transform weaponTransform = controller.OnWeaponTransformRequested();
+
+                    WeaponSpawnData weaponSpawnData = new WeaponSpawnData(weaponTransform);
+                    eventManager.WeaponEvents.OnWeaponCreated.Invoke(weaponSpawnData);
+                    break;
+            }
         }
 
         public void HandleEnemyHit(DamageDisplayData damageDisplayData)
         {
             eventManager.WeaponEvents.OnEnemyHit.Invoke(damageDisplayData);
-        }
-
-        public WeaponSpawnData OnWeaponTransformRequested()
-        {
-            WeaponSpawnData weaponSpawnData = new WeaponSpawnData(controller.OnWeaponTransformRequested());
-            return weaponSpawnData;
         }
     }
 }

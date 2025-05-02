@@ -1,10 +1,11 @@
 using UnityEngine;
 
-namespace BrotatoClone.Weapon
+namespace BrotatoClone.Common
 {
     public enum WeaponType
     {
         NONE,
+        TEST,
         MELEE
     }
 }

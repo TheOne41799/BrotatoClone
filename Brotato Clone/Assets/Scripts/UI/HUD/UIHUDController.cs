@@ -18,6 +18,5 @@ namespace BrotatoClone.UI
         public void HideUI() => uiHUD.HideUI();
         public void OnUpdateHealth(HealthDisplayData healthDisplayData) => uiHUD.UpdateHealth(healthDisplayData);
         public void OnUpdateXP(XPDisplayData xpDisplayData) => uiHUD.UpdateXP(xpDisplayData);
-
     }
 }

@@ -15,7 +15,7 @@ namespace BrotatoClone.UI
         [SerializeField] private Slider xpSlider;
         [SerializeField] private TextMeshProUGUI xpText;
 
-        private void Awake() => ShowUI();
+        private void Awake() => HideUI();
         public void ShowUI() => this.gameObject.SetActive(true);
         public void HideUI() => this.gameObject.SetActive(false);
 

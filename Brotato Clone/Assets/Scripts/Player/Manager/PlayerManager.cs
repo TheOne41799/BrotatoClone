@@ -1,6 +1,8 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Event;
+using BrotatoClone.Game;
+using BrotatoClone.UI;
 using UnityEngine;
 
 namespace BrotatoClone.Player
@@ -17,10 +19,6 @@ namespace BrotatoClone.Player
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
-
-
-            //test
-            CreateController();
         }
 
         private void SetManagerDependencies(IEventManager eventManager)
@@ -30,14 +28,28 @@ namespace BrotatoClone.Player
 
         private void RegisterEventListeners()
         {
+            eventManager?.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
             eventManager?.InputEvents.OnMoveInput.AddListener(HandleMoveInput);
             eventManager?.EnemyEvents.OnApplyDamage.AddListener(HandleTakeDamage);
+            eventManager?.WeaponEvents.OnWeaponCreated.AddListener(HandleReceiveWeapon);
             eventManager?.WorldItemEvents.OnItemCollected.AddListener(HandleItemCollected);
+        }
+
+        private void OnGameStateUpdated(GameState gameState)
+        {
+            switch (gameState)
+            {
+                case GameState.IN_GAME:
+                    CreateController();
+                    break;
+            }
         }
 
         private void CreateController()
         {
+            if (playerController != null) return;
             playerController = new PlayerController((IPlayerControllerObserver) this, playerData);
+            playerController.HandleRequestWeapon();
         }
 
         private void DisposeController()
@@ -75,10 +87,14 @@ namespace BrotatoClone.Player
             playerController.HandleItemCollected(worldItemCollected);
         }
 
-        public WeaponSpawnData OnWeaponRequested()
+        public void HandleRequestWeapon()
         {
-            WeaponSpawnData weaponSpawnData = eventManager.PlayerEvents.OnWeaponRequested.Invoke<WeaponSpawnData>();
-            return weaponSpawnData;
+            eventManager.PlayerEvents.OnWeaponRequested?.Invoke(WeaponType.TEST);
+        }
+
+        public void HandleReceiveWeapon(WeaponSpawnData weaponSpawnData)
+        {
+            playerController.HandleReceiveWeapon(weaponSpawnData);
         }
     }
 }

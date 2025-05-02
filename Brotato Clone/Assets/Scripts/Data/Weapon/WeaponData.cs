@@ -1,4 +1,4 @@
-using BrotatoClone.Weapon;
+using BrotatoClone.Common;
 using UnityEngine;
 
 namespace BrotatoClone.Data

@@ -3,6 +3,7 @@ using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Enemy;
 using BrotatoClone.Event;
+using BrotatoClone.Game;
 using BrotatoClone.Input;
 using BrotatoClone.Player;
 using BrotatoClone.Tween;
@@ -22,6 +23,7 @@ namespace BrotatoClone.Main
 
         private IEventManager eventManager;
 
+        private IManager gameManager;
         private IManager inputManager;
         private IManager cameraManager;
         private IManager tweenManager;
@@ -46,9 +48,7 @@ namespace BrotatoClone.Main
         }
 
         private void Start()
-        {
-            Application.targetFrameRate = 60;
-
+        {           
             CreateEventManager();
             CreateManagers();
             SetManagerDependencies();
@@ -61,6 +61,7 @@ namespace BrotatoClone.Main
 
         private void CreateManagers()
         {
+            gameManager = GameObject.Instantiate<GameManager>(gameData.GameManagerPrefab, this.transform);
             inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
             cameraManager = GameObject.Instantiate<CameraManager>(gameData.CameraManagerPrefab, this.transform);
             tweenManager = GameObject.Instantiate<TweenManager>(gameData.TweenManagerPrefab, this.transform);
@@ -74,6 +75,7 @@ namespace BrotatoClone.Main
 
         private void SetManagerDependencies()
         {
+            gameManager.InitializeManager(eventManager);
             inputManager.InitializeManager(eventManager);
             cameraManager.InitializeManager(eventManager);
             tweenManager.InitializeManager(eventManager);

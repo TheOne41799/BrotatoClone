@@ -1,5 +1,6 @@
 using BrotatoClone.Camera;
 using BrotatoClone.Enemy;
+using BrotatoClone.Game;
 using BrotatoClone.Input;
 using BrotatoClone.Player;
 using BrotatoClone.Tween;
@@ -15,6 +16,7 @@ namespace BrotatoClone.Data
     public class GameData : ScriptableObject
     {
         [Header("Prefabs")]
+        [SerializeField] private GameManager gameManagerPrefab;
         [SerializeField] private InputManager inputManagerPrefab;
         [SerializeField] private CameraManager cameraManagerPrefab;
         [SerializeField] private TweenManager tweenManagerPrefab;
@@ -25,6 +27,7 @@ namespace BrotatoClone.Data
         [SerializeField] private VFXManager vfxManagerPrefab;
         [SerializeField] private WorldItemManager worldItemManagerPrefab;
 
+        public GameManager GameManagerPrefab => gameManagerPrefab;
         public InputManager InputManagerPrefab => inputManagerPrefab;
         public CameraManager CameraManagerPrefab => cameraManagerPrefab;
         public TweenManager TweenManagerPrefab => tweenManagerPrefab;
