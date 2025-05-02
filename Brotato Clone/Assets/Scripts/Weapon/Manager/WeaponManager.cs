@@ -63,6 +63,8 @@ namespace BrotatoClone.Weapon
 
         public void OnWeaponRequested()
         {
+            Debug.Log("Weapon Requested by player");
+
             if (IsWeaponAvailable())
             {
                 SpawnWeapon();

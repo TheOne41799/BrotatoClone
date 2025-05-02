@@ -10,7 +10,7 @@ namespace BrotatoClone.Event
 
         public TweenEvents()
         {
-            OnTweenRequested = new EventController<Action<TweenEventData>>();
+            OnTweenRequested = new DeferredEventController<Action<TweenEventData>>();
         }
     }
 }

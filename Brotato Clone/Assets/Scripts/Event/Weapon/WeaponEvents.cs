@@ -10,7 +10,7 @@ namespace BrotatoClone.Event
 
         public WeaponEvents()
         {
-            OnEnemyHit = new EventController<Action<DamageDisplayData>>();
+            OnEnemyHit = new DeferredEventController<Action<DamageDisplayData>>();
         }
     }
 }

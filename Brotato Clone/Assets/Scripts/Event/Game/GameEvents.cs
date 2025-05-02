@@ -11,8 +11,8 @@ namespace BrotatoClone.Event
 
         public GameEvents()
         {
-            OnGameStateUpdated = new EventController<Action<GameState>>();
-            OnGameStart = new EventController<Action>();
+            OnGameStateUpdated = new DeferredEventController<Action<GameState>>();
+            OnGameStart = new   DeferredEventController<Action>();
         }
     }
 }

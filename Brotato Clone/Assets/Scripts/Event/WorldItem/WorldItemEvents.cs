@@ -10,7 +10,7 @@ namespace BrotatoClone.Event
 
         public WorldItemEvents()
         {
-            OnItemCollected = new EventController<Action<WorldItemCollected>>();
+            OnItemCollected = new DeferredEventController<Action<WorldItemCollected>>();
         }
     }
 }

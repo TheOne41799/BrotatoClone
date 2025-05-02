@@ -9,7 +9,7 @@ namespace BrotatoClone.Event
 
         public InputEvents()
         {
-            OnMoveInput = new EventController<Action<Vector2>>();
+            OnMoveInput = new DeferredEventController<Action<Vector2>>();
         }
     }
 }
