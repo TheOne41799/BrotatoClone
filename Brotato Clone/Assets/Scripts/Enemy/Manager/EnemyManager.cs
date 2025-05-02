@@ -43,6 +43,7 @@ namespace BrotatoClone.Enemy
 
             //test
 
+            /*CreateController();
             CreateController();
             CreateController();
             CreateController();
@@ -62,8 +63,7 @@ namespace BrotatoClone.Enemy
             CreateController();
             CreateController();
             CreateController();
-            CreateController();
-            CreateController();
+            CreateController();*/
         }
 
         private void CreateController()
