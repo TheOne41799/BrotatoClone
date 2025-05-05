@@ -1,6 +1,7 @@
 using BrotatoClone.Common;
 using BrotatoClone.Data;
 using BrotatoClone.Player;
+using BrotatoClone.WorldItem;
 using UnityEngine;
 
 namespace BrotatoClone.Enemy
@@ -8,6 +9,7 @@ namespace BrotatoClone.Enemy
     public class EnemyController : IEnemyController, IViewObserver, IModelObserver
     {
         private IControllerObserver enemyManager;
+        private EnemyData enemyData;
         private IEnemyModel enemyModel;
         private IEnemyView enemyView;
 
@@ -17,8 +19,12 @@ namespace BrotatoClone.Enemy
 
         public EnemyController(EnemyData enemyData, IControllerObserver enemyManager)
         {
+            this.enemyData = enemyData;
             this.enemyManager = enemyManager;
+        }
 
+        public void CreateEnemy()
+        {
             enemyModel = new EnemyModel(enemyData);
             enemyModel.SetController(this);
 
@@ -28,7 +34,23 @@ namespace BrotatoClone.Enemy
             enemyView.RunSpawnIndicatorTween();
 
             isDisposed = false;
-            this.enemyManager = enemyManager;
+        }
+
+        public void GetFromPool()
+        {
+            enemyView.ToggleVisibility(true);
+            isDisposed = false;
+        }
+
+        public void ReturnToPool()
+        {
+            enemyView.ToggleVisibility(false);
+            isDisposed = true;
+        }
+
+        public void DestroyFromPool()
+        {
+            OnDispose();
         }
 
         public void SetEnemyTarget(ITarget target)

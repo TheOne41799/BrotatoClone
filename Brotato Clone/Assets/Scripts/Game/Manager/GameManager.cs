@@ -12,7 +12,8 @@ namespace BrotatoClone.Game
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            SetGameState(GameState.MENU);
+            currentGameState = GameState.MENU;
+            UpdateTimeScale();
         }
 
         public void InitializeManager(IEventManager eventManager)
@@ -38,7 +39,7 @@ namespace BrotatoClone.Game
             currentGameState = gameState;
             UpdateTimeScale();
 
-            eventManager?.GameEvents.OnGameStateUpdated.Broadcast(currentGameState);
+            eventManager.GameEvents.OnGameStateUpdated.Broadcast(currentGameState);
         }
 
         private void UpdateTimeScale()

@@ -16,12 +16,13 @@ namespace BrotatoClone.Enemy
         private IEventManager eventManager;
         private ITarget target;
 
-        private List<IEnemyController> enemyControllers = new List<IEnemyController>();
+        private EnemyPool enemyPool;
 
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
+            CreateEnemyPool();
         }
 
         private void SetManagerDependencies(IEventManager eventManager)
@@ -39,54 +40,41 @@ namespace BrotatoClone.Enemy
         private void ReceiveTargetTransform(ITarget target)
         {
             this.target = target;
-
-
-            //test
-
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
-            CreateController();
         }
 
         private void CreateController()
         {
-            IEnemyController controller = new EnemyController(enemyData, this);
+            /*IEnemyController controller = new EnemyController(enemyData, this);
             controller.SetEnemyTarget(target);
-            enemyControllers.Add(controller);
+            enemyControllers.Add(controller);*/
         }
 
-        private void DisposeController()
+        private void CreateEnemyPool()
         {
+            enemyPool = new EnemyPool(this, enemyData);
+        }
 
+        public void SetTarget(IEnemyController controller)
+        {
+            controller.SetEnemyTarget(target);
         }
 
         private void Update()
         {
-            if (enemyControllers != null)
+            /*if (enemyControllers != null)
             {
                 foreach (IEnemyController enemyController in enemyControllers)
                 {
                     enemyController.HandleFollowTarget();
                     enemyController.HandleTryAttackTarget();
                 }
+            }*/
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space)) enemyPool.TestFunction();
+
+            if(enemyPool != null)
+            {
+                enemyPool.OnUpdate();
             }
         }
 

@@ -22,3 +22,4 @@ MonoBehaviour:
   weaponManagerPrefab: {fileID: 6671467854650585882, guid: 6db0fbd3123417744a5f836b07a02888, type: 3}
   vfxManagerPrefab: {fileID: 1740748678495203755, guid: 757ee1525e6773742b93d21a3ade9213, type: 3}
   worldItemManagerPrefab: {fileID: 210989997061276330, guid: e5a7c00c9f351a641986ae9c5f8cfc17, type: 3}
+  waveManagerPrefab: {fileID: 7364415606606112540, guid: d993981b83f78004eb9da97590a62073, type: 3}

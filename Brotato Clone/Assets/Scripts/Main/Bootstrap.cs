@@ -9,6 +9,7 @@ using BrotatoClone.Player;
 using BrotatoClone.Tween;
 using BrotatoClone.UI;
 using BrotatoClone.VFX;
+using BrotatoClone.Wave;
 using BrotatoClone.Weapon;
 using BrotatoClone.WorldItem;
 using UnityEngine;
@@ -33,6 +34,7 @@ namespace BrotatoClone.Main
         private IManager playerManager;
         private IManager vfxManager;
         private IManager worldItemManager;
+        private IManager waveManager;
 
         private void Awake()
         {
@@ -71,6 +73,7 @@ namespace BrotatoClone.Main
             playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
             vfxManager = GameObject.Instantiate<VFXManager>(gameData.VFXManagerPrefab, this.transform);
             worldItemManager = GameObject.Instantiate<WorldItemManager>(gameData.WorldItemManagerPrefab, this.transform);
+            waveManager = GameObject.Instantiate<WaveManager>(gameData.WaveManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
@@ -85,6 +88,7 @@ namespace BrotatoClone.Main
             playerManager.InitializeManager(eventManager);
             vfxManager.InitializeManager(eventManager);
             worldItemManager.InitializeManager(eventManager);
+            waveManager.InitializeManager(eventManager);
         }
     }
 }

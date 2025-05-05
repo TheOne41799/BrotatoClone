@@ -49,6 +49,11 @@ namespace BrotatoClone.Enemy
             this.enemyData = enemyData;
         }
 
+        public void ToggleVisibility(bool visibility)
+        {
+            this.gameObject.SetActive(visibility);
+        }
+
         public void RunSpawnIndicatorTween()
         {
             Vector3 targetScale = spawnIndicator.transform.localScale * 1.2f;
