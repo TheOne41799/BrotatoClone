@@ -6,6 +6,7 @@ using BrotatoClone.Player;
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using BrotatoClone.Game;
 
 namespace BrotatoClone.Enemy
 {
@@ -32,9 +33,8 @@ namespace BrotatoClone.Enemy
 
         private void RegisterEventListeners()
         {
+            eventManager.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
             eventManager.PlayerEvents.OnTargetUpdated.AddListener(ReceiveTargetTransform);
-
-            // create an event to indicate player has been destroyed or use the same event
         }
 
         private void ReceiveTargetTransform(ITarget target)
@@ -42,11 +42,9 @@ namespace BrotatoClone.Enemy
             this.target = target;
         }
 
-        private void CreateController()
+        private void RemoveTargetTransform()
         {
-            /*IEnemyController controller = new EnemyController(enemyData, this);
-            controller.SetEnemyTarget(target);
-            enemyControllers.Add(controller);*/
+            this.target = null;
         }
 
         private void CreateEnemyPool()
@@ -59,22 +57,26 @@ namespace BrotatoClone.Enemy
             controller.SetEnemyTarget(target);
         }
 
+        public void RequestEnemy()
+        {
+            enemyPool.RequestEnemy();
+        }
+
         private void Update()
         {
-            /*if (enemyControllers != null)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
-                foreach (IEnemyController enemyController in enemyControllers)
-                {
-                    enemyController.HandleFollowTarget();
-                    enemyController.HandleTryAttackTarget();
-                }
-            }*/
+                RequestEnemy(); // Now uses the pool
+            }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Space)) enemyPool.TestFunction();
+            enemyPool?.OnUpdate();
+        }
 
-            if(enemyPool != null)
+        private void OnGameStateUpdated(GameState gameState)
+        {
+            if (gameState == GameState.IN_GAME)
             {
-                enemyPool.OnUpdate();
+                RequestEnemy(); // Now uses the pool
             }
         }
 

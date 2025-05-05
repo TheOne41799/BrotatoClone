@@ -65,7 +65,7 @@ namespace BrotatoClone.Enemy
 
         public void HandleFollowTarget()
         {
-            if (isDisposed) return;
+            if (isDisposed || target == null) return;
 
             Vector2 velocity = enemyModel.CalculateVelocity(target.TargetTransform.position, enemyView.GetPosition());
             enemyView.UpdateVelocity(velocity);
@@ -73,19 +73,12 @@ namespace BrotatoClone.Enemy
 
         public void HandleTryAttackTarget()
         {
-            if (isDisposed) return;
+            if (isDisposed || target == null) return;
 
-            bool canAttackPlayer = enemyModel.TryAttack(target.TargetTransform.position, enemyView.GetPosition());
-
-            if(canAttackPlayer) HandleAttackTarget();
-
-            /*if (canAttackPlayer)
-            {                
+            if (enemyModel.TryAttack(target.TargetTransform.position, enemyView.GetPosition()))
+            {
                 HandleAttackTarget();
-
-                //enemyView.PlayDeathEffect();
-                //OnDispose();
-            }*/
+            }
         }
 
         private void HandleAttackTarget()

@@ -24,44 +24,41 @@ namespace BrotatoClone.Enemy
                                                          OnDestroyEnemyController);
         }
 
-        public void TestFunction()
+        public void RequestEnemy()
         {
-            CreateEnemyController();
+            IEnemyController controller = enemyPool.Get();
+            enemyControllers.Add(controller);
         }
 
         private IEnemyController CreateEnemyController()
         {
-            IEnemyController enemyController = new EnemyController(enemyData, enemyManager);
-            enemyController.CreateEnemy();
-            enemyManager.SetTarget(enemyController);
-            enemyControllers.Add(enemyController);
-            return enemyController;
+            var controller = new EnemyController(enemyData, enemyManager);
+            controller.CreateEnemy();
+            return controller;
         }
 
-        private void OnGetEnemyController(IEnemyController enemyController)
+        private void OnGetEnemyController(IEnemyController controller)
         {
-            enemyController.GetFromPool();
+            controller.GetFromPool();
+            enemyManager.SetTarget(controller);
         }
 
-        private void OnReleaseEnemyController(IEnemyController enemyController)
+        private void OnReleaseEnemyController(IEnemyController controller)
         {
-            enemyController.ReturnToPool();
+            controller.ReturnToPool();
         }
 
-        private void OnDestroyEnemyController(IEnemyController enemyController)
+        private void OnDestroyEnemyController(IEnemyController controller)
         {
-            enemyController.DestroyFromPool();
+            controller.DestroyFromPool();
         }
 
         public void OnUpdate()
         {
-            if (enemyControllers != null)
+            foreach (var controller in enemyControllers)
             {
-                foreach (IEnemyController enemyController in enemyControllers)
-                {
-                    enemyController.HandleFollowTarget();
-                    enemyController.HandleTryAttackTarget();
-                }
+                controller.HandleFollowTarget();
+                controller.HandleTryAttackTarget();
             }
         }
     }
