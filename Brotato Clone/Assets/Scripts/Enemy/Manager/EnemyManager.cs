@@ -10,7 +10,7 @@ using BrotatoClone.Game;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyManager : MonoBehaviour, IManager, IControllerObserver
+    public class EnemyManager : MonoBehaviour, IManager
     {
         [SerializeField] private EnemyData enemyData;
 
@@ -52,7 +52,7 @@ namespace BrotatoClone.Enemy
             enemyPool = new EnemyPool(this, enemyData);
         }
 
-        public void SetTarget(IEnemyController controller)
+        public void SetTarget(EnemyController controller)
         {
             controller.SetEnemyTarget(target);
         }
@@ -62,11 +62,16 @@ namespace BrotatoClone.Enemy
             enemyPool.RequestEnemy();
         }
 
+        public void ReleaseEnemy(EnemyController controller)
+        {
+            enemyPool.ReleaseEnemy(controller);
+        }
+
         private void Update()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
-                RequestEnemy(); // Now uses the pool
+                RequestEnemy();
             }
 
             enemyPool?.OnUpdate();
@@ -76,7 +81,7 @@ namespace BrotatoClone.Enemy
         {
             if (gameState == GameState.IN_GAME)
             {
-                RequestEnemy(); // Now uses the pool
+                RequestEnemy();
             }
         }
 

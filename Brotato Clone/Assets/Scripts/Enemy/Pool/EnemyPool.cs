@@ -10,15 +10,15 @@ namespace BrotatoClone.Enemy
         private EnemyManager enemyManager;
         private EnemyData enemyData;
 
-        private ObjectPool<IEnemyController> enemyPool;
-        private List<IEnemyController> enemyControllers = new List<IEnemyController>();
+        private ObjectPool<EnemyController> enemyPool;
+        private List<EnemyController> enemyControllers = new List<EnemyController>();
 
         public EnemyPool(EnemyManager enemyManager, EnemyData enemyData)
         {
             this.enemyManager = enemyManager;
             this.enemyData = enemyData;
 
-            enemyPool = new ObjectPool<IEnemyController>(CreateEnemyController,
+            enemyPool = new ObjectPool<EnemyController>(CreateEnemyController,
                                                          OnGetEnemyController,
                                                          OnReleaseEnemyController,
                                                          OnDestroyEnemyController);
@@ -26,29 +26,37 @@ namespace BrotatoClone.Enemy
 
         public void RequestEnemy()
         {
-            IEnemyController controller = enemyPool.Get();
-            enemyControllers.Add(controller);
+            EnemyController controller = enemyPool.Get();
+            if (!enemyControllers.Contains(controller))
+            {
+                enemyControllers.Add(controller);
+            }
         }
 
-        private IEnemyController CreateEnemyController()
+        public void ReleaseEnemy(EnemyController controller)
+        {
+            enemyPool.Release(controller);
+        }
+
+        private EnemyController CreateEnemyController()
         {
             var controller = new EnemyController(enemyData, enemyManager);
             controller.CreateEnemy();
             return controller;
         }
 
-        private void OnGetEnemyController(IEnemyController controller)
+        private void OnGetEnemyController(EnemyController controller)
         {
             controller.GetFromPool();
             enemyManager.SetTarget(controller);
         }
 
-        private void OnReleaseEnemyController(IEnemyController controller)
+        private void OnReleaseEnemyController(EnemyController controller)
         {
             controller.ReturnToPool();
         }
 
-        private void OnDestroyEnemyController(IEnemyController controller)
+        private void OnDestroyEnemyController(EnemyController controller)
         {
             controller.DestroyFromPool();
         }

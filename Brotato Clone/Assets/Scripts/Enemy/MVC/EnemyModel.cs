@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyModel : IEnemyModel
+    public class EnemyModel
     {
-        private IModelObserver enemyController;
+        private EnemyController enemyController;
 
         private readonly float moveSpeed;
         private readonly float attackRange;
@@ -29,7 +29,7 @@ namespace BrotatoClone.Enemy
             this.attackTimer = 0f;
         }
 
-        public void SetController(IModelObserver enemyController)
+        public void SetController(EnemyController enemyController)
         {
             this.enemyController = enemyController;
         }

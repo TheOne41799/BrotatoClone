@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyView : MonoBehaviour, IEnemyView, IDamageable
+    public class EnemyView : MonoBehaviour
     {
-        private IViewObserver enemyController;
+        private EnemyController enemyController;
         private Vector2 velocity;
 
         private EnemyData enemyData;
@@ -39,7 +39,7 @@ namespace BrotatoClone.Enemy
             spawnIndicator.enabled = !visibility;
         }
 
-        public void SetController(IViewObserver enemyController)
+        public void SetController(EnemyController enemyController)
         {
             this.enemyController = enemyController;
         }
@@ -115,7 +115,7 @@ namespace BrotatoClone.Enemy
 
         public void DestroyEnemy()
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 }

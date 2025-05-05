@@ -6,18 +6,18 @@ using UnityEngine;
 
 namespace BrotatoClone.Enemy
 {
-    public class EnemyController : IEnemyController, IViewObserver, IModelObserver
+    public class EnemyController
     {
-        private IControllerObserver enemyManager;
+        private EnemyManager enemyManager;
         private EnemyData enemyData;
-        private IEnemyModel enemyModel;
-        private IEnemyView enemyView;
+        private EnemyModel enemyModel;
+        private EnemyView enemyView;
 
         private ITarget target;
 
         private bool isDisposed;
 
-        public EnemyController(EnemyData enemyData, IControllerObserver enemyManager)
+        public EnemyController(EnemyData enemyData, EnemyManager enemyManager)
         {
             this.enemyData = enemyData;
             this.enemyManager = enemyManager;
@@ -28,7 +28,7 @@ namespace BrotatoClone.Enemy
             enemyModel = new EnemyModel(enemyData);
             enemyModel.SetController(this);
 
-            enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity);
+            enemyView = GameObject.Instantiate<EnemyView>(enemyData.EnemyViewPrefab, new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity, enemyManager.transform);
             enemyView.SetController(this);
             enemyView.SetEnemyData(enemyData);
             enemyView.RunSpawnIndicatorTween();
@@ -40,12 +40,16 @@ namespace BrotatoClone.Enemy
         {
             enemyView.ToggleVisibility(true);
             isDisposed = false;
+
+            enemyModel = new EnemyModel(enemyData);
+            enemyModel.SetController(this);
         }
 
         public void ReturnToPool()
         {
             enemyView.ToggleVisibility(false);
             isDisposed = true;
+            target = null;
         }
 
         public void DestroyFromPool()
@@ -96,10 +100,7 @@ namespace BrotatoClone.Enemy
             isDisposed = true;
 
             enemyModel = null;
-            enemyView = null;
             target = null;
-
-            // send a message to manager
         }
 
         public void TakeDamage(float damage)
@@ -111,8 +112,7 @@ namespace BrotatoClone.Enemy
         {
             enemyManager.OnEnemyDeath(enemyView.GetPosition());
             enemyView.PlayDeathEffect();
-            enemyView.DestroyEnemy();
-            OnDispose();            
+            enemyManager.ReleaseEnemy(this);
         }
     }
 }
